@@ -5,7 +5,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import autosolving.heuristics.Heuristic;
 import exceptions.BoardWithoutZeroException;
+import exceptions.UnsolvableBoardException;
 import npuzzle.Board;
 import npuzzle.Moves;
 
@@ -224,5 +226,24 @@ public class BoardUtils {
             }
         }
         return false;
+    }
+
+    public static void checkBoard(Board board) throws BoardWithoutZeroException, UnsolvableBoardException {
+        if (!BoardUtils.containsZero(board)) {
+            throw new BoardWithoutZeroException("Trying to solve board without zero");
+        }
+        if (!BoardUtils.correctState(board.getState())) {
+            throw new UnsolvableBoardException("Trying to solve unsolvable board");
+        }
+    }
+
+    public static List<Board> deleteBoardsAboveMaxHeuristicCost(List<Board> list, int maxCost, Heuristic heuristic) {
+        List<Board> toReturn = new ArrayList<>();
+        for (Board b : list) {
+            if (heuristic.heuristicValue(b) <= maxCost) {
+                toReturn.add(b);
+            }
+        }
+        return toReturn;
     }
 }

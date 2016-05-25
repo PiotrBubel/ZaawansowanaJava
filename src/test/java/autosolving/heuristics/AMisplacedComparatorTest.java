@@ -60,7 +60,7 @@ public class AMisplacedComparatorTest {
      * Test of heuristicValue method, of class ManhattanDistanceComparator
      */
     @Test
-    public void heuristicValueShouldAddPathLength() throws BoardWithoutZeroException{
+    public void heuristicValueShouldAddPathLength() throws BoardWithoutZeroException {
         state = new int[][]{
                 {1, 2, 3, 4},
                 {5, 6, 7, 8},

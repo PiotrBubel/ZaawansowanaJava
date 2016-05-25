@@ -2,8 +2,13 @@ package npuzzle;
 
 import org.apache.commons.lang.StringUtils;
 
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import autosolving.heuristics.Heuristic;
+import autosolving.solvers.PuzzleSolver;
 import exceptions.BoardWithoutZeroException;
 import npuzzle.utils.BoardUtils;
 
@@ -294,6 +299,89 @@ public class Board {
         newB.path = new String(this.path);
         newB.setNextStepInPath(Moves.DOWN_CHAR);
         return newB;
+    }
+
+    /**
+     * Method returns possible states from this Board in given order
+     */
+    public List<Board> getPossibleStates(String ord) throws BoardWithoutZeroException {
+        String order = new String(ord);
+        if (order.contains("r") || order.contains("R")) {
+            order = BoardUtils.randomizeOrder();
+        }
+        List<Board> possibleStates = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++) {
+            Board toAdd = this.move(order.charAt(i));
+            if (toAdd != null) {
+                possibleStates.add(toAdd);
+            }
+        }
+        if (possibleStates.isEmpty()) {
+            System.out.println("DEADLOCK - brak mozliwosci ruchu bez zapetlenia.");
+        }
+        return possibleStates;
+    }
+
+    /**
+     * Method returns possible states from this Board in given order
+     */
+    public List<Board> getPossibleStates(Heuristic heuristics) throws BoardWithoutZeroException {
+        List<Board> possibleStates = this.getPossibleStates("rrrr");
+        Collections.sort(possibleStates, heuristics);
+        return possibleStates;
+    }
+
+    public Board findAnswerWithDFS(String order, int depth, PrintStream stream) throws BoardWithoutZeroException {
+        if (depth >= 0) {
+            this.nextNodes = getPossibleStates(order);
+            PuzzleSolver.addCreated(this.nextNodes.size());
+            for (Board nextNode : nextNodes) {
+                if (stream != null && !nextNode.getPath().isEmpty() && nextNode.getPath() != null) {
+                    stream.println(nextNode.getPath());
+                }
+                if (nextNode.isCorrect()) {
+                    return nextNode;
+                } else {
+                    Board possibleAnswer = nextNode.findAnswerWithDFS(order, depth - 1, stream);
+                    if (possibleAnswer != null) {
+                        return possibleAnswer;
+                    }
+                }
+            }
+        } else {
+            this.nextNodes = null;
+            return null;
+        }
+        return null;
+    }
+
+    public Board findAnswerWithIDA(Heuristic heuristics, int maxCost, PrintStream stream) throws BoardWithoutZeroException {
+        //FIXME not sure if it works exactly as definition says
+
+        if (maxCost > 0) {
+            this.nextNodes = getPossibleStates(heuristics);
+            this.nextNodes = BoardUtils.deleteBoardsAboveMaxHeuristicCost(this.nextNodes, maxCost, heuristics);
+
+            PuzzleSolver.addCreated(this.nextNodes.size());
+            for (Board nextNode : nextNodes) {
+                if (stream != null && !nextNode.getPath().isEmpty() && nextNode.getPath() != null) {
+                    stream.println(nextNode.getPath());
+                }
+                if (nextNode.isCorrect()) {
+                    return nextNode;
+                } else {
+                    Board possibleAnswer = nextNode.findAnswerWithIDA(heuristics, maxCost - 1, stream);
+                    if (possibleAnswer != null) {
+                        return possibleAnswer;
+                    }
+                }
+            }
+        } else {
+            this.nextNodes = null;
+            return null;
+        }
+        return null;
     }
 
     /**

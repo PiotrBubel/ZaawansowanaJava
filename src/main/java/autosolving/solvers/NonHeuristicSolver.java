@@ -12,14 +12,12 @@ public abstract class NonHeuristicSolver extends PuzzleSolver {
     public NonHeuristicSolver(String order) {
         super();
         this.order = checkOrder(order);
-        this.firstBoard = null;
         this.createdBoards = 0;
     }
 
     public NonHeuristicSolver(String order, int depth) {
         super(depth);
         this.order = checkOrder(order);
-        this.firstBoard = null;
         this.createdBoards = 0;
     }
 
