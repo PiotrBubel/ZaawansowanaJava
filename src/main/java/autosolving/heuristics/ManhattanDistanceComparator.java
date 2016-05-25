@@ -1,6 +1,7 @@
 package autosolving.heuristics;
 
 import npuzzle.Board;
+import npuzzle.utils.BoardUtils;
 
 /**
  * Heuristic function: counts distance between every tile and its place, does not count zero as
@@ -15,6 +16,10 @@ public class ManhattanDistanceComparator implements Heuristic {
     }
 
     public int heuristicValue(Board b) {
+        if (!BoardUtils.correctState(b.getState())) {
+            return Integer.MAX_VALUE;
+        }
+
         int sum = 0;
         int[][] state = b.getState();
         int correctValue = 1;
@@ -24,8 +29,8 @@ public class ManhattanDistanceComparator implements Heuristic {
                 if (x == state.length - 1 && y == state[0].length - 1) {
                     break;
                 }
-                int[] valueCoord = b.findNumber(correctValue);
-                sum = sum + (Math.abs(valueCoord[0] - x) + Math.abs(valueCoord[1] - y));
+                int[] valueCoordinates = b.findNumber(correctValue);
+                sum = sum + (Math.abs(valueCoordinates[0] - x) + Math.abs(valueCoordinates[1] - y));
 
                 correctValue++;
             }

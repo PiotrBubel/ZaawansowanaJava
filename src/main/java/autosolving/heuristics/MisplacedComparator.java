@@ -1,6 +1,7 @@
 package autosolving.heuristics;
 
 import npuzzle.Board;
+import npuzzle.utils.BoardUtils;
 
 /**
  * Heuristic function: counts tiles out of place, does not count zero as tile
@@ -14,6 +15,9 @@ public class MisplacedComparator implements Heuristic {
     }
 
     public int heuristicValue(Board b) {
+        if (!BoardUtils.correctState(b.getState())) {
+            return Integer.MAX_VALUE;
+        }
 
         int[][] state = b.getState();
         int misplaced = 0;

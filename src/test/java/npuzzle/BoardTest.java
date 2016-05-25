@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import exceptions.BoardWithoutZeroException;
+
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -71,6 +73,74 @@ public class BoardTest {
         boolean expResult = false;
         boolean result = instance.isCorrect();
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of moveDown method, of class npuzzle.Board.
+     */
+    @Test(expected = BoardWithoutZeroException.class)
+    public void moveDownShouldThrowBoardWithoutZeroException() throws BoardWithoutZeroException {
+
+        state = new int[][]{
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 1, 15}
+        };
+
+        instance = new Board(state);
+        instance = instance.moveDown();
+    }
+
+    /**
+     * Test of moveDown method, of class npuzzle.Board.
+     */
+    @Test(expected = BoardWithoutZeroException.class)
+    public void moveLeftShouldThrowBoardWithoutZeroException() throws BoardWithoutZeroException {
+
+        state = new int[][]{
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 1, 15}
+        };
+
+        instance = new Board(state);
+        instance = instance.moveLeft();
+    }
+
+    /**
+     * Test of moveDown method, of class npuzzle.Board.
+     */
+    @Test(expected = BoardWithoutZeroException.class)
+    public void moveRightShouldThrowBoardWithoutZeroException() throws BoardWithoutZeroException {
+
+        state = new int[][]{
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 1, 15}
+        };
+
+        instance = new Board(state);
+        instance = instance.moveRight();
+    }
+
+    /**
+     * Test of moveDown method, of class npuzzle.Board.
+     */
+    @Test(expected = BoardWithoutZeroException.class)
+    public void moveUpShouldThrowBoardWithoutZeroException() throws BoardWithoutZeroException {
+
+        state = new int[][]{
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 1, 15}
+        };
+
+        instance = new Board(state);
+        instance = instance.moveUp();
     }
 
     /**
@@ -280,7 +350,7 @@ public class BoardTest {
      * Test of moveRight method, of class npuzzle.Board.
      */
     @Test
-    public void zeroShouldMoveRight() {
+    public void zeroShouldMoveRight() throws BoardWithoutZeroException {
         state = new int[][]{
                 {1, 2, 3, 4},
                 {5, 6, 7, 8},
@@ -305,7 +375,7 @@ public class BoardTest {
      * Test of moveLeft method, of class npuzzle.Board.
      */
     @Test
-    public void zeroShouldMoveLeft() {
+    public void zeroShouldMoveLeft() throws BoardWithoutZeroException {
         state = new int[][]{
                 {1, 2, 3, 4},
                 {5, 6, 7, 8},
@@ -330,7 +400,7 @@ public class BoardTest {
      * Test of moveUp method, of class npuzzle.Board.
      */
     @Test
-    public void zeroShouldMoveUp() {
+    public void zeroShouldMoveUp() throws BoardWithoutZeroException {
         state = new int[][]{
                 {1, 2, 3, 4},
                 {5, 6, 7, 8},
@@ -355,7 +425,7 @@ public class BoardTest {
      * Test of moveDown method, of class npuzzle.Board.
      */
     @Test
-    public void zeroShouldMoveDown() {
+    public void zeroShouldMoveDown() throws BoardWithoutZeroException {
         state = new int[][]{
                 {1, 2, 3, 4},
                 {5, 6, 7, 8},
@@ -590,7 +660,7 @@ public class BoardTest {
      * Test of moveRight method, of class npuzzle.Board.
      */
     @Test
-    public void zeroShouldMoveRightUnsymmetrical() {
+    public void zeroShouldMoveRightUnsymmetrical() throws BoardWithoutZeroException {
         int[][] state = new int[][]{
                 {1, 2, 3},
                 {4, 5, 6},
@@ -616,7 +686,7 @@ public class BoardTest {
      * Test of moveLeft method, of class npuzzle.Board.
      */
     @Test
-    public void zeroShouldMoveLeftUnsymmetrical() {
+    public void zeroShouldMoveLeftUnsymmetrical() throws BoardWithoutZeroException {
         int[][] state = new int[][]{
                 {1, 2, 3},
                 {4, 5, 6},
@@ -641,7 +711,7 @@ public class BoardTest {
      * Test of moveUp method, of class npuzzle.Board.
      */
     @Test
-    public void zeroShouldMoveUpUnsymmetrical() {
+    public void zeroShouldMoveUpUnsymmetrical() throws BoardWithoutZeroException {
         int[][] state = new int[][]{
                 {1, 2, 3},
                 {4, 5, 6},
@@ -666,7 +736,7 @@ public class BoardTest {
      * Test of moveDown method, of class npuzzle.Board.
      */
     @Test
-    public void zeroShouldMoveDownUnsymmetrical() {
+    public void zeroShouldMoveDownUnsymmetrical() throws BoardWithoutZeroException {
         int[][] state = new int[][]{
                 {1, 2, 3},
                 {4, 5, 6},

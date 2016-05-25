@@ -1,14 +1,12 @@
 package npuzzle.utils;
 
 import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.File;
 
-import npuzzle.utils.FileUtils;
+import exceptions.BoardWithoutZeroException;
+import exceptions.UnsolvableBoardException;
 import npuzzle.Board;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -22,23 +20,6 @@ public class FileUtilsTest {
     Board instance;
     int[][] state;
 
-    public FileUtilsTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-
-    }
-
-    @Before
-    public void setUp() {
-
-    }
 
     @After
     public void tearDown() {
@@ -50,7 +31,7 @@ public class FileUtilsTest {
      * Test of saveBoard method, of class BoardUtils.
      */
     @Test
-    public void shouldSaveAndLoadBoard() {
+    public void shouldSaveAndLoadBoard() throws UnsolvableBoardException, BoardWithoutZeroException {
 
         state = new int[][]{
                 {1, 2, 3, 4},
@@ -62,8 +43,45 @@ public class FileUtilsTest {
 
         FileUtils.saveBoard(fileName, instance);
 
-        Board result = FileUtils.loadBoard(fileName);
+        Board result = null;
+        result = FileUtils.loadBoard(fileName);
 
         assertArrayEquals(result.getState(), instance.getState());
+    }
+
+    /**
+     * Test of loadBoard method, of class BoardUtils.
+     */
+    @Test(expected = BoardWithoutZeroException.class)
+    public void shouldThrowBoardWithoutZeroException() throws UnsolvableBoardException, BoardWithoutZeroException {
+
+        state = new int[][]{
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15, 15}
+        };
+        instance = new Board(state);
+
+        FileUtils.saveBoard(fileName, instance);
+        FileUtils.loadBoard(fileName);
+    }
+
+    /**
+     * Test of loadBoard method, of class BoardUtils.
+     */
+    @Test(expected = UnsolvableBoardException.class)
+    public void shouldThrowUnsolvableBoardException() throws UnsolvableBoardException, BoardWithoutZeroException {
+
+        state = new int[][]{
+                {0, 0, 0, 0},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15, 15}
+        };
+        instance = new Board(state);
+
+        FileUtils.saveBoard(fileName, instance);
+        FileUtils.loadBoard(fileName);
     }
 }
