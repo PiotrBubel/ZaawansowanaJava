@@ -2,13 +2,7 @@ package npuzzle;
 
 import org.apache.commons.lang.StringUtils;
 
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
-import autosolving.heuristics.Heuristic;
-import autosolving.solvers.PuzzleSolver;
 
 
 /**
