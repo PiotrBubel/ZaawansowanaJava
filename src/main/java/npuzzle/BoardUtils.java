@@ -173,19 +173,30 @@ public class BoardUtils {
         char[] directions = new StringBuilder(moves).reverse().toString().toCharArray();
         String reverseM = "";
         for (char s : directions) {
-            if (Moves.RIGHT_CHAR.equals(s)) {
+            boolean addedDirection = false;
+            String d = new String(new char[]{s});
+            if (Moves.RIGHT_CHAR.equals(d)) {
                 reverseM = reverseM + Moves.LEFT_CHAR;
+                addedDirection = true;
             }
-            if (Moves.LEFT_CHAR.equals(s)) {
+            if (Moves.LEFT_CHAR.equals(d)) {
                 reverseM = reverseM + Moves.RIGHT_CHAR;
+                addedDirection = true;
             }
-            if (Moves.UP_CHAR.equals(s)) {
+            if (Moves.UP_CHAR.equals(d)) {
                 reverseM = reverseM + Moves.DOWN_CHAR;
+                addedDirection = true;
             }
-            if (Moves.DOWN_CHAR.equals(s)) {
+            if (Moves.DOWN_CHAR.equals(d)) {
                 reverseM = reverseM + Moves.UP_CHAR;
+                addedDirection = true;
+            }
+
+            if(!addedDirection){
+                return null;
             }
         }
+
         return reverseM;
     }
 }
