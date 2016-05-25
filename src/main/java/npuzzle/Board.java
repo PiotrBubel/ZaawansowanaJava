@@ -4,6 +4,7 @@ import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
 
+import npuzzle.utils.BoardUtils;
 
 /**
  * @author Piotrek
@@ -23,7 +24,6 @@ public class Board {
 
     private int[][] state;
     private List<Board> nextNodes;
-    private Board parentNode;
     private String path;
     private int pathValue; //used in IDA*
 
@@ -34,7 +34,6 @@ public class Board {
      */
     public Board(int[][] state) {
         this.state = state.clone();
-        parentNode = null;
         nextNodes = null;
         path = "";
     }
@@ -53,7 +52,6 @@ public class Board {
                 state[x][y] = original.state[x][y];
             }
         }
-        parentNode = null;
         nextNodes = null;
         path = original.getPath();
         pathValue = original.pathValue;
@@ -65,14 +63,6 @@ public class Board {
 
     public String getPath() {
         return this.path;
-    }
-
-    public Board getParentNode() {
-        return this.parentNode;
-    }
-
-    public void setParentNode(Board parent) {
-        this.parentNode = parent;
     }
 
     public List<Board> getNextNodes() {
@@ -89,7 +79,7 @@ public class Board {
 
     /**
      * @return x, y coordinates of value, x and y are counted from 0, (0,0) is in upper left corner,
-     * x goes down, y goes right
+     * x goes down, y goes right. Returns -1,-1 when can't find given number.
      */
     public int[] findNumber(int value) {
         int[] coordinates = new int[2];
@@ -109,7 +99,7 @@ public class Board {
 
     /**
      * @return x, y coordinates of Zero, x and y are counted from 0, (0,0) is in upper left corner,
-     * x goes down, y goes right
+     * x goes down, y goes right. Returns -1,-1 when can't find zero.
      */
     public int[] findZero() {
         return findNumber(0);
@@ -219,7 +209,13 @@ public class Board {
         return Moves.DOWN_CHAR + Moves.LEFT_CHAR + Moves.UP_CHAR + Moves.RIGHT_CHAR;
     }
 
+    /**
+     * @return changed Board with zero moved right, or null if can't move right
+     */
     public Board moveRight() {
+        if (!canMoveRight()) {
+            return null;
+        }
         Board newB = new Board(this);
         int[][] newState = newB.state;
         int[] zeroCoord = findZero();
@@ -229,11 +225,16 @@ public class Board {
         //return new npuzzle.Board(newState);
         newB.path = new String(this.path);
         newB.setNextStepInPath(Moves.RIGHT_CHAR);
-        newB.setParentNode(this);
         return newB;
     }
 
+    /**
+     * @return changed Board with zero moved left, or null if can't move left
+     */
     public Board moveLeft() {
+        if (!canMoveLeft()) {
+            return null;
+        }
         Board newB = new Board(this);
         int[][] newState = newB.state;
         int[] zeroCoord = findZero();
@@ -242,11 +243,16 @@ public class Board {
         newState[zeroCoord[0]][zeroCoord[1] - 1] = 0;
         newB.path = new String(this.path);
         newB.setNextStepInPath(Moves.LEFT_CHAR);
-        newB.setParentNode(this);
         return newB;
     }
 
+    /**
+     * @return changed Board with zero moved up, or null if can't move up
+     */
     public Board moveUp() {
+        if (!canMoveUp()) {
+            return null;
+        }
         Board newB = new Board(this);
         int[][] newState = newB.state;
         int[] zeroCoord = findZero();
@@ -255,11 +261,16 @@ public class Board {
         newState[zeroCoord[0] - 1][zeroCoord[1]] = 0;
         newB.path = new String(this.path);
         newB.setNextStepInPath(Moves.UP_CHAR);
-        newB.setParentNode(this);
         return newB;
     }
 
+    /**
+     * @return changed Board with zero moved down, or null if can't move down
+     */
     public Board moveDown() {
+        if (!canMoveDown()) {
+            return null;
+        }
         Board newB = new Board(this);
         int[][] newState = newB.state;
         int[] zeroCoord = findZero();
@@ -268,14 +279,12 @@ public class Board {
         newState[zeroCoord[0] + 1][zeroCoord[1]] = 0;
         newB.path = new String(this.path);
         newB.setNextStepInPath(Moves.DOWN_CHAR);
-        newB.setParentNode(this);
         return newB;
     }
 
     /**
      * @param moves - String wih moves to make
-     * @return changed Board, or null if wrong direction given or can't move in given
-     * direction
+     * @return changed Board, or null if wrong direction given or can't move in given direction
      */
     public Board allMoves(String moves) {
         Board afterMoves = this;
@@ -286,9 +295,8 @@ public class Board {
     }
 
     /**
-     * @param direction [w|s|a|d]
-     * @return changed npuzzle.Board, or null if wrong direction given or can't move in given
-     * direction
+     * @param direction [p|l|g|d]
+     * @return changed Board, or null if wrong direction given or can't move in given direction
      */
     public Board move(char direction) {
         String directionString = new String(new char[]{direction});

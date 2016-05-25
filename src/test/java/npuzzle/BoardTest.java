@@ -1,16 +1,10 @@
-package npuzzle;/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package npuzzle;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import npuzzle.Board;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -45,7 +39,7 @@ public class BoardTest {
     /**
      * Test of isCorrect method, of class npuzzle.Board.
      */
-    @org.junit.Test
+    @Test
     public void isCorrectShoultReturnTrue() {
         state = new int[][]{
                 {1, 2, 3, 4},
@@ -60,8 +54,11 @@ public class BoardTest {
         assertEquals(expResult, result);
     }
 
-    @org.junit.Test
-    public void isCorrectShoultReturnFalse() {
+    /**
+     * Test of isCorrect method, of class npuzzle.Board.
+     */
+    @Test
+    public void isCorrectShouldReturnFalse() {
 
         state = new int[][]{
                 {1, 2, 3, 4},
@@ -76,7 +73,10 @@ public class BoardTest {
         assertEquals(expResult, result);
     }
 
-    @org.junit.Test
+    /**
+     * Test of findZero method, of class npuzzle.Board.
+     */
+    @Test
     public void shouldFindZero() {
         state = new int[][]{
                 {1, 2, 3, 4},
@@ -89,6 +89,27 @@ public class BoardTest {
         int[] expResult = new int[2];
         expResult[0] = 3;
         expResult[1] = 2;
+        int[] result = instance.findZero();
+        assertEquals(expResult[0], result[0]);
+        assertEquals(expResult[1], result[1]);
+    }
+
+    /**
+     * Test of findZero method, of class npuzzle.Board.
+     */
+    @Test
+    public void shouldReturnNegativeNumberWhenCantFindZero() {
+        state = new int[][]{
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 9, 15}
+        };
+
+        instance = new Board(state);
+        int[] expResult = new int[2];
+        expResult[0] = -1;
+        expResult[1] = -1;
         int[] result = instance.findZero();
         assertEquals(expResult[0], result[0]);
         assertEquals(expResult[1], result[1]);
@@ -360,7 +381,7 @@ public class BoardTest {
     /**
      * Test of isCorrect method, of class npuzzle.Board.
      */
-    @org.junit.Test
+    @Test
     public void isCorrectShoultReturnTrueUnsymmetrical() {
 
         state = new int[][]{
@@ -376,7 +397,7 @@ public class BoardTest {
         assertEquals(expResult, result);
     }
 
-    @org.junit.Test
+    @Test
     public void isCorrectShoultReturnFalseUnsymmetrical() {
 
         state = new int[][]{
@@ -390,7 +411,7 @@ public class BoardTest {
         assertEquals(expResult, result);
     }
 
-    @org.junit.Test
+    @Test
     public void shouldFindZeroUnsymmetrical() {
 
         state = new int[][]{

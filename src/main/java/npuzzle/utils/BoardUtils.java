@@ -1,9 +1,12 @@
-package npuzzle;
+package npuzzle.utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import npuzzle.Board;
+import npuzzle.Moves;
 
 public class BoardUtils {
 
