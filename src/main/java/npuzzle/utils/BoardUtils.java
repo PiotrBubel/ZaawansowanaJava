@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import autosolving.heuristics.Heuristic;
+import exceptions.BoardWithoutZeroException;
+import exceptions.UnsolvableBoardException;
 import npuzzle.Board;
 import npuzzle.Moves;
 
@@ -124,7 +127,7 @@ public class BoardUtils {
      * @param maxMovesToSolve - moves to perform on given board
      * @return board after random moves, board path is cleared
      */
-    public static Board randomizeBoard(Board board, int maxMovesToSolve) {
+    public static Board randomizeBoard(Board board, int maxMovesToSolve) throws BoardWithoutZeroException {
         boolean temp_lc = Board.STRONG_LOOP_CONTROL;
         Board.STRONG_LOOP_CONTROL = false;    //FIXME dont work with strong loop control enabled
         Board randomizedBoard = new Board(board);
@@ -166,12 +169,20 @@ public class BoardUtils {
     }
 
     /**
-     * @return board of given size, after random moves
+     * @return board of given size, after random moves, should never return null if
+     * buildArrangedBoard works correctly (and it works correctly)
      */
     public static Board randomizeBoard(int xState, int yState, int maxMovesToSolve) {
-        return BoardUtils.randomizeBoard(BoardUtils.buildArrangedBoard(xState, yState), maxMovesToSolve);
+        try {
+            return BoardUtils.randomizeBoard(BoardUtils.buildArrangedBoard(xState, yState), maxMovesToSolve);
+        } catch (BoardWithoutZeroException e) {
+            return null;
+        }
     }
 
+    /**
+     * @return reversed moves, which can be used to bring board to first state
+     */
     public static String reverseMoves(String moves) {
         char[] directions = new StringBuilder(moves).reverse().toString().toCharArray();
         String reverseM = "";
@@ -195,11 +206,44 @@ public class BoardUtils {
                 addedDirection = true;
             }
 
-            if(!addedDirection){
+            if (!addedDirection) {
                 return null;
             }
         }
 
         return reverseM;
+    }
+
+    /**
+     * @return true if given boards state contains zero
+     */
+    public static boolean containsZero(Board b) {
+        for (int[] line : b.getState()) {
+            for (int i : line) {
+                if (i == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static void checkBoard(Board board) throws BoardWithoutZeroException, UnsolvableBoardException {
+        if (!BoardUtils.containsZero(board)) {
+            throw new BoardWithoutZeroException("Trying to solve board without zero");
+        }
+        if (!BoardUtils.correctState(board.getState())) {
+            throw new UnsolvableBoardException("Trying to solve unsolvable board");
+        }
+    }
+
+    public static List<Board> deleteBoardsAboveMaxHeuristicCost(List<Board> list, int maxCost, Heuristic heuristic) {
+        List<Board> toReturn = new ArrayList<>();
+        for (Board b : list) {
+            if (heuristic.heuristicValue(b) <= maxCost) {
+                toReturn.add(b);
+            }
+        }
+        return toReturn;
     }
 }

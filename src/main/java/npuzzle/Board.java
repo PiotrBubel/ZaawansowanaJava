@@ -2,8 +2,14 @@ package npuzzle;
 
 import org.apache.commons.lang.StringUtils;
 
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import autosolving.heuristics.Heuristic;
+import autosolving.solvers.PuzzleSolver;
+import exceptions.BoardWithoutZeroException;
 import npuzzle.utils.BoardUtils;
 
 /**
@@ -212,7 +218,11 @@ public class Board {
     /**
      * @return changed Board with zero moved right, or null if can't move right
      */
-    public Board moveRight() {
+    public Board moveRight() throws BoardWithoutZeroException {
+        if (!BoardUtils.containsZero(this)) {
+            throw new BoardWithoutZeroException("Trying to move in board without zero");
+        }
+
         if (!canMoveRight()) {
             return null;
         }
@@ -231,7 +241,10 @@ public class Board {
     /**
      * @return changed Board with zero moved left, or null if can't move left
      */
-    public Board moveLeft() {
+    public Board moveLeft() throws BoardWithoutZeroException {
+        if (!BoardUtils.containsZero(this)) {
+            throw new BoardWithoutZeroException("Trying to move in board without zero");
+        }
         if (!canMoveLeft()) {
             return null;
         }
@@ -249,7 +262,10 @@ public class Board {
     /**
      * @return changed Board with zero moved up, or null if can't move up
      */
-    public Board moveUp() {
+    public Board moveUp() throws BoardWithoutZeroException {
+        if (!BoardUtils.containsZero(this)) {
+            throw new BoardWithoutZeroException("Trying to move in board without zero");
+        }
         if (!canMoveUp()) {
             return null;
         }
@@ -267,7 +283,10 @@ public class Board {
     /**
      * @return changed Board with zero moved down, or null if can't move down
      */
-    public Board moveDown() {
+    public Board moveDown() throws BoardWithoutZeroException {
+        if (!BoardUtils.containsZero(this)) {
+            throw new BoardWithoutZeroException("Trying to move in board without zero");
+        }
         if (!canMoveDown()) {
             return null;
         }
@@ -283,10 +302,93 @@ public class Board {
     }
 
     /**
+     * Method returns possible states from this Board in given order
+     */
+    public List<Board> getPossibleStates(String ord) throws BoardWithoutZeroException {
+        String order = new String(ord);
+        if (order.contains("r") || order.contains("R")) {
+            order = BoardUtils.randomizeOrder();
+        }
+        List<Board> possibleStates = new ArrayList<>();
+
+        for (int i = 0; i < 4; i++) {
+            Board toAdd = this.move(order.charAt(i));
+            if (toAdd != null) {
+                possibleStates.add(toAdd);
+            }
+        }
+        if (possibleStates.isEmpty()) {
+            System.out.println("DEADLOCK - brak mozliwosci ruchu bez zapetlenia.");
+        }
+        return possibleStates;
+    }
+
+    /**
+     * Method returns possible states from this Board in given order
+     */
+    public List<Board> getPossibleStates(Heuristic heuristics) throws BoardWithoutZeroException {
+        List<Board> possibleStates = this.getPossibleStates("rrrr");
+        Collections.sort(possibleStates, heuristics);
+        return possibleStates;
+    }
+
+    public Board findAnswerWithDFS(String order, int depth, PrintStream stream) throws BoardWithoutZeroException {
+        if (depth >= 0) {
+            this.nextNodes = getPossibleStates(order);
+            PuzzleSolver.addCreated(this.nextNodes.size());
+            for (Board nextNode : nextNodes) {
+                if (stream != null && !nextNode.getPath().isEmpty() && nextNode.getPath() != null) {
+                    stream.println(nextNode.getPath());
+                }
+                if (nextNode.isCorrect()) {
+                    return nextNode;
+                } else {
+                    Board possibleAnswer = nextNode.findAnswerWithDFS(order, depth - 1, stream);
+                    if (possibleAnswer != null) {
+                        return possibleAnswer;
+                    }
+                }
+            }
+        } else {
+            this.nextNodes = null;
+            return null;
+        }
+        return null;
+    }
+
+    public Board findAnswerWithIDA(Heuristic heuristics, int maxCost, PrintStream stream) throws BoardWithoutZeroException {
+        //FIXME not sure if it works exactly as definition says
+
+        if (maxCost > 0) {
+            this.nextNodes = getPossibleStates(heuristics);
+            this.nextNodes = BoardUtils.deleteBoardsAboveMaxHeuristicCost(this.nextNodes, maxCost, heuristics);
+
+            PuzzleSolver.addCreated(this.nextNodes.size());
+            for (Board nextNode : nextNodes) {
+                if (stream != null && !nextNode.getPath().isEmpty() && nextNode.getPath() != null) {
+                    stream.println(nextNode.getPath());
+                }
+                if (nextNode.isCorrect()) {
+                    return nextNode;
+                } else {
+                    Board possibleAnswer = nextNode.findAnswerWithIDA(heuristics, maxCost - 1, stream);
+                    if (possibleAnswer != null) {
+                        return possibleAnswer;
+                    }
+                }
+            }
+        } else {
+            this.nextNodes = null;
+            return null;
+        }
+        return null;
+    }
+
+    /**
      * @param moves - String wih moves to make
      * @return changed Board, or null if wrong direction given or can't move in given direction
      */
-    public Board allMoves(String moves) {
+    public Board allMoves(String moves) throws BoardWithoutZeroException {
         Board afterMoves = this;
         for (char c : moves.toCharArray()) {
             afterMoves = afterMoves.move(c);
@@ -298,7 +400,7 @@ public class Board {
      * @param direction [p|l|g|d]
      * @return changed Board, or null if wrong direction given or can't move in given direction
      */
-    public Board move(char direction) {
+    public Board move(char direction) throws BoardWithoutZeroException {
         String directionString = new String(new char[]{direction});
         switch (directionString) {
             case Moves.UP_CHAR:

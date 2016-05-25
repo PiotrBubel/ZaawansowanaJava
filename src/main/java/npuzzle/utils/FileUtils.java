@@ -5,14 +5,16 @@
  */
 package npuzzle.utils;
 
-import npuzzle.Board;
-
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import exceptions.BoardWithoutZeroException;
+import exceptions.UnsolvableBoardException;
+import npuzzle.Board;
 
 /**
  * @author Piotrek
@@ -34,10 +36,10 @@ public class FileUtils {
         }
     }
 
-    public static Board loadBoard(String filePath) {
+    public static Board loadBoard(String filePath) throws UnsolvableBoardException, BoardWithoutZeroException {
         int[][] state;
 
-        ArrayList<String> lines = new ArrayList<String>();
+        ArrayList<String> lines = new ArrayList<>();
 
         try (Scanner in = new Scanner(new FileReader(filePath))) {
             while (in.hasNextLine()) {
@@ -59,11 +61,16 @@ public class FileUtils {
             }
         }
 
+        Board loaded = new Board(state);
+
+        if (!BoardUtils.containsZero(loaded)) {
+            throw new BoardWithoutZeroException("Board loaded from file does not contain zero");
+        }
+
         if (BoardUtils.correctState(state)) {
-            return new Board(state);
+            return loaded;
         } else {
-            System.err.println("Board loaded from file: " + filePath + " is incorrect");
-            return null;
+            throw new UnsolvableBoardException("Board loaded from file is unsolvable");
         }
     }
 }

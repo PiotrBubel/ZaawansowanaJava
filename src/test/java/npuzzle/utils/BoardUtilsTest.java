@@ -6,9 +6,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import exceptions.BoardWithoutZeroException;
+import exceptions.UnsolvableBoardException;
 import npuzzle.Board;
 import npuzzle.Moves;
-import npuzzle.utils.BoardUtils;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -209,5 +210,37 @@ public class BoardUtilsTest {
         String reversedMoves = BoardUtils.reverseMoves(moves);
 
         assertTrue(reversedMoves == null);
+    }
+
+    /**
+     * Test of checkBoard method, of class BoardUtils.
+     */
+    @Test(expected = BoardWithoutZeroException.class)
+    public void checkBoardShouldThrowBoardWithoutZeroException() throws BoardWithoutZeroException, UnsolvableBoardException {
+
+        state = new int[][]{
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {1, 1, 1, 1}
+        };
+        instance = new Board(state);
+        BoardUtils.checkBoard(instance);
+    }
+
+    /**
+     * Test of checkBoard method, of class BoardUtils.
+     */
+    @Test(expected = UnsolvableBoardException.class)
+    public void checkBoardShouldThrowUnsolvableBoardException() throws BoardWithoutZeroException, UnsolvableBoardException {
+
+        state = new int[][]{
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {1, 1, 1, 0}
+        };
+        instance = new Board(state);
+        BoardUtils.checkBoard(instance);
     }
 }
