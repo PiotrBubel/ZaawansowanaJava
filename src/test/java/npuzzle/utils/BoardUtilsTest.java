@@ -1,9 +1,5 @@
 package npuzzle.utils;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import exceptions.BoardWithoutZeroException;
@@ -14,6 +10,7 @@ import npuzzle.Moves;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -21,31 +18,9 @@ import static org.junit.Assert.assertTrue;
  */
 public class BoardUtilsTest {
 
-    Board instance;
-    int[][] state;
+    private Board instance;
+    private int[][] state;
 
-    public BoardUtilsTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-
-    }
-
-    @Before
-    public void setUp() {
-
-    }
-
-    @After
-    public void tearDown() {
-
-    }
 
     /**
      * Test of countMisplaced method, of class BoardUtils.
@@ -114,9 +89,8 @@ public class BoardUtilsTest {
     public void shouldReturnCorrectBoard() {
 
         instance = BoardUtils.buildArrangedBoard(4, 4);
-        boolean expResult = true;
         boolean result = instance.isCorrect();
-        assertEquals(expResult, result);
+        assertTrue(result);
 
         state = new int[][]{
                 {1, 2, 3, 4},
@@ -141,9 +115,8 @@ public class BoardUtilsTest {
                 {13, 14, 15, 0}
         };
 
-        boolean expResult = true;
         boolean result = BoardUtils.correctState(state);
-        assertEquals(expResult, result);
+        assertTrue(result);
     }
 
     /**
@@ -159,9 +132,8 @@ public class BoardUtilsTest {
                 {0, 0, 0, 0}
         };
 
-        boolean expResult = false;
         boolean result = BoardUtils.correctState(state);
-        assertEquals(expResult, result);
+        assertFalse(result);
     }
 
     /**
@@ -184,6 +156,9 @@ public class BoardUtilsTest {
     public void shouldReturnRandomizedBoard() {
 
         instance = BoardUtils.randomizeBoard(4, 4, 50);
+
+        assertNotNull(instance);
+        assertNotNull(instance.getState());
         assertTrue(instance.getState().length == 4);
         assertTrue(instance.getState()[0].length == 4);
         assertFalse(instance.isCorrect());
@@ -197,6 +172,8 @@ public class BoardUtilsTest {
         String moves = Moves.DOWN_CHAR + Moves.LEFT_CHAR + Moves.UP_CHAR + Moves.RIGHT_CHAR;
         String reversedMoves = BoardUtils.reverseMoves(moves);
         String expected = Moves.LEFT_CHAR + Moves.DOWN_CHAR + Moves.RIGHT_CHAR + Moves.UP_CHAR;
+
+        assertNotNull(reversedMoves);
         assertTrue(reversedMoves.equals(expected));
     }
 

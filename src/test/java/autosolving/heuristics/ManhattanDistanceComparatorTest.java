@@ -12,9 +12,9 @@ import static org.junit.Assert.assertTrue;
  */
 public class ManhattanDistanceComparatorTest {
 
-    Board board;
-    int[][] state;
-    Heuristic heuristic;
+    private Board board;
+    private int[][] state;
+    private Heuristic heuristic;
 
     public ManhattanDistanceComparatorTest() {
         heuristic = new ManhattanDistanceComparator();

@@ -1,48 +1,28 @@
 package npuzzle;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import exceptions.BoardWithoutZeroException;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Piotrek
  */
 public class BoardTest {
 
-    Board instance;
-    int[][] state;
+    private Board instance;
+    private int[][] state;
 
-    public BoardTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
 
     /**
-     * Test of isCorrect method, of class npuzzle.Board.
+     * Test of isCorrect method, of class Board.
      */
     @Test
-    public void isCorrectShoultReturnTrue() {
+    public void isCorrectShouldReturnTrue() {
         state = new int[][]{
                 {1, 2, 3, 4},
                 {5, 6, 7, 8},
@@ -51,13 +31,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = true;
         boolean result = instance.isCorrect();
-        assertEquals(expResult, result);
+        assertTrue(result);
     }
 
     /**
-     * Test of isCorrect method, of class npuzzle.Board.
+     * Test of isCorrect method, of class Board.
      */
     @Test
     public void isCorrectShouldReturnFalse() {
@@ -70,13 +49,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = false;
         boolean result = instance.isCorrect();
-        assertEquals(expResult, result);
+        assertFalse(result);
     }
 
     /**
-     * Test of moveDown method, of class npuzzle.Board.
+     * Test of moveDown method, of class Board.
      */
     @Test(expected = BoardWithoutZeroException.class)
     public void moveDownShouldThrowBoardWithoutZeroException() throws BoardWithoutZeroException {
@@ -93,7 +71,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of moveDown method, of class npuzzle.Board.
+     * Test of moveDown method, of class Board.
      */
     @Test(expected = BoardWithoutZeroException.class)
     public void moveLeftShouldThrowBoardWithoutZeroException() throws BoardWithoutZeroException {
@@ -110,7 +88,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of moveDown method, of class npuzzle.Board.
+     * Test of moveDown method, of class Board.
      */
     @Test(expected = BoardWithoutZeroException.class)
     public void moveRightShouldThrowBoardWithoutZeroException() throws BoardWithoutZeroException {
@@ -127,7 +105,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of moveDown method, of class npuzzle.Board.
+     * Test of moveDown method, of class Board.
      */
     @Test(expected = BoardWithoutZeroException.class)
     public void moveUpShouldThrowBoardWithoutZeroException() throws BoardWithoutZeroException {
@@ -144,7 +122,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of findZero method, of class npuzzle.Board.
+     * Test of findZero method, of class Board.
      */
     @Test
     public void shouldFindZero() {
@@ -165,7 +143,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of findZero method, of class npuzzle.Board.
+     * Test of findZero method, of class Board.
      */
     @Test
     public void shouldReturnNegativeNumberWhenCantFindZero() {
@@ -186,7 +164,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of canMoveRight method, of class npuzzle.Board.
+     * Test of canMoveRight method, of class Board.
      */
     @Test
     public void canMoveRightShouldReturnTrue() {
@@ -198,13 +176,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = true;
         boolean result = instance.canMoveRight();
-        assertEquals(expResult, result);
+        assertTrue(result);
     }
 
     /**
-     * Test of canMoveRight method, of class npuzzle.Board.
+     * Test of canMoveRight method, of class Board.
      */
     @Test
     public void canMoveRightShouldReturnFalse() {
@@ -216,13 +193,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = false;
         boolean result = instance.canMoveRight();
-        assertEquals(expResult, result);
+        assertFalse(result);
     }
 
     /**
-     * Test of canMoveLeft method, of class npuzzle.Board.
+     * Test of canMoveLeft method, of class Board.
      */
     @Test
     public void canMoveLeftShouldReturnTrue() {
@@ -234,13 +210,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = true;
         boolean result = instance.canMoveLeft();
-        assertEquals(expResult, result);
+        assertTrue(result);
     }
 
     /**
-     * Test of canMoveLeft method, of class npuzzle.Board.
+     * Test of canMoveLeft method, of class Board.
      */
     @Test
     public void canMoveLeftShouldReturnFalse() {
@@ -253,13 +228,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = false;
         boolean result = instance.canMoveLeft();
-        assertEquals(expResult, result);
+        assertFalse(result);
     }
 
     /**
-     * Test of canMoveUp method, of class npuzzle.Board.
+     * Test of canMoveUp method, of class Board.
      */
     @Test
     public void canMoveUpShouldReturnTrue() {
@@ -271,13 +245,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = true;
         boolean result = instance.canMoveUp();
-        assertEquals(expResult, result);
+        assertTrue(result);
     }
 
     /**
-     * Test of canMoveUp method, of class npuzzle.Board.
+     * Test of canMoveUp method, of class Board.
      */
     @Test
     public void canMoveUpShouldReturnFalse() {
@@ -289,13 +262,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = false;
         boolean result = instance.canMoveUp();
-        assertEquals(expResult, result);
+        assertFalse(result);
     }
 
     /**
-     * Test of canMoveDown method, of class npuzzle.Board.
+     * Test of canMoveDown method, of class Board.
      */
     @Test
     public void canMoveDownShouldReturnFalse() {
@@ -307,13 +279,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = false;
         boolean result = instance.canMoveDown();
-        assertEquals(expResult, result);
+        assertFalse(result);
     }
 
     /**
-     * Test of canMoveDown method, of class npuzzle.Board.
+     * Test of canMoveDown method, of class Board.
      */
     @Test
     public void canMoveDownShouldReturnTrue() {
@@ -325,13 +296,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = true;
         boolean result = instance.canMoveDown();
-        assertEquals(expResult, result);
+        assertFalse(result);
     }
 
     /**
-     * Test of getState method, of class npuzzle.Board.
+     * Test of getState method, of class Board.
      */
     @Test
     public void getStateShouldReturnGivenState() {
@@ -347,7 +317,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of moveRight method, of class npuzzle.Board.
+     * Test of moveRight method, of class Board.
      */
     @Test
     public void zeroShouldMoveRight() throws BoardWithoutZeroException {
@@ -372,7 +342,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of moveLeft method, of class npuzzle.Board.
+     * Test of moveLeft method, of class Board.
      */
     @Test
     public void zeroShouldMoveLeft() throws BoardWithoutZeroException {
@@ -397,7 +367,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of moveUp method, of class npuzzle.Board.
+     * Test of moveUp method, of class Board.
      */
     @Test
     public void zeroShouldMoveUp() throws BoardWithoutZeroException {
@@ -422,7 +392,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of moveDown method, of class npuzzle.Board.
+     * Test of moveDown method, of class Board.
      */
     @Test
     public void zeroShouldMoveDown() throws BoardWithoutZeroException {
@@ -449,10 +419,10 @@ public class BoardTest {
     // tests with unsymmetrical boards
 
     /**
-     * Test of isCorrect method, of class npuzzle.Board.
+     * Test of isCorrect method, of class Board.
      */
     @Test
-    public void isCorrectShoultReturnTrueUnsymmetrical() {
+    public void isCorrectShouldReturnTrueUnsymmetrical() {
 
         state = new int[][]{
                 {1, 2, 3},
@@ -462,13 +432,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = true;
         boolean result = instance.isCorrect();
-        assertEquals(expResult, result);
+        assertTrue(result);
     }
 
     @Test
-    public void isCorrectShoultReturnFalseUnsymmetrical() {
+    public void isCorrectShouldReturnFalseUnsymmetrical() {
 
         state = new int[][]{
                 {1, 2, 3, 4},
@@ -476,9 +445,8 @@ public class BoardTest {
                 {9, 10, 0, 11},};
 
         instance = new Board(state);
-        boolean expResult = false;
         boolean result = instance.isCorrect();
-        assertEquals(expResult, result);
+        assertFalse(result);
     }
 
     @Test
@@ -501,7 +469,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of canMoveRight method, of class npuzzle.Board.
+     * Test of canMoveRight method, of class Board.
      */
     @Test
     public void canMoveRightShouldReturnTrueUnsymmetrical() {
@@ -513,13 +481,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = true;
         boolean result = instance.canMoveRight();
-        assertEquals(expResult, result);
+        assertTrue(result);
     }
 
     /**
-     * Test of canMoveRight method, of class npuzzle.Board.
+     * Test of canMoveRight method, of class Board.
      */
     @Test
     public void canMoveRightShouldReturnFalseUnsymmetrical() {
@@ -530,13 +497,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = false;
         boolean result = instance.canMoveRight();
-        assertEquals(expResult, result);
+        assertFalse(result);
     }
 
     /**
-     * Test of canMoveLeft method, of class npuzzle.Board.
+     * Test of canMoveLeft method, of class Board.
      */
     @Test
     public void canMoveLeftShouldReturnTrueUnsymmetrical() {
@@ -548,13 +514,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = true;
         boolean result = instance.canMoveLeft();
-        assertEquals(expResult, result);
+        assertTrue(result);
     }
 
     /**
-     * Test of canMoveLeft method, of class npuzzle.Board.
+     * Test of canMoveLeft method, of class Board.
      */
     @Test
     public void canMoveLeftShouldReturnFalseUnsymmetrical() {
@@ -565,13 +530,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = false;
         boolean result = instance.canMoveLeft();
-        assertEquals(expResult, result);
+        assertFalse(result);
     }
 
     /**
-     * Test of canMoveUp method, of class npuzzle.Board.
+     * Test of canMoveUp method, of class Board.
      */
     @Test
     public void canMoveUpShouldReturnFalseUnsymmetrical() {
@@ -583,13 +547,12 @@ public class BoardTest {
         };
 
         instance = new Board(state);
-        boolean expResult = false;
         boolean result = instance.canMoveUp();
-        assertEquals(expResult, result);
+        assertFalse(result);
     }
 
     /**
-     * Test of canMoveUp method, of class npuzzle.Board.
+     * Test of canMoveUp method, of class Board.
      */
     @Test
     public void canMoveUpShouldReturnTrueUnsymmetrical() {
@@ -600,14 +563,13 @@ public class BoardTest {
         };
 
         Board instance = new Board(state);
-        boolean expResult = true;
         boolean result = instance.canMoveUp();
-        assertEquals(expResult, result);
+        assertTrue(result);
 
     }
 
     /**
-     * Test of canMoveDown method, of class npuzzle.Board.
+     * Test of canMoveDown method, of class Board.
      */
     @Test
     public void canMoveDownShouldReturnTrueUnsymmetrical() {
@@ -617,13 +579,12 @@ public class BoardTest {
                 {9, 10, 11, 8},};
 
         instance = new Board(state);
-        boolean expResult = true;
         boolean result = instance.canMoveDown();
-        assertEquals(expResult, result);
+        assertTrue(result);
     }
 
     /**
-     * Test of canMoveDown method, of class npuzzle.Board.
+     * Test of canMoveDown method, of class Board.
      */
     @Test
     public void canMoveDownShouldReturnFalseUnsymmetrical() {
@@ -635,13 +596,12 @@ public class BoardTest {
         };
 
         Board instance = new Board(state);
-        boolean expResult = false;
         boolean result = instance.canMoveDown();
-        assertEquals(expResult, result);
+        assertFalse(result);
     }
 
     /**
-     * Test of getState method, of class npuzzle.Board.
+     * Test of getState method, of class Board.
      */
     @Test
     public void getStateShouldReturnGivenStateUnsymmetrical() {
@@ -657,7 +617,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of moveRight method, of class npuzzle.Board.
+     * Test of moveRight method, of class Board.
      */
     @Test
     public void zeroShouldMoveRightUnsymmetrical() throws BoardWithoutZeroException {
@@ -683,7 +643,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of moveLeft method, of class npuzzle.Board.
+     * Test of moveLeft method, of class Board.
      */
     @Test
     public void zeroShouldMoveLeftUnsymmetrical() throws BoardWithoutZeroException {
@@ -708,7 +668,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of moveUp method, of class npuzzle.Board.
+     * Test of moveUp method, of class Board.
      */
     @Test
     public void zeroShouldMoveUpUnsymmetrical() throws BoardWithoutZeroException {
@@ -733,7 +693,7 @@ public class BoardTest {
     }
 
     /**
-     * Test of moveDown method, of class npuzzle.Board.
+     * Test of moveDown method, of class Board.
      */
     @Test
     public void zeroShouldMoveDownUnsymmetrical() throws BoardWithoutZeroException {

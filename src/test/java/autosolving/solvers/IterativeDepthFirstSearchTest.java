@@ -1,9 +1,5 @@
 package autosolving.solvers;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import autosolving.solvers.algorithms.IterativeDepthFirstSearch;
@@ -20,32 +16,9 @@ import static org.junit.Assert.assertTrue;
  */
 public class IterativeDepthFirstSearchTest {
 
-    Board instance;
-    int[][] state;
-    PuzzleSolver solver;
-
-    public IterativeDepthFirstSearchTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-
-    }
-
-    @Before
-    public void setUp() {
-
-    }
-
-    @After
-    public void tearDown() {
-
-    }
+    private Board instance;
+    private int[][] state;
+    private PuzzleSolver solver;
 
     /**
      * Test of solve method, of class IterativeDepthFirstSearch.
@@ -142,10 +115,10 @@ public class IterativeDepthFirstSearchTest {
     }
 
     /**
-     * Test of getTimeInMilis method, of class IterativeDepthFirstSearch.
+     * Test of getTimeInMillis method, of class IterativeDepthFirstSearch.
      */
     @Test
-    public void miliTimeShouldBePositiveNonZeroValue() throws BoardWithoutZeroException, UnsolvableBoardException {
+    public void milliTimeShouldBePositiveNonZeroValue() throws BoardWithoutZeroException, UnsolvableBoardException {
 
         state = new int[][]{
                 {1, 2, 3, 4},
@@ -157,7 +130,7 @@ public class IterativeDepthFirstSearchTest {
         instance = new Board(state);
         solver = new IterativeDepthFirstSearch();
         solver.solve(instance);
-        double time = solver.getTimeInMilis();
+        double time = solver.getTimeInMillis();
         assertTrue(time > 0d);
     }
 

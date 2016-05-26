@@ -1,9 +1,5 @@
 package autosolving.solvers;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import autosolving.heuristics.AMisplacedComparator;
@@ -22,32 +18,10 @@ import static org.junit.Assert.assertTrue;
  */
 public class BestFirstSolverTest {
 
-    Board instance;
-    int[][] state;
-    PuzzleSolver solver;
+    private Board instance;
+    private int[][] state;
+    private PuzzleSolver solver;
 
-    public BestFirstSolverTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
-
-    }
-
-    @AfterClass
-    public static void tearDownClass() {
-
-    }
-
-    @Before
-    public void setUp() {
-
-    }
-
-    @After
-    public void tearDown() {
-
-    }
 
     /**
      * Test of solve method, of class BestFirstSearch.

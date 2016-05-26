@@ -12,9 +12,9 @@ import static org.junit.Assert.assertTrue;
  */
 public class MisplacedComparatorTest {
 
-    Board board;
-    int[][] state;
-    Heuristic heuristic;
+    private Board board;
+    private int[][] state;
+    private Heuristic heuristic;
 
     public MisplacedComparatorTest() {
         heuristic = new MisplacedComparator();
