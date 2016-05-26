@@ -13,9 +13,9 @@ import static org.junit.Assert.assertTrue;
  */
 public class AMisplacedComparatorTest {
 
-    Board board;
-    int[][] state;
-    Heuristic heuristic;
+    private Board board;
+    private int[][] state;
+    private Heuristic heuristic;
 
     public AMisplacedComparatorTest() {
         heuristic = new AMisplacedComparator();

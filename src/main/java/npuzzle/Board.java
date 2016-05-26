@@ -48,7 +48,7 @@ public class Board {
      * Creates copy of given board, use this when you want to copy state and path. Does not copy
      * parentNode
      *
-     * @param original npuzzle.Board
+     * @param original Board
      */
     public Board(Board original) {
         state = new int[original.state.length][original.state[0].length];
@@ -63,7 +63,7 @@ public class Board {
         pathValue = original.pathValue;
     }
 
-    public void setNextStepInPath(String step) {
+    private void setNextStepInPath(String step) {
         this.path = path + step;
     }
 
@@ -233,7 +233,7 @@ public class Board {
         newState[zeroCoord[0]][zeroCoord[1]] = newState[zeroCoord[0]][zeroCoord[1] + 1];
         newState[zeroCoord[0]][zeroCoord[1] + 1] = 0;
         //return new npuzzle.Board(newState);
-        newB.path = new String(this.path);
+        newB.path = this.path;
         newB.setNextStepInPath(Moves.RIGHT_CHAR);
         return newB;
     }
@@ -254,7 +254,7 @@ public class Board {
 
         newState[zeroCoord[0]][zeroCoord[1]] = newState[zeroCoord[0]][zeroCoord[1] - 1];
         newState[zeroCoord[0]][zeroCoord[1] - 1] = 0;
-        newB.path = new String(this.path);
+        newB.path = this.path;
         newB.setNextStepInPath(Moves.LEFT_CHAR);
         return newB;
     }
@@ -275,7 +275,7 @@ public class Board {
 
         newState[zeroCoord[0]][zeroCoord[1]] = newState[zeroCoord[0] - 1][zeroCoord[1]];
         newState[zeroCoord[0] - 1][zeroCoord[1]] = 0;
-        newB.path = new String(this.path);
+        newB.path = this.path;
         newB.setNextStepInPath(Moves.UP_CHAR);
         return newB;
     }
@@ -296,7 +296,7 @@ public class Board {
 
         newState[zeroCoord[0]][zeroCoord[1]] = newState[zeroCoord[0] + 1][zeroCoord[1]];
         newState[zeroCoord[0] + 1][zeroCoord[1]] = 0;
-        newB.path = new String(this.path);
+        newB.path = this.path;
         newB.setNextStepInPath(Moves.DOWN_CHAR);
         return newB;
     }
@@ -305,7 +305,7 @@ public class Board {
      * Method returns possible states from this Board in given order
      */
     public List<Board> getPossibleStates(String ord) throws BoardWithoutZeroException {
-        String order = new String(ord);
+        String order = ord;
         if (order.contains("r") || order.contains("R")) {
             order = BoardUtils.randomizeOrder();
         }
@@ -434,6 +434,9 @@ public class Board {
 
     @Override
     public boolean equals(Object other) {
+        if (!(other instanceof Board)) {
+            return false;
+        }
         Board otherB = (Board) other;
         try {
             for (int i = 0; i < this.state.length; i++) {

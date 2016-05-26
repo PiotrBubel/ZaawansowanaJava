@@ -16,9 +16,9 @@ import static org.junit.Assert.assertArrayEquals;
  */
 public class FileUtilsTest {
 
-    String fileName = "test";
-    Board instance;
-    int[][] state;
+    private String fileName = "test";
+    private Board instance;
+    private int[][] state;
 
 
     @After
@@ -43,8 +43,7 @@ public class FileUtilsTest {
 
         FileUtils.saveBoard(fileName, instance);
 
-        Board result = null;
-        result = FileUtils.loadBoard(fileName);
+        Board result = FileUtils.loadBoard(fileName);
 
         assertArrayEquals(result.getState(), instance.getState());
     }

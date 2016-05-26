@@ -90,7 +90,7 @@ public class BreadthFirstSearch extends NonHeuristicSolver {
     }
 
     private List<Board> removeChecked() {
-        List<Board> tmp = new ArrayList();
+        List<Board> tmp = new ArrayList<>();
         boolean isChecked = false;
         for (Board newNode : newNodes) {
             for (Board checkedNode : checkedNodes) {

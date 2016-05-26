@@ -51,7 +51,7 @@ public abstract class PuzzleSolver {
         return this.time;
     }
 
-    public double getTimeInMilis() {
+    public double getTimeInMillis() {
         return this.time / 1000000d;
     }
 
