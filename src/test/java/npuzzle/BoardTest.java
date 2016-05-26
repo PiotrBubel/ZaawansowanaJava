@@ -297,7 +297,7 @@ public class BoardTest {
 
         instance = new Board(state);
         boolean result = instance.canMoveDown();
-        assertFalse(result);
+        assertTrue(result);
     }
 
     /**

@@ -133,7 +133,7 @@ public class BestFirstSolverTest {
         instance = new Board(state);
         solver = new BestFirstSearch(new MisplacedComparator());
         solver.solve(instance);
-        double time = solver.getTimeInMilis();
+        double time = solver.getTimeInMillis();
         assertTrue(time > 0d);
     }
 

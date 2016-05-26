@@ -131,7 +131,7 @@ public class DepthFirstSearchTest {
         instance = new Board(state);
         solver = new DepthFirstSearch();
         solver.solve(instance);
-        double time = solver.getTimeInMilis();
+        double time = solver.getTimeInMillis();
         assertTrue(time > 0d);
     }
 

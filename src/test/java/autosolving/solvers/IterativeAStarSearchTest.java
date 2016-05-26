@@ -132,7 +132,7 @@ public class IterativeAStarSearchTest {
         instance = new Board(state);
         solver = new IterativeAStarSearch(new AManhattanDistanceComparator());
         solver.solve(instance);
-        double time = solver.getTimeInMilis();
+        double time = solver.getTimeInMillis();
         assertTrue(time > 0d);
     }
 
