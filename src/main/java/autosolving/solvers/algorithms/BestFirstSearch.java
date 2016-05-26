@@ -47,7 +47,7 @@ public class BestFirstSearch extends HeuristicSolver {
 
         uncheckedNodes = new ArrayList<>();
         checkedNodes = new ArrayList<>();
-        List<Board> newNodes = new ArrayList<>();
+        List<Board> newNodes;
         Board current;
         PuzzleSolver.CREATED_BOARDS = 0;
         this.createdBoards = 0;
