@@ -18,8 +18,8 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         imageLoader = new DefaultImageLoader();
-        puzzleBoard = new DefaultBoardController();
-        puzzleBoard.createBoardOnWindow(puzzlePanel);
+        puzzleBoard = new DefaultBoardController(puzzlePanel);
+        puzzleBoard.createBoardOnWindow();
     }
 
     @SuppressWarnings("unchecked")
@@ -101,8 +101,7 @@ public class MainWindow extends javax.swing.JFrame {
             try {
                 imageLoader.loadImage(selectedFile);
                 JOptionPane.showMessageDialog(null, CORRECT_FORMAT);
-                
-                puzzleBoard.createBoardOnWindow(puzzlePanel);
+                puzzleBoard.createBoardOnWindow();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, WRONG_FOMRAT);
             }

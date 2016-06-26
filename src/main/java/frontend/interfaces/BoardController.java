@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 
 public interface BoardController {
 
-    JPanel createBoardOnWindow(JPanel drawingPanel);
+    JPanel createBoardOnWindow();
 
     void createTiles(JPanel drawingPanel, int[][] state);
 

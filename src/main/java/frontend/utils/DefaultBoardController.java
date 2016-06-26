@@ -12,13 +12,15 @@ public class DefaultBoardController implements BoardController {
     private Board board;
     private int tileWidth;
     private int tileHeight;
+    private JPanel drawingPanel;
 
-    public DefaultBoardController() {
+    public DefaultBoardController(JPanel drawingPanel) {
         board = createDefaultBoard();
+        this.drawingPanel = drawingPanel;
     }
 
     @Override
-    public JPanel createBoardOnWindow(JPanel drawingPanel) {
+    public JPanel createBoardOnWindow() {
         drawingPanel.removeAll();
         int[][] state = board.getState();
         createTiles(drawingPanel, state);
@@ -26,10 +28,6 @@ public class DefaultBoardController implements BoardController {
         drawingPanel.revalidate();
 
         return drawingPanel;
-    }
-
-    public static int calculateTileSize(int tileAmount, int panelSize) {
-        return panelSize / tileAmount;
     }
 
     @Override
@@ -43,6 +41,20 @@ public class DefaultBoardController implements BoardController {
                     drawingPanel.add(createNewTile(state[i][j], j, i));
                 }
             }
+        }
+    }
+
+    public class TileActionListener implements ActionListener {
+
+        int numberOfTile;
+
+        public TileActionListener(int numberOfTile) {
+            this.numberOfTile = numberOfTile;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+            
         }
     }
 
@@ -64,18 +76,7 @@ public class DefaultBoardController implements BoardController {
         return new Board(state);
     }
 
-    public class TileActionListener implements ActionListener {
-
-        int numberOfTile;
-
-        public TileActionListener(int numberOfTile) {
-            this.numberOfTile = numberOfTile;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent ae) {
-            System.out.println("Wcisnieto kafelek " + numberOfTile);
-        }
-
+    public static int calculateTileSize(int tileAmount, int panelSize) {
+        return panelSize / tileAmount;
     }
 }
