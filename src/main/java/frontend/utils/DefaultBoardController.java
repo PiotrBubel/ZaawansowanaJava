@@ -6,16 +6,19 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import npuzzle.Board;
+import npuzzle.utils.BoardUtils;
 
 public class DefaultBoardController implements BoardController {
 
+    public static final int DEFAULT_COLUMNS_AMOUNT = 4;
+    public static final int DEFAULT_ROW_AMOUNT = 4;
     private Board board;
     private int tileWidth;
     private int tileHeight;
     private JPanel drawingPanel;
 
     public DefaultBoardController(JPanel drawingPanel) {
-        board = createDefaultBoard();
+        board = BoardUtils.buildArrangedBoard(DEFAULT_ROW_AMOUNT, DEFAULT_COLUMNS_AMOUNT);
         this.drawingPanel = drawingPanel;
     }
 
@@ -33,7 +36,7 @@ public class DefaultBoardController implements BoardController {
     @Override
     public void createTiles(JPanel drawingPanel, int[][] state) {
         tileWidth = calculateTileSize(state[0].length, drawingPanel.getWidth());
-        tileHeight = calculateTileSize(state[0].length, drawingPanel.getHeight());
+        tileHeight = calculateTileSize(state.length, drawingPanel.getHeight());
 
         for (int i = 0; i < state.length; i++) {
             for (int j = 0; j < state[0].length; j++) {
@@ -54,7 +57,7 @@ public class DefaultBoardController implements BoardController {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            
+
         }
     }
 
@@ -64,16 +67,6 @@ public class DefaultBoardController implements BoardController {
         tile.setBounds(cordX * tileWidth, cordY * tileHeight, tileWidth, tileHeight);
         tile.setVisible(true);
         return tile;
-    }
-
-    public static Board createDefaultBoard() {
-        int[][] state = new int[][]{
-            {1, 2, 3, 4},
-            {5, 6, 7, 8},
-            {9, 10, 11, 12},
-            {13, 14, 15, 0}
-        };
-        return new Board(state);
     }
 
     public static int calculateTileSize(int tileAmount, int panelSize) {
