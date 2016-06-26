@@ -10,12 +10,14 @@ import npuzzle.utils.BoardUtils;
 
 public class DefaultBoardController implements BoardController {
 
-    public static final int DEFAULT_COLUMNS_AMOUNT = 6;
+    public static final int DEFAULT_COLUMNS_AMOUNT = 4;
     public static final int DEFAULT_ROW_AMOUNT = 4;
-    private Board board;
-    private int tileWidth;
-    private int tileHeight;
+    protected Board board;
+
+    protected int tileWidth;
+    protected int tileHeight;
     private JPanel drawingPanel;
+    private int lastMovedTile;
 
     public DefaultBoardController(JPanel drawingPanel) {
         board = BoardUtils.buildArrangedBoard(DEFAULT_ROW_AMOUNT, DEFAULT_COLUMNS_AMOUNT);
@@ -25,8 +27,7 @@ public class DefaultBoardController implements BoardController {
     @Override
     public JPanel createBoardOnWindow() {
         drawingPanel.removeAll();
-        int[][] state = board.getState();
-        createTiles(drawingPanel, state);
+        createTiles(drawingPanel);
         drawingPanel.repaint();
         drawingPanel.revalidate();
 
@@ -34,22 +35,22 @@ public class DefaultBoardController implements BoardController {
     }
 
     @Override
-    public void createTiles(JPanel drawingPanel, int[][] state) {
-        tileWidth = calculateTileSize(state[0].length, drawingPanel.getWidth());
-        tileHeight = calculateTileSize(state.length, drawingPanel.getHeight());
+    public void createTiles(JPanel drawingPanel) {
+        tileWidth = calculateTileSize(board.getState()[0].length, drawingPanel.getWidth());
+        tileHeight = calculateTileSize(board.getState().length, drawingPanel.getHeight());
 
-        for (int i = 0; i < state.length; i++) {
-            for (int j = 0; j < state[0].length; j++) {
-                if (state[i][j] != 0) {
-                    drawingPanel.add(createNewTile(state[i][j], j, i));
+        for (int i = 0; i < board.getState().length; i++) {
+            for (int j = 0; j < board.getState()[0].length; j++) {
+                if (board.getState()[i][j] != 0) {
+                    drawingPanel.add(createNewTile(j, i));
                 }
             }
         }
     }
 
     @Override
-    public void move(int numberOfTile) {
-        board = board.move(numberOfTile);
+    public void move() {
+        board = board.move(lastMovedTile);
     }
 
     public class TileActionListener implements ActionListener {
@@ -62,14 +63,15 @@ public class DefaultBoardController implements BoardController {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            move(numberOfTile);
+            lastMovedTile = numberOfTile;
+            move();
             createBoardOnWindow();
         }
     }
 
-    private JButton createNewTile(int numberOfTile, int cordX, int cordY) {
-        JButton tile = new JButton("" + numberOfTile);
-        tile.addActionListener(new TileActionListener(numberOfTile));
+    protected JButton createNewTile(int cordX, int cordY) {
+        JButton tile = new JButton("" + board.getState()[cordY][cordX]);
+        tile.addActionListener(new TileActionListener(board.getState()[cordY][cordX]));
         tile.setBounds(cordX * tileWidth, cordY * tileHeight, tileWidth, tileHeight);
         tile.setVisible(true);
         return tile;

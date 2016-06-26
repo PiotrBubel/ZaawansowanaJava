@@ -6,7 +6,7 @@ public interface BoardController {
 
     JPanel createBoardOnWindow();
 
-    void createTiles(JPanel drawingPanel, int[][] state);
+    void createTiles(JPanel drawingPanel);
 
-    void move(int numberOfTile);
+    void move();
 }

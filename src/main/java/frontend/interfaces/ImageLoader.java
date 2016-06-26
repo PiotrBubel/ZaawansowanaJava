@@ -5,7 +5,9 @@
  */
 package frontend.interfaces;
 
+import exceptions.WrongImageFormatException;
 import java.io.IOException;
+import javax.swing.JButton;
 
 /**
  *
@@ -13,8 +15,8 @@ import java.io.IOException;
  */
 public interface ImageLoader {
 
-    void loadImage(String path)  throws IOException;
+    void loadImage(String path)  throws IOException,WrongImageFormatException;
 
-    void splitIntoTiles();
+    JButton getPartOfImage(int startX,int startY, int height,int width);
 
 }

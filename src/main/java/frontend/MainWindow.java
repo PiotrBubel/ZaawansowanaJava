@@ -1,7 +1,9 @@
 package frontend;
 
+import exceptions.WrongImageFormatException;
 import frontend.interfaces.BoardController;
 import frontend.interfaces.ImageLoader;
+import frontend.utils.BoardWithImageController;
 import frontend.utils.DefaultBoardController;
 import frontend.utils.DefaultImageLoader;
 import java.io.IOException;
@@ -10,7 +12,7 @@ import javax.swing.JOptionPane;
 
 public class MainWindow extends javax.swing.JFrame {
 
-    private static final String WRONG_FOMRAT = "Wrong format of Image";
+    private static final String IMAGE_LOAD_FAILED = "Loading image failed";
     private static final String CORRECT_FORMAT = "Loaded Image succesfully";
     private ImageLoader imageLoader;
     private BoardController puzzleBoard;
@@ -101,9 +103,12 @@ public class MainWindow extends javax.swing.JFrame {
             try {
                 imageLoader.loadImage(selectedFile);
                 JOptionPane.showMessageDialog(null, CORRECT_FORMAT);
+                puzzleBoard = new BoardWithImageController(puzzlePanel, imageLoader);
                 puzzleBoard.createBoardOnWindow();
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null, WRONG_FOMRAT);
+                JOptionPane.showMessageDialog(null, IMAGE_LOAD_FAILED);
+            } catch (WrongImageFormatException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
             }
 
         }
