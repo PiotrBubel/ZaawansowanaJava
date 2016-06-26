@@ -8,4 +8,5 @@ public interface BoardController {
 
     void createTiles(JPanel drawingPanel, int[][] state);
 
+    void move(int numberOfTile);
 }

@@ -32,7 +32,7 @@ public class MainWindow extends javax.swing.JFrame {
         loadImageButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(380, 380));
+        setPreferredSize(new java.awt.Dimension(380, 420));
 
         newGameButton.setText("New Game");
 

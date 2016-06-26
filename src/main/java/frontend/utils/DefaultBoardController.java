@@ -10,7 +10,7 @@ import npuzzle.utils.BoardUtils;
 
 public class DefaultBoardController implements BoardController {
 
-    public static final int DEFAULT_COLUMNS_AMOUNT = 4;
+    public static final int DEFAULT_COLUMNS_AMOUNT = 6;
     public static final int DEFAULT_ROW_AMOUNT = 4;
     private Board board;
     private int tileWidth;
@@ -47,6 +47,11 @@ public class DefaultBoardController implements BoardController {
         }
     }
 
+    @Override
+    public void move(int numberOfTile) {
+        board = board.move(numberOfTile);
+    }
+
     public class TileActionListener implements ActionListener {
 
         int numberOfTile;
@@ -57,7 +62,8 @@ public class DefaultBoardController implements BoardController {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-
+            move(numberOfTile);
+            createBoardOnWindow();
         }
     }
 
