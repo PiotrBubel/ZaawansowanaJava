@@ -1,5 +1,6 @@
 package frontend.utils;
 
+import exceptions.BoardWithoutZeroException;
 import frontend.interfaces.BoardController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,8 +11,8 @@ import npuzzle.utils.BoardUtils;
 
 public class DefaultBoardController implements BoardController {
 
-    public static final int DEFAULT_COLUMNS_AMOUNT = 4;
-    public static final int DEFAULT_ROW_AMOUNT = 4;
+    public static final int DEFAULT_COLUMNS_AMOUNT = 3;
+    public static final int DEFAULT_ROW_AMOUNT = 7;
     protected Board board;
 
     protected int tileWidth;
@@ -50,7 +51,12 @@ public class DefaultBoardController implements BoardController {
 
     @Override
     public void move() {
-        board = board.move(lastMovedTile);
+        try {
+            board = board.move(lastMovedTile);
+        } catch (BoardWithoutZeroException ex) {
+            
+        }
+
     }
 
     public class TileActionListener implements ActionListener {

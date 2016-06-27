@@ -23,7 +23,7 @@ public class DefaultImageLoader implements ImageLoader {
     public void loadImage(String path) throws IOException, WrongImageFormatException {
         loadedImage = ImageIO.read(new File(path));
         if (loadedImage != null) {
-            loadedImage = scaleImage();
+            loadedImage = scaleImage(DEFAULT_WIDTH, DEFAULT_HEIGHT);
         } else {
             throw new WrongImageFormatException("Can't load image - wrong format");
         }
@@ -33,7 +33,7 @@ public class DefaultImageLoader implements ImageLoader {
     @Override
     public JButton getPartOfImage(int startX, int startY, int height, int width) {
 
-        BufferedImage subImage = loadedImage.getSubimage(startX, startY, width, height);
+        BufferedImage subImage = loadedImage.getSubimage(startX, startY, height, width);
         JButton tile = new JButton(new ImageIcon(subImage));
         tile.setBorder(BorderFactory.createEmptyBorder());
         tile.setContentAreaFilled(false);
@@ -41,9 +41,9 @@ public class DefaultImageLoader implements ImageLoader {
         return tile;
     }
 
-    private BufferedImage scaleImage() {
-        Image temp = loadedImage.getScaledInstance(DEFAULT_HEIGHT, DEFAULT_WIDTH, Image.SCALE_SMOOTH);
-        BufferedImage scaledImage = new BufferedImage(DEFAULT_WIDTH, DEFAULT_HEIGHT, BufferedImage.TYPE_INT_ARGB);
+    public BufferedImage scaleImage(int width, int height) {
+        Image temp = loadedImage.getScaledInstance(height, width, Image.SCALE_SMOOTH);
+        BufferedImage scaledImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
         Graphics2D g2d = scaledImage.createGraphics();
         g2d.drawImage(temp, 0, 0, null);

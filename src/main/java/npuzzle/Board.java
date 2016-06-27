@@ -448,20 +448,32 @@ public class Board {
         return true;
     }
 
-    public Board move(int tileNumber) {
+    public Board move(int tileNumber) throws BoardWithoutZeroException {
         int[] tileCoord = this.findNumber(tileNumber);
         int[] zeroCoord = findZero();
 
-        int distance = (Math.abs(tileCoord[0] - zeroCoord[0]) + Math.abs(tileCoord[1] - zeroCoord[1]));
+        int verticalDifference = tileCoord[0] - zeroCoord[0];
+        int horizontalDifference = tileCoord[1] - zeroCoord[1];
+
+        int distance = (Math.abs(verticalDifference) + Math.abs(horizontalDifference));
         if (distance == 1) {
-            Board newBoard = new Board(this);
-            int[][] newState = newBoard.state;
-            newState[zeroCoord[0]][zeroCoord[1]] = tileNumber;
-            newState[tileCoord[0]][tileCoord[1]] = 0;
-            //TODO 
-            //  newB.path = this.path; 
-            // newB.setNextStepInPath(Moves.DOWN_CHAR);
-            return newBoard;
+            return chooseMove(verticalDifference, horizontalDifference);
+        }
+        return this;
+    }
+
+    public Board chooseMove(int verticalDifference, int horizontalDifference) throws BoardWithoutZeroException {
+        switch (verticalDifference) {
+            case -1:
+                return moveUp();
+            case 1:
+                return moveDown();
+        }
+        switch (horizontalDifference) {
+            case -1:
+                return moveLeft();
+            case 1:
+                return moveRight();
         }
         return this;
     }
