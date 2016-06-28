@@ -12,8 +12,8 @@ import npuzzle.utils.BoardUtils;
 
 public class DefaultBoardController implements BoardController {
 
-    public static final int DEFAULT_COLUMNS_AMOUNT = 3;
-    public static final int DEFAULT_ROW_AMOUNT = 7;
+    public static final int DEFAULT_COLUMNS_AMOUNT = 4;
+    public static final int DEFAULT_ROW_AMOUNT = 4;
     private Board board;
     private ImageLoader imageLoader;
     private Board arrangedBoard;

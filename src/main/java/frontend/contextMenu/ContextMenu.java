@@ -1,4 +1,4 @@
-package frontend;
+package frontend.contextMenu;
 
 import exceptions.WrongImageFormatException;
 import frontend.interfaces.BoardController;

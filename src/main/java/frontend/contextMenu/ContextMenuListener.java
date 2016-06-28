@@ -1,24 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package frontend;
+package frontend.contextMenu;
 
 import frontend.interfaces.BoardController;
 import frontend.interfaces.ImageLoader;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
- *
- * @author Sebastian
- */
 public class ContextMenuListener extends MouseAdapter {
 
     ContextMenu contextMenu;
 
-    ContextMenuListener(ImageLoader imageLoader, BoardController puzzleBoard) {
+    public ContextMenuListener(ImageLoader imageLoader, BoardController puzzleBoard) {
         contextMenu = new ContextMenu(imageLoader, puzzleBoard);
     }
 

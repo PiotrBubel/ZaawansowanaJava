@@ -1,13 +1,10 @@
 package frontend;
 
-import exceptions.WrongImageFormatException;
+import frontend.contextMenu.ContextMenuListener;
 import frontend.interfaces.BoardController;
 import frontend.interfaces.ImageLoader;
 import frontend.utils.DefaultBoardController;
 import frontend.utils.DefaultImageLoader;
-import java.io.IOException;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 public class MainWindow extends javax.swing.JFrame {
 
