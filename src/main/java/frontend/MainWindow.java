@@ -3,7 +3,6 @@ package frontend;
 import exceptions.WrongImageFormatException;
 import frontend.interfaces.BoardController;
 import frontend.interfaces.ImageLoader;
-import frontend.utils.BoardWithImageController;
 import frontend.utils.DefaultBoardController;
 import frontend.utils.DefaultImageLoader;
 import java.io.IOException;
@@ -11,19 +10,19 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class MainWindow extends javax.swing.JFrame {
-
+    
     private static final String IMAGE_LOAD_FAILED = "Loading image failed";
     private static final String CORRECT_FORMAT = "Loaded Image succesfully";
     private ImageLoader imageLoader;
     private BoardController puzzleBoard;
-
+    
     public MainWindow() {
         initComponents();
         imageLoader = new DefaultImageLoader();
         puzzleBoard = new DefaultBoardController(puzzlePanel);
         puzzleBoard.createBoardOnWindow();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -34,7 +33,7 @@ public class MainWindow extends javax.swing.JFrame {
         loadImageButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(380, 420));
+        setPreferredSize(new java.awt.Dimension(350, 420));
 
         newGameButton.setText("New Game");
 
@@ -70,11 +69,11 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(puzzlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newGameButton)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(statisticsButton)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(loadImageButton)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,27 +92,27 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loadImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadImageButtonActionPerformed
-
+        
         JFileChooser fileChooser = new JFileChooser();
         int returnValue = fileChooser.showOpenDialog(null);
-
+        
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             String selectedFile = fileChooser.getSelectedFile().getAbsolutePath();
-
+            
             try {
                 imageLoader.loadImage(selectedFile);
                 JOptionPane.showMessageDialog(null, CORRECT_FORMAT);
-                puzzleBoard = new BoardWithImageController(puzzlePanel, imageLoader);
+                puzzleBoard.setImageLoader(imageLoader);
                 puzzleBoard.createBoardOnWindow();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, IMAGE_LOAD_FAILED);
             } catch (WrongImageFormatException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
-
+            
         }
     }//GEN-LAST:event_loadImageButtonActionPerformed
-
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -132,7 +131,6 @@ public class MainWindow extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
