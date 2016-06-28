@@ -14,18 +14,23 @@ public class DefaultBoardController implements BoardController {
 
     public static final int DEFAULT_COLUMNS_AMOUNT = 4;
     public static final int DEFAULT_ROW_AMOUNT = 4;
-    private Board board;
-    private ImageLoader imageLoader;
-    private Board arrangedBoard;
-    private int tileWidth;
-    private int tileHeight;
+    Board board;
+    ImageLoader imageLoader;
+    Board arrangedBoard;
+    int tileWidth;
+    int tileHeight;
     private JPanel drawingPanel;
-    private int lastMovedTile;
 
     public DefaultBoardController(JPanel drawingPanel) {
         board = BoardUtils.buildArrangedBoard(DEFAULT_ROW_AMOUNT, DEFAULT_COLUMNS_AMOUNT);
         this.drawingPanel = drawingPanel;
         this.arrangedBoard = BoardUtils.buildArrangedBoard(DEFAULT_ROW_AMOUNT, DEFAULT_COLUMNS_AMOUNT);
+    }
+
+    public DefaultBoardController(JPanel drawingPanel, Board board) {
+        this.board = board;
+        this.drawingPanel = drawingPanel;
+        this.arrangedBoard = BoardUtils.buildArrangedBoard(board.getState().length, board.getState()[0].length);
     }
 
     @Override
@@ -63,16 +68,24 @@ public class DefaultBoardController implements BoardController {
     }
 
     @Override
-    public void move() {
+    public void move(int tile) {
         try {
-            board = board.move(lastMovedTile);
+            board = board.move(tile);
         } catch (BoardWithoutZeroException ex) {
-
         }
-
     }
 
-    public class TileActionListener implements ActionListener {
+    @Override
+    public Board getBoard() {
+        return board;
+    }
+
+    @Override
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+    private class TileActionListener implements ActionListener {
 
         int numberOfTile;
 
@@ -82,8 +95,7 @@ public class DefaultBoardController implements BoardController {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-            lastMovedTile = numberOfTile;
-            move();
+            move(numberOfTile);
             createBoardOnWindow();
         }
     }
@@ -106,7 +118,7 @@ public class DefaultBoardController implements BoardController {
         return tile;
     }
 
-    public static int calculateTileSize(int tileAmount, int panelSize) {
+    protected static int calculateTileSize(int tileAmount, int panelSize) {
         return panelSize / tileAmount;
     }
 }
