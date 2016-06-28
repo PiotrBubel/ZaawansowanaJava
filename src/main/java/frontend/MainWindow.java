@@ -4,6 +4,7 @@ import frontend.animator.AnimatorWindow;
 import frontend.contextMenu.ContextMenuListener;
 import frontend.interfaces.BoardController;
 import frontend.interfaces.ImageLoader;
+import frontend.solver.SolverWindow;
 import frontend.utils.DefaultBoardController;
 import frontend.utils.DefaultImageLoader;
 
@@ -28,6 +29,7 @@ public class MainWindow extends javax.swing.JFrame {
         statisticsButton = new javax.swing.JButton();
         puzzlePanel = new javax.swing.JPanel();
         animateButton = new javax.swing.JButton();
+        solveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(350, 420));
@@ -56,6 +58,13 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        solveButton.setText("Solve");
+        solveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solveButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -72,6 +81,8 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(statisticsButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(animateButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(solveButton)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -81,7 +92,8 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newGameButton)
                     .addComponent(statisticsButton)
-                    .addComponent(animateButton))
+                    .addComponent(animateButton)
+                    .addComponent(solveButton))
                 .addGap(18, 18, 18)
                 .addComponent(puzzlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -92,9 +104,14 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void animateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animateButtonActionPerformed
-      AnimatorWindow animatorWindow=new AnimatorWindow(puzzleBoard.getBoard(), imageLoader);
-      animatorWindow.show();
+        AnimatorWindow animatorWindow = new AnimatorWindow(puzzleBoard.getBoard());
+        animatorWindow.show();
     }//GEN-LAST:event_animateButtonActionPerformed
+
+    private void solveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveButtonActionPerformed
+        SolverWindow solverWindow = new SolverWindow(puzzleBoard.getBoard());
+        solverWindow.show();
+    }//GEN-LAST:event_solveButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -128,6 +145,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton animateButton;
     private javax.swing.JButton newGameButton;
     private javax.swing.JPanel puzzlePanel;
+    private javax.swing.JButton solveButton;
     private javax.swing.JButton statisticsButton;
     // End of variables declaration//GEN-END:variables
 }

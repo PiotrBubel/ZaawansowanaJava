@@ -3,8 +3,8 @@ package frontend.animator;
 import exceptions.BoardWithoutZeroException;
 import frontend.contextMenu.ContextMenuListener;
 import frontend.interfaces.BoardController;
-import frontend.interfaces.ImageLoader;
 import frontend.utils.AnimatorBoardController;
+import frontend.utils.DefaultImageLoader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
@@ -19,13 +19,13 @@ public class AnimatorWindow extends javax.swing.JFrame {
     private Timer timer;
     private BoardController puzzleBoard;
 
-    public AnimatorWindow(Board board, ImageLoader imageLoader) {
+    public AnimatorWindow(Board board) {
         initComponents();
         this.pathToWin = board.getPath();
         this.startingBoard = getStartingBoard(board);
         puzzleBoard = new AnimatorBoardController(puzzlePanel, new Board(startingBoard), pathToWin);
         puzzleBoard.setImageLoader(null);
-        addMouseListener(new ContextMenuListener(imageLoader, puzzleBoard));
+        addMouseListener(new ContextMenuListener(new DefaultImageLoader(), puzzleBoard));
 
         ActionListener actionListener = new ActionListener() {
             @Override
@@ -38,7 +38,6 @@ public class AnimatorWindow extends javax.swing.JFrame {
                 } else {
                     timer.stop();
                 }
-
             }
         };
         timer = new Timer(500, actionListener);
