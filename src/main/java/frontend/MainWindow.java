@@ -10,19 +10,18 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 public class MainWindow extends javax.swing.JFrame {
-    
-    private static final String IMAGE_LOAD_FAILED = "Loading image failed";
-    private static final String CORRECT_FORMAT = "Loaded Image succesfully";
+
     private ImageLoader imageLoader;
     private BoardController puzzleBoard;
-    
+
     public MainWindow() {
         initComponents();
         imageLoader = new DefaultImageLoader();
         puzzleBoard = new DefaultBoardController(puzzlePanel);
         puzzleBoard.createBoardOnWindow();
+        addMouseListener(new ContextMenuListener(imageLoader, puzzleBoard));
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -30,7 +29,6 @@ public class MainWindow extends javax.swing.JFrame {
         newGameButton = new javax.swing.JButton();
         statisticsButton = new javax.swing.JButton();
         puzzlePanel = new javax.swing.JPanel();
-        loadImageButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(350, 420));
@@ -52,13 +50,6 @@ public class MainWindow extends javax.swing.JFrame {
             .addGap(0, 320, Short.MAX_VALUE)
         );
 
-        loadImageButton.setText("Load Image");
-        loadImageButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadImageButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,14 +57,14 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(puzzlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(puzzlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(42, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newGameButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(statisticsButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loadImageButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -81,8 +72,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newGameButton)
-                    .addComponent(statisticsButton)
-                    .addComponent(loadImageButton))
+                    .addComponent(statisticsButton))
                 .addGap(18, 18, 18)
                 .addComponent(puzzlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -91,28 +81,6 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loadImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadImageButtonActionPerformed
-        
-        JFileChooser fileChooser = new JFileChooser();
-        int returnValue = fileChooser.showOpenDialog(null);
-        
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            String selectedFile = fileChooser.getSelectedFile().getAbsolutePath();
-            
-            try {
-                imageLoader.loadImage(selectedFile);
-                JOptionPane.showMessageDialog(null, CORRECT_FORMAT);
-                puzzleBoard.setImageLoader(imageLoader);
-                puzzleBoard.createBoardOnWindow();
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null, IMAGE_LOAD_FAILED);
-            } catch (WrongImageFormatException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-            }
-            
-        }
-    }//GEN-LAST:event_loadImageButtonActionPerformed
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -142,7 +110,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton loadImageButton;
     private javax.swing.JButton newGameButton;
     private javax.swing.JPanel puzzlePanel;
     private javax.swing.JButton statisticsButton;

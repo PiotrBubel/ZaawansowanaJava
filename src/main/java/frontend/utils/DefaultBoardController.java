@@ -25,9 +25,10 @@ public class DefaultBoardController implements BoardController {
     public DefaultBoardController(JPanel drawingPanel) {
         board = BoardUtils.buildArrangedBoard(DEFAULT_ROW_AMOUNT, DEFAULT_COLUMNS_AMOUNT);
         this.drawingPanel = drawingPanel;
-        this.arrangedBoard = new Board(board);
+        this.arrangedBoard = BoardUtils.buildArrangedBoard(DEFAULT_ROW_AMOUNT, DEFAULT_COLUMNS_AMOUNT);
     }
 
+    @Override
     public void setImageLoader(ImageLoader imageLoader) {
         this.imageLoader = imageLoader;
     }
