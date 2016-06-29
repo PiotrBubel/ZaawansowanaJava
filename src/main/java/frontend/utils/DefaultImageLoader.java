@@ -14,8 +14,8 @@ import javax.swing.JButton;
 
 public class DefaultImageLoader implements ImageLoader {
 
-    private static final int DEFAULT_HEIGHT = 320;
-    private static final int DEFAULT_WIDTH = 320;
+    private static final int DEFAULT_HEIGHT = 400;
+    private static final int DEFAULT_WIDTH = 400;
 
     private BufferedImage loadedImage;
 

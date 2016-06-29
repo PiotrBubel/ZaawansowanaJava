@@ -4,11 +4,15 @@ import frontend.animator.AnimatorWindow;
 import frontend.contextMenu.ContextMenuListener;
 import frontend.interfaces.BoardController;
 import frontend.interfaces.ImageLoader;
+import frontend.interfaces.NewGame;
+import frontend.newGame.NewGameWindow;
 import frontend.solver.SolverWindow;
 import frontend.utils.DefaultBoardController;
 import frontend.utils.DefaultImageLoader;
+import javax.swing.JFrame;
+import npuzzle.Board;
 
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends JFrame implements NewGame {
 
     private ImageLoader imageLoader;
     private BoardController puzzleBoard;
@@ -19,6 +23,12 @@ public class MainWindow extends javax.swing.JFrame {
         puzzleBoard = new DefaultBoardController(puzzlePanel);
         puzzleBoard.createBoardOnWindow();
         addMouseListener(new ContextMenuListener(imageLoader, puzzleBoard));
+    }
+
+    @Override
+    public void setNewGame(Board board) {
+        puzzleBoard.setBoard(board);
+        puzzleBoard.createBoardOnWindow();
     }
 
     @SuppressWarnings("unchecked")
@@ -32,23 +42,28 @@ public class MainWindow extends javax.swing.JFrame {
         solveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(350, 420));
+        setPreferredSize(new java.awt.Dimension(450, 480));
 
         newGameButton.setText("New Game");
+        newGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newGameButtonActionPerformed(evt);
+            }
+        });
 
         statisticsButton.setText("Statistics");
 
-        puzzlePanel.setPreferredSize(new java.awt.Dimension(320, 320));
+        puzzlePanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
         javax.swing.GroupLayout puzzlePanelLayout = new javax.swing.GroupLayout(puzzlePanel);
         puzzlePanel.setLayout(puzzlePanelLayout);
         puzzlePanelLayout.setHorizontalGroup(
             puzzlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         puzzlePanelLayout.setVerticalGroup(
             puzzlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
 
         animateButton.setText("Animate !");
@@ -70,11 +85,8 @@ public class MainWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(puzzlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(20, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(newGameButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -82,21 +94,21 @@ public class MainWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(animateButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(solveButton)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(solveButton))
+                    .addComponent(puzzlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newGameButton)
                     .addComponent(statisticsButton)
                     .addComponent(animateButton)
                     .addComponent(solveButton))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(puzzlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,6 +124,11 @@ public class MainWindow extends javax.swing.JFrame {
         SolverWindow solverWindow = new SolverWindow(puzzleBoard.getBoard());
         solverWindow.show();
     }//GEN-LAST:event_solveButtonActionPerformed
+
+    private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
+        NewGameWindow newGameWindow = new NewGameWindow(this);
+        newGameWindow.show();
+    }//GEN-LAST:event_newGameButtonActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -148,4 +165,5 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton solveButton;
     private javax.swing.JButton statisticsButton;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -83,6 +83,8 @@ public class DefaultBoardController implements BoardController {
     @Override
     public void setBoard(Board board) {
         this.board = board;
+        this.arrangedBoard = BoardUtils.buildArrangedBoard(board.getState().length, board.getState()[0].length);
+
     }
 
     private class TileActionListener implements ActionListener {
