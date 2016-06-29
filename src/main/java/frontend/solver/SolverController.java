@@ -38,9 +38,9 @@ public class SolverController {
         switch (algorithm) {
             case A_STAR:
                 if (heuristic.equals(Heuristics.MANHATTAN)) {
-                    solver = new BestFirstSearch(new AManhattanDistanceComparator());
+                    solver = new BestFirstSearch(new AManhattanDistanceComparator(),depth);
                 } else {
-                    solver = new BestFirstSearch(new AMisplacedComparator());
+                    solver = new BestFirstSearch(new AMisplacedComparator(),depth);
                 }
                 break;
             case IDA_STAR:
@@ -52,9 +52,9 @@ public class SolverController {
                 break;
             case BEST_FIRST:
                 if (heuristic.equals(Heuristics.MANHATTAN)) {
-                    solver = new BestFirstSearch(new ManhattanDistanceComparator());
+                    solver = new BestFirstSearch(new ManhattanDistanceComparator(),depth);
                 } else {
-                    solver = new BestFirstSearch(new MisplacedComparator());
+                    solver = new BestFirstSearch(new MisplacedComparator(),depth);
                 }
                 break;
             case BFS:
