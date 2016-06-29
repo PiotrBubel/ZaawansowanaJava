@@ -1,55 +1,24 @@
 package frontend.animator;
 
-import exceptions.BoardWithoutZeroException;
-import frontend.contextMenu.ContextMenuListener;
-import frontend.interfaces.BoardController;
-import frontend.utils.AnimatorBoardController;
-import frontend.utils.DefaultImageLoader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 import npuzzle.Board;
-import static npuzzle.utils.BoardUtils.reverseMoves;
 
 public final class AnimatorWindow extends javax.swing.JFrame {
 
-    private String pathToWin;
-    private Board startingBoard;
-    private int move = 0;
     private Timer timer;
-    private BoardController puzzleBoard;
+    private Animator animator;
 
     public AnimatorWindow(Board board) {
+        this(board, board.getPath());
+    }
+
+    public AnimatorWindow(Board board, String pathToWin) {
         initComponents();
-        this.pathToWin = board.getPath();
-        this.startingBoard = getStartingBoard(board);
-        puzzleBoard = new AnimatorBoardController(puzzlePanel, new Board(startingBoard), pathToWin);
-        puzzleBoard.setImageLoader(null);
-        addMouseListener(new ContextMenuListener(new DefaultImageLoader(), puzzleBoard));
+        animator = new Animator(puzzlePanel, board, pathToWin);
+        addMouseListener(animator.getContextMenu());
         initTimer();
-        puzzleBoard.createBoardOnWindow();
-    }
-
-    public AnimatorWindow(Board startingBoard, String pathToWin) {
-        this.startingBoard = startingBoard;
-        this.pathToWin = pathToWin;
-        puzzleBoard = new AnimatorBoardController(puzzlePanel, new Board(startingBoard), pathToWin);
-        puzzleBoard.setImageLoader(null);
-        addMouseListener(new ContextMenuListener(new DefaultImageLoader(), puzzleBoard));
-        initTimer();
-        puzzleBoard.createBoardOnWindow();
-    }
-
-    private Board getStartingBoard(Board board) {
-        String path = reverseMoves(board.getPath());
-        Board temp = new Board(board);
-        for (int i = 0; i < path.length(); i++) {
-            try {
-                temp = temp.move(path.charAt(i));
-            } catch (BoardWithoutZeroException ex) {
-            }
-        }
-        return temp;
     }
 
     public void initTimer() {
@@ -57,11 +26,7 @@ public final class AnimatorWindow extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
 
-                if (move < pathToWin.length() && !pathToWin.isEmpty()) {
-                    puzzleBoard.move(move);
-                    move++;
-                    puzzleBoard.createBoardOnWindow();
-                } else {
+                if (!animator.nextMove()) {
                     timer.stop();
                 }
             }
@@ -177,37 +142,19 @@ public final class AnimatorWindow extends javax.swing.JFrame {
 
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
         timer.stop();
-        move = 0;
-        if (!pathToWin.isEmpty()) {
-            puzzleBoard.setBoard(startingBoard);
-            puzzleBoard.createBoardOnWindow();
-        }
+        animator.resetMoves();
         timer.start();
     }//GEN-LAST:event_resetButtonActionPerformed
 
     private void nextMoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextMoveActionPerformed
         timer.stop();
-        if (move < pathToWin.length() && !pathToWin.isEmpty()) {
-            puzzleBoard.move(move);
-            move++;
-            puzzleBoard.createBoardOnWindow();
-        }
+        animator.nextMove();
     }//GEN-LAST:event_nextMoveActionPerformed
 
     private void previousMoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousMoveActionPerformed
         timer.stop();
-
-        if (move > 0 && !pathToWin.isEmpty()) {
-            move--;
-            puzzleBoard.setBoard(startingBoard);
-            for (int i = 0; i < move; i++) {
-                puzzleBoard.move(i);
-            }
-            puzzleBoard.createBoardOnWindow();
-
-        }
+        animator.previousMove();
     }//GEN-LAST:event_previousMoveActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton nextMove;
