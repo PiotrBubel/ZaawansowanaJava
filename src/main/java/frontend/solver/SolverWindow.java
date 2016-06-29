@@ -80,7 +80,6 @@ public class SolverWindow extends javax.swing.JFrame {
             BestFirstSearch solver = new BestFirstSearch(new AManhattanDistanceComparator());
             board = solver.solve(board);
             isSolved = true;
-            System.out.println(board.getPath());
         } catch (BoardWithoutZeroException | UnsolvableBoardException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }

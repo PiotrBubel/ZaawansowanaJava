@@ -11,7 +11,7 @@ import javax.swing.Timer;
 import npuzzle.Board;
 import static npuzzle.utils.BoardUtils.reverseMoves;
 
-public class AnimatorWindow extends javax.swing.JFrame {
+public final class AnimatorWindow extends javax.swing.JFrame {
 
     private String pathToWin;
     private Board startingBoard;
@@ -26,7 +26,33 @@ public class AnimatorWindow extends javax.swing.JFrame {
         puzzleBoard = new AnimatorBoardController(puzzlePanel, new Board(startingBoard), pathToWin);
         puzzleBoard.setImageLoader(null);
         addMouseListener(new ContextMenuListener(new DefaultImageLoader(), puzzleBoard));
+        initTimer();
+        puzzleBoard.createBoardOnWindow();
+    }
 
+    public AnimatorWindow(Board startingBoard, String pathToWin) {
+        this.startingBoard = startingBoard;
+        this.pathToWin = pathToWin;
+        puzzleBoard = new AnimatorBoardController(puzzlePanel, new Board(startingBoard), pathToWin);
+        puzzleBoard.setImageLoader(null);
+        addMouseListener(new ContextMenuListener(new DefaultImageLoader(), puzzleBoard));
+        initTimer();
+        puzzleBoard.createBoardOnWindow();
+    }
+
+    private Board getStartingBoard(Board board) {
+        String path = reverseMoves(board.getPath());
+        Board temp = new Board(board);
+        for (int i = 0; i < path.length(); i++) {
+            try {
+                temp = temp.move(path.charAt(i));
+            } catch (BoardWithoutZeroException ex) {
+            }
+        }
+        return temp;
+    }
+
+    public void initTimer() {
         ActionListener actionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -41,19 +67,6 @@ public class AnimatorWindow extends javax.swing.JFrame {
             }
         };
         timer = new Timer(500, actionListener);
-        puzzleBoard.createBoardOnWindow();
-    }
-
-    private Board getStartingBoard(Board board) {
-        String path = reverseMoves(board.getPath());
-        Board temp = new Board(board);
-        for (int i = 0; i < path.length(); i++) {
-            try {
-                temp = temp.move(path.charAt(i));
-            } catch (BoardWithoutZeroException ex) {
-            }
-        }
-        return temp;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -193,7 +206,6 @@ public class AnimatorWindow extends javax.swing.JFrame {
             puzzleBoard.createBoardOnWindow();
 
         }
-
     }//GEN-LAST:event_previousMoveActionPerformed
 
 
