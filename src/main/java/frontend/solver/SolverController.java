@@ -17,10 +17,12 @@ import npuzzle.Board;
 public class SolverController {
 
     private Board board;
+    private Board startingBoard;
     private boolean solved;
     private PuzzleSolver solver;
 
     public SolverController(Board board) {
+        this.startingBoard = new Board(board);
         this.board = board;
     }
 
@@ -68,9 +70,8 @@ public class SolverController {
     }
 
     boolean solve() throws BoardWithoutZeroException, UnsolvableBoardException {
-        solver = new BestFirstSearch(new AManhattanDistanceComparator());
         if (solver != null) {
-            board = solver.solve(board);
+            board = solver.solve(startingBoard);
             solved = true;
         }
         return solved;

@@ -152,7 +152,10 @@ public class SolverWindow extends javax.swing.JFrame {
         try {
             solver.setSolver(getAlgorithm(algorithmList.getSelectedIndex()), heuristic, (int) depthSpinner.getValue());
             solver.solve();
-            JOptionPane.showMessageDialog(null, "Solved succesfully");
+            if (solver.getBoard() != null) {
+                JOptionPane.showMessageDialog(null, "Solved succesfully");
+            }
+
         } catch (BoardWithoutZeroException | UnsolvableBoardException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
