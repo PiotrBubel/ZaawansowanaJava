@@ -2,7 +2,9 @@ package frontend.interfaces;
 
 import npuzzle.Board;
 
+public interface Game {
 
-public interface NewGame {
     void setNewGame(Board board);
+
+    void endGame();
 }

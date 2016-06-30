@@ -3,7 +3,7 @@ package frontend.interfaces;
 import javax.swing.JPanel;
 import npuzzle.Board;
 
-public interface BoardController {
+public interface BoardController extends GameListener {
 
     JPanel createBoardOnWindow();
 
