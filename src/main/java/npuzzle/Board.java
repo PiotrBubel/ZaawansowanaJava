@@ -18,8 +18,8 @@ import npuzzle.utils.BoardUtils;
 public class Board {
 
     /**
-     * Designed to work with custom best-first, not safe to use outside this algorithm, may cause
-     * deadlocks (in only 4 cases, but still)
+     * Designed to work with custom best-first, not safe to use outside this
+     * algorithm, may cause deadlocks (in only 4 cases, but still)
      */
     public static boolean STRONG_LOOP_CONTROL = false;
 
@@ -45,8 +45,8 @@ public class Board {
     }
 
     /**
-     * Creates copy of given board, use this when you want to copy state and path. Does not copy
-     * parentNode
+     * Creates copy of given board, use this when you want to copy state and
+     * path. Does not copy parentNode
      *
      * @param original Board
      */
@@ -84,8 +84,9 @@ public class Board {
     }
 
     /**
-     * @return x, y coordinates of value, x and y are counted from 0, (0,0) is in upper left corner,
-     * x goes down, y goes right. Returns -1,-1 when can't find given number.
+     * @return x, y coordinates of value, x and y are counted from 0, (0,0) is
+     * in upper left corner, x goes down, y goes right. Returns -1,-1 when can't
+     * find given number.
      */
     public int[] findNumber(int value) {
         int[] coordinates = new int[2];
@@ -104,8 +105,9 @@ public class Board {
     }
 
     /**
-     * @return x, y coordinates of Zero, x and y are counted from 0, (0,0) is in upper left corner,
-     * x goes down, y goes right. Returns -1,-1 when can't find zero.
+     * @return x, y coordinates of Zero, x and y are counted from 0, (0,0) is in
+     * upper left corner, x goes down, y goes right. Returns -1,-1 when can't
+     * find zero.
      */
     public int[] findZero() {
         return findNumber(0);
@@ -117,10 +119,8 @@ public class Board {
                 if (this.path.toLowerCase().endsWith(Moves.LEFT_CHAR)) {
                     return false;
                 }
-                if (STRONG_LOOP_CONTROL && (
-                        this.path.toLowerCase().endsWith(loopCauseRight1())
-                                || this.path.toLowerCase().endsWith(loopCauseRight2())
-                )) {
+                if (STRONG_LOOP_CONTROL && (this.path.toLowerCase().endsWith(loopCauseRight1())
+                        || this.path.toLowerCase().endsWith(loopCauseRight2()))) {
                     return false;
                 }
             }
@@ -143,10 +143,8 @@ public class Board {
                 if (this.path.toLowerCase().endsWith(Moves.RIGHT_CHAR)) {
                     return false;
                 }
-                if (STRONG_LOOP_CONTROL && (
-                        this.path.toLowerCase().endsWith(loopCauseLeft1())
-                                || this.path.toLowerCase().endsWith(loopCauseLeft2())
-                )) {
+                if (STRONG_LOOP_CONTROL && (this.path.toLowerCase().endsWith(loopCauseLeft1())
+                        || this.path.toLowerCase().endsWith(loopCauseLeft2()))) {
                     return false;
                 }
             }
@@ -169,10 +167,8 @@ public class Board {
                 if (this.path.toLowerCase().endsWith(Moves.DOWN_CHAR)) {
                     return false;
                 }
-                if (STRONG_LOOP_CONTROL && (
-                        this.path.toLowerCase().endsWith(loopCauseUp1())
-                                || this.path.toLowerCase().endsWith(loopCauseUp2())
-                )) {
+                if (STRONG_LOOP_CONTROL && (this.path.toLowerCase().endsWith(loopCauseUp1())
+                        || this.path.toLowerCase().endsWith(loopCauseUp2()))) {
                     return false;
                 }
             }
@@ -195,10 +191,8 @@ public class Board {
                 if (this.path.toLowerCase().endsWith(Moves.UP_CHAR)) {
                     return false;
                 }
-                if (STRONG_LOOP_CONTROL && (
-                        this.path.toLowerCase().endsWith(loopCauseDown1())
-                                || this.path.toLowerCase().endsWith(loopCauseDown2())
-                )) {
+                if (STRONG_LOOP_CONTROL && (this.path.toLowerCase().endsWith(loopCauseDown1())
+                        || this.path.toLowerCase().endsWith(loopCauseDown2()))) {
                     return false;
                 }
             }
@@ -386,7 +380,8 @@ public class Board {
 
     /**
      * @param moves - String wih moves to make
-     * @return changed Board, or null if wrong direction given or can't move in given direction
+     * @return changed Board, or null if wrong direction given or can't move in
+     * given direction
      */
     public Board allMoves(String moves) throws BoardWithoutZeroException {
         Board afterMoves = this;
@@ -398,7 +393,8 @@ public class Board {
 
     /**
      * @param direction [p|l|g|d]
-     * @return changed Board, or null if wrong direction given or can't move in given direction
+     * @return changed Board, or null if wrong direction given or can't move in
+     * given direction
      */
     public Board move(char direction) throws BoardWithoutZeroException {
         String directionString = new String(new char[]{direction});
@@ -450,5 +446,35 @@ public class Board {
             return false;
         }
         return true;
+    }
+
+    public Board move(int tileNumber) throws BoardWithoutZeroException {
+        int[] tileCoord = this.findNumber(tileNumber);
+        int[] zeroCoord = findZero();
+
+        int verticalDifference = tileCoord[0] - zeroCoord[0];
+        int horizontalDifference = tileCoord[1] - zeroCoord[1];
+
+        int distance = (Math.abs(verticalDifference) + Math.abs(horizontalDifference));
+        if (distance == 1) {
+            return chooseMove(verticalDifference, horizontalDifference);
+        }
+        return this;
+    }
+
+    public Board chooseMove(int verticalDifference, int horizontalDifference) throws BoardWithoutZeroException {
+        switch (verticalDifference) {
+            case -1:
+                return moveUp();
+            case 1:
+                return moveDown();
+        }
+        switch (horizontalDifference) {
+            case -1:
+                return moveLeft();
+            case 1:
+                return moveRight();
+        }
+        return this;
     }
 }

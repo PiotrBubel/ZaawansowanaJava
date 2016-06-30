@@ -13,6 +13,7 @@
                     <target>1.7</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
+                <version>3.5.1</version>
             </plugin>
         </plugins>
     </build>
