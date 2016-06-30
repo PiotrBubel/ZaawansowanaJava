@@ -2,6 +2,7 @@ package frontend.utils;
 
 import exceptions.BoardWithoutZeroException;
 import frontend.interfaces.BoardController;
+import frontend.interfaces.Game;
 import frontend.interfaces.ImageLoader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +21,7 @@ public class DefaultBoardController implements BoardController {
     int tileWidth;
     int tileHeight;
     private JPanel drawingPanel;
+    private Game game;
 
     public DefaultBoardController(JPanel drawingPanel) {
         board = BoardUtils.buildArrangedBoard(DEFAULT_ROW_AMOUNT, DEFAULT_COLUMNS_AMOUNT);
@@ -71,6 +73,7 @@ public class DefaultBoardController implements BoardController {
     public void move(int tile) {
         try {
             board = board.move(tile);
+            boardChanged();
         } catch (BoardWithoutZeroException ex) {
         }
     }
@@ -85,6 +88,18 @@ public class DefaultBoardController implements BoardController {
         this.board = board;
         this.arrangedBoard = BoardUtils.buildArrangedBoard(board.getState().length, board.getState()[0].length);
 
+    }
+
+    @Override
+    public void setGame(Game game) {
+        this.game = game;
+    }
+
+    @Override
+    public void boardChanged() {
+        if (game != null && board.isCorrect()) {
+            game.endGame();
+        }
     }
 
     private class TileActionListener implements ActionListener {

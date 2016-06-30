@@ -3,19 +3,26 @@ package frontend;
 import frontend.animator.AnimatorWindow;
 import frontend.contextMenu.ContextMenuListener;
 import frontend.interfaces.BoardController;
+import frontend.interfaces.GameListener;
 import frontend.interfaces.ImageLoader;
-import frontend.interfaces.NewGame;
+import frontend.interfaces.Game;
 import frontend.newGame.NewGameWindow;
 import frontend.solver.SolverWindow;
 import frontend.utils.DefaultBoardController;
 import frontend.utils.DefaultImageLoader;
+import frontend.winGame.WinGameWindow;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import npuzzle.Board;
 
-public class MainWindow extends JFrame implements NewGame {
+public class MainWindow extends JFrame implements Game {
 
     private ImageLoader imageLoader;
     private BoardController puzzleBoard;
+    private long start;
+
+    List<GameListener> listeners = new ArrayList<>();
 
     public MainWindow() {
         initComponents();
@@ -23,12 +30,24 @@ public class MainWindow extends JFrame implements NewGame {
         puzzleBoard = new DefaultBoardController(puzzlePanel);
         puzzleBoard.createBoardOnWindow();
         addMouseListener(new ContextMenuListener(imageLoader, puzzleBoard));
+
     }
 
     @Override
     public void setNewGame(Board board) {
+        listeners.clear();
+        listeners.add(puzzleBoard);
         puzzleBoard.setBoard(board);
+        puzzleBoard.setGame(this);
         puzzleBoard.createBoardOnWindow();
+        start = System.nanoTime();
+    }
+
+    @Override
+    public void endGame() {
+        double time = (double) (System.nanoTime() - start) / 1000000000;
+        WinGameWindow winGameWindow = new WinGameWindow(time, puzzleBoard.getBoard().getPath().length());
+        winGameWindow.show();
     }
 
     @SuppressWarnings("unchecked")
@@ -131,11 +150,6 @@ public class MainWindow extends JFrame implements NewGame {
     }//GEN-LAST:event_newGameButtonActionPerformed
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -146,10 +160,7 @@ public class MainWindow extends JFrame implements NewGame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
