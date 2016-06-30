@@ -1,14 +1,14 @@
 package frontend.newGame;
 
-import frontend.interfaces.NewGame;
+import frontend.interfaces.Game;
 import npuzzle.Board;
 import npuzzle.utils.BoardUtils;
 
 public class NewGameWindow extends javax.swing.JFrame {
 
-    private NewGame gameWindow;
+    private Game gameWindow;
 
-    public NewGameWindow(NewGame newGame) {
+    public NewGameWindow(Game newGame) {
         gameWindow = newGame;
         initComponents();
     }
