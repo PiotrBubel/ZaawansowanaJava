@@ -22,6 +22,7 @@ public class MainWindow extends JFrame implements Game {
     private ImageLoader imageLoader;
     private BoardController puzzleBoard;
     private long start;
+    private boolean isGameActive = false;
 
     List<GameListener> listeners = new ArrayList<>();
 
@@ -41,14 +42,18 @@ public class MainWindow extends JFrame implements Game {
         puzzleBoard.setBoard(board);
         puzzleBoard.setGame(this);
         puzzleBoard.createBoardOnWindow();
+        isGameActive = true;
         start = System.nanoTime();
     }
 
     @Override
     public void endGame() {
-        double time = (double) (System.nanoTime() - start) / 1000000000;
-        WinGameWindow winGameWindow = new WinGameWindow(time, puzzleBoard.getBoard());
-        winGameWindow.show();
+        if (isGameActive) {
+            double time = (double) (System.nanoTime() - start) / 1000000000;
+            isGameActive = false;
+            WinGameWindow winGameWindow = new WinGameWindow(time, puzzleBoard.getBoard());
+            winGameWindow.show();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -145,6 +150,7 @@ public class MainWindow extends JFrame implements Game {
     }//GEN-LAST:event_animateButtonActionPerformed
 
     private void solveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveButtonActionPerformed
+        isGameActive = false;
         SolverWindow solverWindow = new SolverWindow(puzzleBoard.getBoard());
         solverWindow.show();
     }//GEN-LAST:event_solveButtonActionPerformed
