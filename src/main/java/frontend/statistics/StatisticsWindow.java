@@ -27,27 +27,102 @@ public class StatisticsWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        setTheBoardSizeLabel = new javax.swing.JLabel();
+        rowsLabel = new javax.swing.JLabel();
+        columnsLabel = new javax.swing.JLabel();
+        loadStatisticsButton = new javax.swing.JButton();
+        playerNameLabel = new javax.swing.JLabel();
+        timeOfGameLabel = new javax.swing.JLabel();
+        movesNumberLabel = new javax.swing.JLabel();
+        animateButton = new javax.swing.JButton();
+        rowsNumberComboBox = new javax.swing.JComboBox<>();
+        columnsNumberComboBox = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Statistics");
 
-        jLabel1.setText("STATISTICS");
+        setTheBoardSizeLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        setTheBoardSizeLabel.setText("Set the board size");
+
+        rowsLabel.setText("rows");
+
+        columnsLabel.setText("columns");
+        columnsLabel.setToolTipText("");
+
+        loadStatisticsButton.setText("load statistics");
+        loadStatisticsButton.setName("loadStatsButton"); // NOI18N
+
+        playerNameLabel.setText("player name");
+
+        timeOfGameLabel.setText("time of game");
+
+        movesNumberLabel.setText("moves number");
+
+        animateButton.setText("animate");
+        animateButton.setName("animatePlayerGame"); // NOI18N
+
+        rowsNumberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6" }));
+        rowsNumberComboBox.setName("rowsNumberComboBox"); // NOI18N
+
+        columnsNumberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6" }));
+        columnsNumberComboBox.setName("columnsNumberComboBox"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(jLabel1)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(playerNameLabel)
+                        .addGap(29, 29, 29)
+                        .addComponent(timeOfGameLabel))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(columnsLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(columnsNumberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(rowsLabel)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rowsNumberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(setTheBoardSizeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(movesNumberLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 107, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(animateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(loadStatisticsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1)
-                .addContainerGap(263, Short.MAX_VALUE))
+                .addGap(24, 24, 24)
+                .addComponent(setTheBoardSizeLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rowsLabel)
+                    .addComponent(rowsNumberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loadStatisticsButton)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(columnsLabel)
+                        .addComponent(columnsNumberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(playerNameLabel)
+                    .addComponent(timeOfGameLabel)
+                    .addComponent(movesNumberLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(animateButton)
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         pack();
@@ -89,6 +164,15 @@ public class StatisticsWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton animateButton;
+    private javax.swing.JLabel columnsLabel;
+    private javax.swing.JComboBox<String> columnsNumberComboBox;
+    private javax.swing.JButton loadStatisticsButton;
+    private javax.swing.JLabel movesNumberLabel;
+    private javax.swing.JLabel playerNameLabel;
+    private javax.swing.JLabel rowsLabel;
+    private javax.swing.JComboBox<String> rowsNumberComboBox;
+    private javax.swing.JLabel setTheBoardSizeLabel;
+    private javax.swing.JLabel timeOfGameLabel;
     // End of variables declaration//GEN-END:variables
 }
