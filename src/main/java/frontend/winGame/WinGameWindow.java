@@ -31,24 +31,29 @@ public class WinGameWindow extends javax.swing.JFrame {
 
         timeLabel = new javax.swing.JLabel();
         movesLabel = new javax.swing.JLabel();
-        okButton = new javax.swing.JButton();
+        submitButton = new javax.swing.JButton();
         amount = new javax.swing.JLabel();
         time = new javax.swing.JLabel();
         boardSizeLabel = new javax.swing.JLabel();
         size = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
+        enterNameLabel = new javax.swing.JLabel();
+        saveScoreLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Game summary");
+        setLocation(new java.awt.Point(30, 30));
+        setPreferredSize(new java.awt.Dimension(220, 250));
         setResizable(false);
 
         timeLabel.setText("Time:");
 
         movesLabel.setText("Moves:");
 
-        okButton.setText("OK");
-        okButton.addActionListener(new java.awt.event.ActionListener() {
+        submitButton.setText("Submit");
+        submitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okButtonActionPerformed(evt);
+                submitButtonActionPerformed(evt);
             }
         });
 
@@ -59,33 +64,43 @@ public class WinGameWindow extends javax.swing.JFrame {
         boardSizeLabel.setText("Board size: ");
 
         size.setText("size");
+
+        enterNameLabel.setText("Enter your name:");
+
+        saveScoreLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        saveScoreLabel.setText("SAVE YOUR SCORE!");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(timeLabel)
-                    .addComponent(movesLabel))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(amount)
-                        .addGap(18, 18, 18)
-						.addComponent(okButton)
-                        .addContainerGap(21, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(time)
-                        .addGap(18, 18, 18)
-                        .addComponent(nameTextField)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(boardSizeLabel)
-                .addGap(18, 18, 18)
-                .addComponent(size)
+                        .addComponent(enterNameLabel)
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(submitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nameTextField)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(movesLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(amount))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(timeLabel)
+                                        .addGap(70, 70, 70)
+                                        .addComponent(time))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(boardSizeLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(size)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(saveScoreLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,40 +108,48 @@ public class WinGameWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(timeLabel)
-                    .addComponent(time)
-					.addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(movesLabel)
-                    .addComponent(okButton)
-                    .addComponent(amount))
+                    .addComponent(time))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(amount)
+                    .addComponent(movesLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(boardSizeLabel)
                     .addComponent(size))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(saveScoreLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(enterNameLabel)
+                .addGap(1, 1, 1)
+                .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(submitButton)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+    private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         if (!nameTextField.getText().isEmpty()) {
             sendToDatabase(nameTextField.getText());
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null,"Put the name first");
         }
-    }//GEN-LAST:event_okButtonActionPerformed
+    }//GEN-LAST:event_submitButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel amount;
     private javax.swing.JLabel boardSizeLabel;
+    private javax.swing.JLabel enterNameLabel;
     private javax.swing.JLabel movesLabel;
     private javax.swing.JTextField nameTextField;
-    private javax.swing.JButton okButton;
+    private javax.swing.JLabel saveScoreLabel;
     private javax.swing.JLabel size;
+    private javax.swing.JButton submitButton;
     private javax.swing.JLabel time;
     private javax.swing.JLabel timeLabel;
     // End of variables declaration//GEN-END:variables
