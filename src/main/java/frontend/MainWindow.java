@@ -46,7 +46,7 @@ public class MainWindow extends JFrame implements Game {
     @Override
     public void endGame() {
         double time = (double) (System.nanoTime() - start) / 1000000000;
-        WinGameWindow winGameWindow = new WinGameWindow(time, puzzleBoard.getBoard().getPath().length());
+        WinGameWindow winGameWindow = new WinGameWindow(time, puzzleBoard.getBoard());
         winGameWindow.show();
     }
 
