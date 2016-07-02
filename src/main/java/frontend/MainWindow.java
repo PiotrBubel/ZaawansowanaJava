@@ -8,6 +8,7 @@ import frontend.interfaces.ImageLoader;
 import frontend.interfaces.Game;
 import frontend.newGame.NewGameWindow;
 import frontend.solver.SolverWindow;
+import frontend.statistics.StatisticsWindow;
 import frontend.utils.DefaultBoardController;
 import frontend.utils.DefaultImageLoader;
 import frontend.winGame.WinGameWindow;
@@ -61,7 +62,6 @@ public class MainWindow extends JFrame implements Game {
         solveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(450, 480));
 
         newGameButton.setText("New Game");
         newGameButton.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +71,11 @@ public class MainWindow extends JFrame implements Game {
         });
 
         statisticsButton.setText("Statistics");
+        statisticsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statisticsButtonActionPerformed(evt);
+            }
+        });
 
         puzzlePanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
@@ -148,6 +153,11 @@ public class MainWindow extends JFrame implements Game {
         NewGameWindow newGameWindow = new NewGameWindow(this);
         newGameWindow.show();
     }//GEN-LAST:event_newGameButtonActionPerformed
+
+    private void statisticsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticsButtonActionPerformed
+        StatisticsWindow statisticsWindow = new StatisticsWindow();
+        statisticsWindow.setVisible(true);
+    }//GEN-LAST:event_statisticsButtonActionPerformed
 
     public static void main(String args[]) {
         try {

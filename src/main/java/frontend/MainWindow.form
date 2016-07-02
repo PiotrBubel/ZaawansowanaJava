@@ -70,6 +70,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Statistics"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="statisticsButtonActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="MainWindow_statisticsButton"/>
       </AuxValues>
