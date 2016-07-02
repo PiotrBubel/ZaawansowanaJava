@@ -24,3 +24,4 @@ Funkcjonalności:
 - ranking wyników (statystyki wyciągane z bazy danych)
 - odtwarzanie ‘powtórki’ z zapisanego rozwiązania
 - możliwość wczytania własnego obrazka do podzielenia na elementy do ułożenia (obrazek ładowany przez użytkownika)
+- DODATKOWY BEZSENSOWNY WPIS
