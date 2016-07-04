@@ -37,8 +37,8 @@ public class Animator {
         return false;
     }
 
-    public ContextMenuListener getContextMenu() {
-        return new ContextMenuListener(new DefaultImageLoader(), puzzleBoard);
+    public ContextMenuListener getContextMenu(int widthOfPanel, int hegithOfPanel) {
+        return new ContextMenuListener(new DefaultImageLoader(widthOfPanel, hegithOfPanel), puzzleBoard);
     }
 
     public boolean nextMove() {

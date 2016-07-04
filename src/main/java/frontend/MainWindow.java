@@ -28,7 +28,7 @@ public class MainWindow extends JFrame implements Game {
 
     public MainWindow() {
         initComponents();
-        imageLoader = new DefaultImageLoader();
+        imageLoader = new DefaultImageLoader(puzzlePanel.getWidth(),puzzlePanel.getHeight());
         puzzleBoard = new DefaultBoardController(puzzlePanel);
         puzzleBoard.createBoardOnWindow();
         addMouseListener(new ContextMenuListener(imageLoader, puzzleBoard));
@@ -49,7 +49,7 @@ public class MainWindow extends JFrame implements Game {
     @Override
     public void endGame() {
         if (isGameActive) {
-            double time = (double) (System.nanoTime() - start) / 1000000000;
+            double time = (double) (System.nanoTime() - start) / 10E9;
             isGameActive = false;
             WinGameWindow winGameWindow = new WinGameWindow(time, puzzleBoard.getBoard());
             winGameWindow.show();

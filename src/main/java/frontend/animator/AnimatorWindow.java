@@ -17,7 +17,7 @@ public final class AnimatorWindow extends javax.swing.JFrame {
     public AnimatorWindow(Board board, String pathToWin) {
         initComponents();
         animator = new Animator(puzzlePanel, board, pathToWin);
-        addMouseListener(animator.getContextMenu());
+        addMouseListener(animator.getContextMenu(puzzlePanel.getWidth(),puzzlePanel.getHeight()));
         initTimer();
     }
 
