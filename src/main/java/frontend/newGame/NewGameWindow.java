@@ -6,10 +6,10 @@ import npuzzle.utils.BoardUtils;
 
 public class NewGameWindow extends javax.swing.JFrame {
 
-    private Game gameWindow;
+    private Game newGameWindowController;
 
     public NewGameWindow(Game newGame) {
-        gameWindow = newGame;
+        newGameWindowController = newGame;
         initComponents();
     }
 
@@ -95,14 +95,13 @@ public class NewGameWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        // TODO add your handling code here:
         int rows = (int) rowsSpinner.getValue();
         int columns = (int) columnsSpinner.getValue();
         int moves = (int) movesSpinner.getValue();
         Board newBoard = BoardUtils.randomizeBoard(rows, columns, moves);
-        gameWindow.setNewGame(newBoard);
+        newGameWindowController.setNewGame(newBoard);
         this.dispose();
-        
+
     }//GEN-LAST:event_startButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
