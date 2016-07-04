@@ -117,10 +117,11 @@ public class DefaultBoardController implements BoardController {
         }
     }
 
-    protected JButton createNewTile(int cordX, int cordY) {
-        JButton tile = new JButton("" + board.getState()[cordY][cordX]);
-        tile.addActionListener(new TileActionListener(board.getState()[cordY][cordX]));
-        tile.setBounds(cordX * tileWidth, cordY * tileHeight, tileWidth, tileHeight);
+    protected JButton createNewTile(int coordX, int coordY) {
+        JButton tile = new JButton("" + board.getState()[coordY][coordX]);
+        tile.setName("" + board.getState()[coordY][coordX]);
+        tile.addActionListener(new TileActionListener(board.getState()[coordY][coordX]));
+        tile.setBounds(coordX * tileWidth, coordY * tileHeight, tileWidth, tileHeight);
         tile.setVisible(true);
         return tile;
     }
@@ -129,6 +130,7 @@ public class DefaultBoardController implements BoardController {
 
         int[] tileCoords = arrangedBoard.findNumber(board.getState()[coordY][coordX]);
         JButton tile = imageLoader.getPartOfImage(tileCoords[1] * tileWidth, tileCoords[0] * tileHeight, tileWidth, tileHeight);
+        tile.setName("" + board.getState()[coordY][coordX]);
         tile.addActionListener(new TileActionListener(board.getState()[coordY][coordX]));
         tile.setBounds(coordX * tileWidth, coordY * tileHeight, tileWidth, tileHeight);
         tile.setVisible(true);

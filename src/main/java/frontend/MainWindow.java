@@ -89,6 +89,7 @@ public class MainWindow extends JFrame implements Game {
             }
         });
 
+        puzzlePanel.setName("puzzlePanel"); // NOI18N
         puzzlePanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
         javax.swing.GroupLayout puzzlePanelLayout = new javax.swing.GroupLayout(puzzlePanel);

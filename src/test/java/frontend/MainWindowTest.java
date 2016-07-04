@@ -9,10 +9,13 @@ import frontend.animator.AnimatorWindow;
 import frontend.newGame.NewGameWindow;
 import frontend.solver.SolverWindow;
 import frontend.statistics.StatisticsWindow;
+import frontend.winGame.WinGameWindow;
 import npuzzle.Board;
+import npuzzle.utils.BoardUtils;
 import org.assertj.swing.core.BasicComponentFinder;
 import org.assertj.swing.core.ComponentFinder;
 import org.assertj.swing.fixture.FrameFixture;
+import org.assertj.swing.fixture.JPanelFixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -70,40 +73,31 @@ public class MainWindowTest {
         finder.findByType(SolverWindow.class);
     }
 
-//    /**
-//     * Test of setNewGame method, of class MainWindow.
-//     */
-//    @Test
-//    public void testSetNewGame() {
-//        System.out.println("setNewGame");
-//        Board board = null;
-//        MainWindow instance = new MainWindow();
-//        instance.setNewGame(board);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of endGame method, of class MainWindow.
-//     */
-//    @Test
-//    public void testEndGame() {
-//        System.out.println("endGame");
-//        MainWindow instance = new MainWindow();
-//        instance.endGame();
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    /**
-//     * Test of main method, of class MainWindow.
-//     */
-//    @Test
-//    public void testMain() {
-//        System.out.println("main");
-//        String[] args = null;
-//        MainWindow.main(args);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testSetNewGameSmallBoard() {
+
+        frame.setNewGame(testingBoard);
+        JPanelFixture buttons = window.panel("puzzlePanel");
+        for (int i = 1; i < 16; i++) {
+            buttons.button("" + i);
+        }
+    }
+
+    @Test
+    public void testSetNewGameBigBoard() {
+        testingBoard = BoardUtils.buildArrangedBoard(9, 9);
+        frame.setNewGame(testingBoard);
+        JPanelFixture buttons = window.panel("puzzlePanel");
+        for (int i = 1; i < 81; i++) {
+            buttons.button("" + i);
+        }
+    }
+
+    @Test
+    public void testEndGameShowWindow() {
+        frame.setNewGame(testingBoard);
+        JPanelFixture buttons = window.panel("puzzlePanel");
+        buttons.button("15").click();
+        finder.findByType(WinGameWindow.class);
+    }
 }
