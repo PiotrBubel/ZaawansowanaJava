@@ -24,11 +24,6 @@ public class MainWindow extends JFrame implements Game {
     private long start;
     private boolean isGameActive = false;
 
-    SolverWindow solverWindow;
-    NewGameWindow newGameWindow;
-    StatisticsWindow statisticsWindow;
-    AnimatorWindow animatorWindow;
-
     List<GameListener> listeners = new ArrayList<>();
 
     public MainWindow() {
@@ -42,9 +37,9 @@ public class MainWindow extends JFrame implements Game {
 
     @Override
     public void setNewGame(Board board) {
+        puzzleBoard.setBoard(board);
         listeners.clear();
         listeners.add(puzzleBoard);
-        puzzleBoard.setBoard(board);
         puzzleBoard.setGame(this);
         puzzleBoard.createBoardOnWindow();
         isGameActive = true;
@@ -156,23 +151,23 @@ public class MainWindow extends JFrame implements Game {
     }// </editor-fold>//GEN-END:initComponents
 
     private void animateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animateButtonActionPerformed
-        animatorWindow = new AnimatorWindow(puzzleBoard.getBoard());
+        AnimatorWindow animatorWindow = new AnimatorWindow(puzzleBoard.getBoard());
         animatorWindow.show();
     }//GEN-LAST:event_animateButtonActionPerformed
 
     private void solveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveButtonActionPerformed
         isGameActive = false;
-        solverWindow = new SolverWindow(puzzleBoard.getBoard());
+        SolverWindow solverWindow = new SolverWindow(puzzleBoard.getBoard());
         solverWindow.show();
     }//GEN-LAST:event_solveButtonActionPerformed
 
     private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
-        newGameWindow = new NewGameWindow(this);
+        NewGameWindow newGameWindow = new NewGameWindow(this);
         newGameWindow.show();
     }//GEN-LAST:event_newGameButtonActionPerformed
 
     private void statisticsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticsButtonActionPerformed
-        statisticsWindow = new StatisticsWindow();
+        StatisticsWindow statisticsWindow = new StatisticsWindow();
         statisticsWindow.setVisible(true);
     }//GEN-LAST:event_statisticsButtonActionPerformed
 
