@@ -76,6 +76,7 @@
     <Component class="javax.swing.JButton" name="startButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Start !"/>
+        <Property name="name" type="java.lang.String" value="start" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startButtonActionPerformed"/>
@@ -84,17 +85,19 @@
     <Component class="javax.swing.JSpinner" name="rowsSpinner">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="4" maximum="9" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+          <SpinnerModel initial="4" maximum="9" minimum="3" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="name" type="java.lang.String" value="rows" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="columnsSpinner">
       <Properties>
         <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="4" maximum="9" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+          <SpinnerModel initial="4" maximum="9" minimum="3" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="name" type="java.lang.String" value="columns" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="movesSpinner">
@@ -103,6 +106,7 @@
           <SpinnerModel initial="20" minimum="5" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="name" type="java.lang.String" value="moves" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="rowsLabel">
