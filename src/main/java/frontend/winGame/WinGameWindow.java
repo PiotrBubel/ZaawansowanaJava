@@ -43,7 +43,6 @@ public class WinGameWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Game summary");
         setLocation(new java.awt.Point(30, 30));
-        setPreferredSize(new java.awt.Dimension(220, 250));
         setResizable(false);
 
         timeLabel.setText("Time:");
@@ -58,12 +57,15 @@ public class WinGameWindow extends javax.swing.JFrame {
         });
 
         amount.setText("amount");
+        amount.setName("amount"); // NOI18N
 
         time.setText("time");
+        time.setName("time"); // NOI18N
 
         boardSizeLabel.setText("Board size: ");
 
         size.setText("size");
+        size.setName("size"); // NOI18N
 
         enterNameLabel.setText("Enter your name:");
 
