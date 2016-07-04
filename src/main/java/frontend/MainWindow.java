@@ -24,11 +24,16 @@ public class MainWindow extends JFrame implements Game {
     private long start;
     private boolean isGameActive = false;
 
+    SolverWindow solverWindow;
+    NewGameWindow newGameWindow;
+    StatisticsWindow statisticsWindow;
+    AnimatorWindow animatorWindow;
+
     List<GameListener> listeners = new ArrayList<>();
 
     public MainWindow() {
         initComponents();
-        imageLoader = new DefaultImageLoader(puzzlePanel.getWidth(),puzzlePanel.getHeight());
+        imageLoader = new DefaultImageLoader(puzzlePanel.getWidth(), puzzlePanel.getHeight());
         puzzleBoard = new DefaultBoardController(puzzlePanel);
         puzzleBoard.createBoardOnWindow();
         addMouseListener(new ContextMenuListener(imageLoader, puzzleBoard));
@@ -69,6 +74,7 @@ public class MainWindow extends JFrame implements Game {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         newGameButton.setText("New Game");
+        newGameButton.setName("NewGame"); // NOI18N
         newGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newGameButtonActionPerformed(evt);
@@ -76,6 +82,7 @@ public class MainWindow extends JFrame implements Game {
         });
 
         statisticsButton.setText("Statistics");
+        statisticsButton.setName("Statistics"); // NOI18N
         statisticsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 statisticsButtonActionPerformed(evt);
@@ -96,6 +103,8 @@ public class MainWindow extends JFrame implements Game {
         );
 
         animateButton.setText("Animate !");
+        animateButton.setActionCommand("Animate");
+        animateButton.setName("Animate"); // NOI18N
         animateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 animateButtonActionPerformed(evt);
@@ -103,6 +112,7 @@ public class MainWindow extends JFrame implements Game {
         });
 
         solveButton.setText("Solve");
+        solveButton.setName("Solver"); // NOI18N
         solveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 solveButtonActionPerformed(evt);
@@ -145,23 +155,23 @@ public class MainWindow extends JFrame implements Game {
     }// </editor-fold>//GEN-END:initComponents
 
     private void animateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animateButtonActionPerformed
-        AnimatorWindow animatorWindow = new AnimatorWindow(puzzleBoard.getBoard());
+        animatorWindow = new AnimatorWindow(puzzleBoard.getBoard());
         animatorWindow.show();
     }//GEN-LAST:event_animateButtonActionPerformed
 
     private void solveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveButtonActionPerformed
         isGameActive = false;
-        SolverWindow solverWindow = new SolverWindow(puzzleBoard.getBoard());
+        solverWindow = new SolverWindow(puzzleBoard.getBoard());
         solverWindow.show();
     }//GEN-LAST:event_solveButtonActionPerformed
 
     private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
-        NewGameWindow newGameWindow = new NewGameWindow(this);
+        newGameWindow = new NewGameWindow(this);
         newGameWindow.show();
     }//GEN-LAST:event_newGameButtonActionPerformed
 
     private void statisticsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticsButtonActionPerformed
-        StatisticsWindow statisticsWindow = new StatisticsWindow();
+        statisticsWindow = new StatisticsWindow();
         statisticsWindow.setVisible(true);
     }//GEN-LAST:event_statisticsButtonActionPerformed
 
