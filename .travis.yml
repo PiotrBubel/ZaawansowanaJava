@@ -1,8 +1,8 @@
 language: java
 jdk: oraclejdk8
- before_script:
+before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  - sleep 
+  - sleep 3
 notifications:
   slack: zaawansowanajava:t6PD848AEfn5vuhbXHQxNykk
