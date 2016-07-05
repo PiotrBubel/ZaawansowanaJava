@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import npuzzle.Board;
 import npuzzle.utils.BoardUtils;
 
-public class Animator {
+class Animator {
 
     private String pathToWin;
     private Board startingBoard;
@@ -16,7 +16,7 @@ public class Animator {
 
     private BoardController puzzleBoard;
 
-    public Animator(JPanel puzzlePanel, Board board, String pathToWin) {
+    Animator(JPanel puzzlePanel, Board board, String pathToWin) {
         this.startingBoard = BoardUtils.getStartingBoard(board);
         puzzleBoard = new AnimatorBoardController(puzzlePanel, new Board(startingBoard), pathToWin);
         puzzleBoard.setImageLoader(null);
@@ -24,14 +24,14 @@ public class Animator {
         this.puzzleBoard.createBoardOnWindow();
     }
 
-    public Animator(BoardController puzzleBoard, Board board, String pathToWin) {
+    Animator(BoardController puzzleBoard, Board board, String pathToWin) {
         this.startingBoard = BoardUtils.getStartingBoard(board);
         this.puzzleBoard = puzzleBoard;
         this.pathToWin = pathToWin;
         this.puzzleBoard.createBoardOnWindow();
     }
 
-    public boolean previousMove() {
+    boolean previousMove() {
         if (move > 0 && !pathToWin.isEmpty()) {
             move--;
             puzzleBoard.setBoard(startingBoard);
@@ -44,11 +44,11 @@ public class Animator {
         return false;
     }
 
-    public ContextMenuListener getContextMenu(int widthOfPanel, int hegithOfPanel) {
+    ContextMenuListener getContextMenu(int widthOfPanel, int hegithOfPanel) {
         return new ContextMenuListener(new DefaultImageLoader(widthOfPanel, hegithOfPanel), puzzleBoard);
     }
 
-    public boolean nextMove() {
+    boolean nextMove() {
         if (move < pathToWin.length() && !pathToWin.isEmpty()) {
             puzzleBoard.move(move);
             move++;
@@ -58,7 +58,7 @@ public class Animator {
         return false;
     }
 
-    public boolean resetMoves() {
+    boolean resetMoves() {
         move = 0;
         if (!pathToWin.isEmpty()) {
             puzzleBoard.setBoard(startingBoard);

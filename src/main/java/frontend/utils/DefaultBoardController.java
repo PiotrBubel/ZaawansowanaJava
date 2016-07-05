@@ -13,8 +13,8 @@ import npuzzle.utils.BoardUtils;
 
 public class DefaultBoardController implements BoardController {
 
-    public static final int DEFAULT_COLUMNS_AMOUNT = 4;
-    public static final int DEFAULT_ROW_AMOUNT = 4;
+    private static final int DEFAULT_COLUMNS_AMOUNT = 4;
+    private static final int DEFAULT_ROW_AMOUNT = 4;
     Board board;
     ImageLoader imageLoader;
     Board arrangedBoard;
@@ -29,7 +29,7 @@ public class DefaultBoardController implements BoardController {
         this.arrangedBoard = BoardUtils.buildArrangedBoard(DEFAULT_ROW_AMOUNT, DEFAULT_COLUMNS_AMOUNT);
     }
 
-    public DefaultBoardController(JPanel drawingPanel, Board board) {
+    DefaultBoardController(JPanel drawingPanel, Board board) {
         this.board = board;
         this.drawingPanel = drawingPanel;
         this.arrangedBoard = BoardUtils.buildArrangedBoard(board.getState().length, board.getState()[0].length);
@@ -106,7 +106,7 @@ public class DefaultBoardController implements BoardController {
 
         int numberOfTile;
 
-        public TileActionListener(int numberOfTile) {
+        TileActionListener(int numberOfTile) {
             this.numberOfTile = numberOfTile;
         }
 

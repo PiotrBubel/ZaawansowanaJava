@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 
 public class ContextMenuListener extends MouseAdapter {
 
-    ContextMenu contextMenu;
+    private ContextMenu contextMenu;
 
     public ContextMenuListener(ImageLoader imageLoader, BoardController puzzleBoard) {
         contextMenu = new ContextMenu(imageLoader, puzzleBoard);

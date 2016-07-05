@@ -8,7 +8,7 @@ import npuzzle.Board;
 
 public class SolverWindow extends javax.swing.JFrame {
 
-    SolverController solver;
+    private SolverController solver;
     Heuristics heuristic;
 
     public SolverWindow(Board boardToSolve) {

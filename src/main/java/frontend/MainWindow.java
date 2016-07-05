@@ -24,9 +24,9 @@ public class MainWindow extends JFrame implements Game {
     private long start;
     private boolean isGameActive = false;
 
-    List<GameListener> listeners = new ArrayList<>();
+    private List<GameListener> listeners = new ArrayList<>();
 
-    public MainWindow() {
+    MainWindow() {
         initComponents();
         imageLoader = new DefaultImageLoader(puzzlePanel.getWidth(), puzzlePanel.getHeight());
         puzzleBoard = new DefaultBoardController(puzzlePanel);

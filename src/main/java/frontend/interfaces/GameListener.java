@@ -2,7 +2,7 @@ package frontend.interfaces;
 
 public interface GameListener {
 
-    public void boardChanged();
-    
+    void boardChanged();
+
     void setGame(Game gameController);
 }
