@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package frontend;
 
 import frontend.animator.AnimatorWindow;
@@ -13,10 +8,15 @@ import frontend.winGame.WinGameWindow;
 import npuzzle.Board;
 import npuzzle.utils.BoardUtils;
 import org.assertj.swing.core.BasicComponentFinder;
+import org.assertj.swing.core.BasicRobot;
 import org.assertj.swing.core.ComponentFinder;
+import org.assertj.swing.core.Robot;
+import org.assertj.swing.finder.JOptionPaneFinder;
 import org.assertj.swing.fixture.FrameFixture;
+import org.assertj.swing.fixture.JOptionPaneFixture;
 import org.assertj.swing.fixture.JPanelFixture;
 import org.junit.After;
+import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
