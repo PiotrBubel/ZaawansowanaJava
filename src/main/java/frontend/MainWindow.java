@@ -152,18 +152,18 @@ public class MainWindow extends JFrame implements Game {
 
     private void animateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animateButtonActionPerformed
         AnimatorWindow animatorWindow = new AnimatorWindow(puzzleBoard.getBoard());
-        animatorWindow.show();
+        animatorWindow.setVisible(true);
     }//GEN-LAST:event_animateButtonActionPerformed
 
     private void solveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveButtonActionPerformed
         isGameActive = false;
         SolverWindow solverWindow = new SolverWindow(puzzleBoard.getBoard());
-        solverWindow.show();
+        solverWindow.setVisible(true);
     }//GEN-LAST:event_solveButtonActionPerformed
 
     private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
         NewGameWindow newGameWindow = new NewGameWindow(this);
-        newGameWindow.show();
+        newGameWindow.setVisible(true);
     }//GEN-LAST:event_newGameButtonActionPerformed
 
     private void statisticsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticsButtonActionPerformed

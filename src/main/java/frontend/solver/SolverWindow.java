@@ -149,7 +149,7 @@ public class SolverWindow extends javax.swing.JFrame {
     private void showButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showButtonActionPerformed
         if (solver.isSolved()) {
             AnimatorWindow animatorWindow = new AnimatorWindow(solver.getBoard());
-            animatorWindow.show();
+            animatorWindow.setVisible(true);
             this.dispose();
             return;
         }
