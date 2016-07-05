@@ -24,6 +24,13 @@ public class Animator {
         this.puzzleBoard.createBoardOnWindow();
     }
 
+    public Animator(BoardController puzzleBoard, Board board, String pathToWin) {
+        this.startingBoard = BoardUtils.getStartingBoard(board);
+        this.puzzleBoard = puzzleBoard;
+        this.pathToWin = pathToWin;
+        this.puzzleBoard.createBoardOnWindow();
+    }
+
     public boolean previousMove() {
         if (move > 0 && !pathToWin.isEmpty()) {
             move--;
@@ -51,11 +58,13 @@ public class Animator {
         return false;
     }
 
-    public void resetMoves() {
+    public boolean resetMoves() {
         move = 0;
         if (!pathToWin.isEmpty()) {
             puzzleBoard.setBoard(startingBoard);
             puzzleBoard.createBoardOnWindow();
+            return true;
         }
+        return false;
     }
 }
