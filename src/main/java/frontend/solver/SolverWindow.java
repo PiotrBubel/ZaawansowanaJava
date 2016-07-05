@@ -10,14 +10,16 @@ public class SolverWindow extends javax.swing.JFrame {
 
     SolverController solver;
     Heuristics heuristic;
-    Algorithm algorithm;
 
     public SolverWindow(Board boardToSolve) {
-        solver = new SolverController(boardToSolve);
+        this(boardToSolve, new SolverController(boardToSolve));
+    }
+
+    public SolverWindow(Board boardToSolve, SolverController controller) {
+        solver = controller;
         initComponents();
         heuristicButtonGroup.setSelected(manhattanRadioButton.getModel(), true);
         heuristic = Heuristics.MANHATTAN;
-        algorithm = Algorithm.A_STAR;
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -38,6 +40,7 @@ public class SolverWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         solveButton.setText("Solve");
+        solveButton.setName("solve"); // NOI18N
         solveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 solveButtonActionPerformed(evt);
@@ -45,6 +48,7 @@ public class SolverWindow extends javax.swing.JFrame {
         });
 
         showButton.setText("Show");
+        showButton.setName("show"); // NOI18N
         showButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showButtonActionPerformed(evt);
@@ -57,13 +61,16 @@ public class SolverWindow extends javax.swing.JFrame {
             public Object getElementAt(int i) { return strings[i]; }
         });
         algorithmList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        algorithmList.setName("algorithms"); // NOI18N
         algorithmList.setSelectedIndex(0);
         algorithmScrollPane.setViewportView(algorithmList);
 
         depthSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(20), Integer.valueOf(1), null, Integer.valueOf(1)));
+        depthSpinner.setName("depth"); // NOI18N
 
         heuristicButtonGroup.add(manhattanRadioButton);
         manhattanRadioButton.setText("Manhattan");
+        manhattanRadioButton.setName("manhattan"); // NOI18N
         manhattanRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manhattanRadioButtonActionPerformed(evt);
@@ -72,6 +79,7 @@ public class SolverWindow extends javax.swing.JFrame {
 
         heuristicButtonGroup.add(misplacedRadioButton);
         misplacedRadioButton.setText("Missplaced");
+        misplacedRadioButton.setName("missplaced"); // NOI18N
         misplacedRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 misplacedRadioButtonActionPerformed(evt);
@@ -150,7 +158,7 @@ public class SolverWindow extends javax.swing.JFrame {
 
     private void solveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveButtonActionPerformed
         try {
-            solver.setSolver(getAlgorithm(algorithmList.getSelectedIndex()), heuristic, (int) depthSpinner.getValue());
+            solver.setSolver(getAlgorithm(), heuristic, (int) depthSpinner.getValue());
             solver.solve();
             if (solver.getBoard() != null) {
                 JOptionPane.showMessageDialog(null, "Solved succesfully");
@@ -162,16 +170,15 @@ public class SolverWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_solveButtonActionPerformed
 
     private void manhattanRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manhattanRadioButtonActionPerformed
-        // TODO add your handling code here:
         heuristic = Heuristics.MANHATTAN;
     }//GEN-LAST:event_manhattanRadioButtonActionPerformed
 
     private void misplacedRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_misplacedRadioButtonActionPerformed
-        // TODO add your handling code here:
         heuristic = Heuristics.MISPLACED;
     }//GEN-LAST:event_misplacedRadioButtonActionPerformed
 
-    private Algorithm getAlgorithm(int value) {
+    public Algorithm getAlgorithm() {
+        int value = algorithmList.getSelectedIndex();
         switch (value) {
             case 0:
                 return Algorithm.A_STAR;

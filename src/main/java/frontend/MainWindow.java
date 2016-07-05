@@ -28,7 +28,7 @@ public class MainWindow extends JFrame implements Game {
 
     public MainWindow() {
         initComponents();
-        imageLoader = new DefaultImageLoader(puzzlePanel.getWidth(),puzzlePanel.getHeight());
+        imageLoader = new DefaultImageLoader(puzzlePanel.getWidth(), puzzlePanel.getHeight());
         puzzleBoard = new DefaultBoardController(puzzlePanel);
         puzzleBoard.createBoardOnWindow();
         addMouseListener(new ContextMenuListener(imageLoader, puzzleBoard));
@@ -37,9 +37,9 @@ public class MainWindow extends JFrame implements Game {
 
     @Override
     public void setNewGame(Board board) {
+        puzzleBoard.setBoard(board);
         listeners.clear();
         listeners.add(puzzleBoard);
-        puzzleBoard.setBoard(board);
         puzzleBoard.setGame(this);
         puzzleBoard.createBoardOnWindow();
         isGameActive = true;
@@ -69,6 +69,7 @@ public class MainWindow extends JFrame implements Game {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         newGameButton.setText("New Game");
+        newGameButton.setName("NewGame"); // NOI18N
         newGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newGameButtonActionPerformed(evt);
@@ -76,12 +77,14 @@ public class MainWindow extends JFrame implements Game {
         });
 
         statisticsButton.setText("Statistics");
+        statisticsButton.setName("Statistics"); // NOI18N
         statisticsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 statisticsButtonActionPerformed(evt);
             }
         });
 
+        puzzlePanel.setName("puzzlePanel"); // NOI18N
         puzzlePanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
         javax.swing.GroupLayout puzzlePanelLayout = new javax.swing.GroupLayout(puzzlePanel);
@@ -96,6 +99,8 @@ public class MainWindow extends JFrame implements Game {
         );
 
         animateButton.setText("Animate !");
+        animateButton.setActionCommand("Animate");
+        animateButton.setName("Animate"); // NOI18N
         animateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 animateButtonActionPerformed(evt);
@@ -103,6 +108,7 @@ public class MainWindow extends JFrame implements Game {
         });
 
         solveButton.setText("Solve");
+        solveButton.setName("Solver"); // NOI18N
         solveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 solveButtonActionPerformed(evt);
