@@ -16,8 +16,8 @@ class Animator {
 
     private BoardController puzzleBoard;
 
-    Animator(JPanel puzzlePanel, Board board, String pathToWin) {
-        this.startingBoard = BoardUtils.getStartingBoard(board, pathToWin);
+    Animator(JPanel puzzlePanel, Board endBoardState, String pathToWin) {
+        this.startingBoard = BoardUtils.getStartingBoard(endBoardState, pathToWin);
         puzzleBoard = new AnimatorBoardController(puzzlePanel, new Board(startingBoard), pathToWin);
         puzzleBoard.setImageLoader(null);
         this.pathToWin = pathToWin;
