@@ -46,16 +46,15 @@ public class StatisticsWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Statistics");
 
-        setTheBoardSizeLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        setTheBoardSizeLabel.setFont(new java.awt.Font("Tahoma", 0, 14));
         setTheBoardSizeLabel.setText("Set the board size");
 
         rowsLabel.setText("rows");
 
         columnsLabel.setText("columns");
-        columnsLabel.setToolTipText("");
 
         loadStatisticsButton.setText("load statistics");
-        loadStatisticsButton.setName(""); // NOI18N
+		
         loadStatisticsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loadStatisticsButtonActionPerformed(evt);
@@ -63,27 +62,15 @@ public class StatisticsWindow extends javax.swing.JFrame {
         });
 
         animateButton.setText("animate");
-        animateButton.setName(""); // NOI18N
-
+		animateButton.setEnabled(false);
+		
         rowsNumberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6" }));
-        rowsNumberComboBox.setName(""); // NOI18N
 
         columnsNumberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6" }));
-        columnsNumberComboBox.setName(""); // NOI18N
 
-        informationLabel.setText("jLabel1");
+		informationLabel.setText(" ");
+        informationLabel.setVisible(true);
 
-        statisticsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jScrollPane1.setViewportView(statisticsTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,9 +123,12 @@ public class StatisticsWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(informationLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+				
+				.addGap(10, 10, 10)
                 .addComponent(animateButton)
+				.addGap(10, 10, 10)
                 .addContainerGap())
         );
 
