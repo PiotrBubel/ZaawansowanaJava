@@ -39,8 +39,8 @@ public class BoardUtils {
     }
 
     /**
-     * Method checks if state is correct for N-Puzzle It checks if there is
-     * every number from 0to N, with no duplicates or negative numbers
+     * Method checks if state is correct for N-Puzzle It checks if there is every number from 0to N,
+     * with no duplicates or negative numbers
      *
      * @param state table with state
      * @return true if state id correct, false otherwise
@@ -125,7 +125,7 @@ public class BoardUtils {
     }
 
     /**
-     * @param board - arranged board to randomize
+     * @param board           - arranged board to randomize
      * @param maxMovesToSolve - moves to perform on given board
      * @return board after random moves, board path is cleared
      */
@@ -171,8 +171,8 @@ public class BoardUtils {
     }
 
     /**
-     * @return board of given size, after random moves, should never return null
-     * if buildArrangedBoard works correctly (and it works correctly)
+     * @return board of given size, after random moves, should never return null if
+     * buildArrangedBoard works correctly (and it works correctly)
      */
     public static Board randomizeBoard(int xState, int yState, int maxMovesToSolve) {
         try {
@@ -250,7 +250,12 @@ public class BoardUtils {
     }
 
     public static Board getStartingBoard(Board board) {
-        String path = reverseMoves(board.getPath());
+        
+        return getStartingBoard(board, board.getPath());
+    }
+
+    public static Board getStartingBoard(Board board, String path) {
+        path = reverseMoves(path);
         Board temp = new Board(board);
         for (int i = 0; i < path.length(); i++) {
             try {

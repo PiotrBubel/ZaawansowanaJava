@@ -13,8 +13,8 @@ import npuzzle.utils.BoardUtils;
 
 public class DefaultBoardController implements BoardController {
 
-    public static final int DEFAULT_COLUMNS_AMOUNT = 4;
-    public static final int DEFAULT_ROW_AMOUNT = 4;
+    private static final int DEFAULT_COLUMNS_AMOUNT = 4;
+    private static final int DEFAULT_ROW_AMOUNT = 4;
     Board board;
     ImageLoader imageLoader;
     Board arrangedBoard;
@@ -29,7 +29,7 @@ public class DefaultBoardController implements BoardController {
         this.arrangedBoard = BoardUtils.buildArrangedBoard(DEFAULT_ROW_AMOUNT, DEFAULT_COLUMNS_AMOUNT);
     }
 
-    public DefaultBoardController(JPanel drawingPanel, Board board) {
+    DefaultBoardController(JPanel drawingPanel, Board board) {
         this.board = board;
         this.drawingPanel = drawingPanel;
         this.arrangedBoard = BoardUtils.buildArrangedBoard(board.getState().length, board.getState()[0].length);
@@ -106,7 +106,7 @@ public class DefaultBoardController implements BoardController {
 
         int numberOfTile;
 
-        public TileActionListener(int numberOfTile) {
+        TileActionListener(int numberOfTile) {
             this.numberOfTile = numberOfTile;
         }
 
@@ -117,10 +117,11 @@ public class DefaultBoardController implements BoardController {
         }
     }
 
-    protected JButton createNewTile(int cordX, int cordY) {
-        JButton tile = new JButton("" + board.getState()[cordY][cordX]);
-        tile.addActionListener(new TileActionListener(board.getState()[cordY][cordX]));
-        tile.setBounds(cordX * tileWidth, cordY * tileHeight, tileWidth, tileHeight);
+    protected JButton createNewTile(int coordX, int coordY) {
+        JButton tile = new JButton("" + board.getState()[coordY][coordX]);
+        tile.setName("" + board.getState()[coordY][coordX]);
+        tile.addActionListener(new TileActionListener(board.getState()[coordY][coordX]));
+        tile.setBounds(coordX * tileWidth, coordY * tileHeight, tileWidth, tileHeight);
         tile.setVisible(true);
         return tile;
     }
@@ -129,6 +130,7 @@ public class DefaultBoardController implements BoardController {
 
         int[] tileCoords = arrangedBoard.findNumber(board.getState()[coordY][coordX]);
         JButton tile = imageLoader.getPartOfImage(tileCoords[1] * tileWidth, tileCoords[0] * tileHeight, tileWidth, tileHeight);
+        tile.setName("" + board.getState()[coordY][coordX]);
         tile.addActionListener(new TileActionListener(board.getState()[coordY][coordX]));
         tile.setBounds(coordX * tileWidth, coordY * tileHeight, tileWidth, tileHeight);
         tile.setVisible(true);

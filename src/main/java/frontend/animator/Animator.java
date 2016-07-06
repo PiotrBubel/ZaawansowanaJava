@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import npuzzle.Board;
 import npuzzle.utils.BoardUtils;
 
-public class Animator {
+class Animator {
 
     private String pathToWin;
     private Board startingBoard;
@@ -16,15 +16,22 @@ public class Animator {
 
     private BoardController puzzleBoard;
 
-    public Animator(JPanel puzzlePanel, Board board, String pathToWin) {
-        this.startingBoard = BoardUtils.getStartingBoard(board);
+    Animator(JPanel puzzlePanel, Board endBoardState, String pathToWin) {
+        this.startingBoard = BoardUtils.getStartingBoard(endBoardState, pathToWin);
         puzzleBoard = new AnimatorBoardController(puzzlePanel, new Board(startingBoard), pathToWin);
         puzzleBoard.setImageLoader(null);
         this.pathToWin = pathToWin;
         this.puzzleBoard.createBoardOnWindow();
     }
 
-    public boolean previousMove() {
+    Animator(BoardController puzzleBoard, Board board, String pathToWin) {
+        this.startingBoard = BoardUtils.getStartingBoard(board, pathToWin);
+        this.puzzleBoard = puzzleBoard;
+        this.pathToWin = pathToWin;
+        this.puzzleBoard.createBoardOnWindow();
+    }
+
+    boolean previousMove() {
         if (move > 0 && !pathToWin.isEmpty()) {
             move--;
             puzzleBoard.setBoard(startingBoard);
@@ -37,11 +44,11 @@ public class Animator {
         return false;
     }
 
-    public ContextMenuListener getContextMenu() {
-        return new ContextMenuListener(new DefaultImageLoader(), puzzleBoard);
+    ContextMenuListener getContextMenu(int widthOfPanel, int hegithOfPanel) {
+        return new ContextMenuListener(new DefaultImageLoader(widthOfPanel, hegithOfPanel), puzzleBoard);
     }
 
-    public boolean nextMove() {
+    boolean nextMove() {
         if (move < pathToWin.length() && !pathToWin.isEmpty()) {
             puzzleBoard.move(move);
             move++;
@@ -51,11 +58,13 @@ public class Animator {
         return false;
     }
 
-    public void resetMoves() {
+    boolean resetMoves() {
         move = 0;
         if (!pathToWin.isEmpty()) {
             puzzleBoard.setBoard(startingBoard);
             puzzleBoard.createBoardOnWindow();
+            return true;
         }
+        return false;
     }
 }

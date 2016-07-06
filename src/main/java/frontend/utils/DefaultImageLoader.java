@@ -14,16 +14,20 @@ import javax.swing.JButton;
 
 public class DefaultImageLoader implements ImageLoader {
 
-    private static final int DEFAULT_HEIGHT = 400;
-    private static final int DEFAULT_WIDTH = 400;
-
+    private int width;
+    private int height;
     private BufferedImage loadedImage;
+
+    public DefaultImageLoader(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
 
     @Override
     public void loadImage(String path) throws IOException, WrongImageFormatException {
         loadedImage = ImageIO.read(new File(path));
         if (loadedImage != null) {
-            loadedImage = scaleImage(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+            loadedImage = scaleImage(width, height);
         } else {
             throw new WrongImageFormatException("Can't load image - wrong format");
         }
@@ -41,7 +45,7 @@ public class DefaultImageLoader implements ImageLoader {
         return tile;
     }
 
-    public BufferedImage scaleImage(int width, int height) {
+    private BufferedImage scaleImage(int width, int height) {
         Image temp = loadedImage.getScaledInstance(height, width, Image.SCALE_SMOOTH);
         BufferedImage scaledImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 

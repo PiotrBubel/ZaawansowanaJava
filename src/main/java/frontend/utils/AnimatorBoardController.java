@@ -8,19 +8,17 @@ import npuzzle.Board;
 public class AnimatorBoardController extends DefaultBoardController {
 
     private String pathToWin;
-    // private Board startingBoard;
 
     public AnimatorBoardController(JPanel drawingPanel, Board board, String pathToWin) {
         super(drawingPanel, board);
         this.pathToWin = pathToWin;
-        //   startingBoard = new Board(board);
     }
 
     @Override
     public void move(int numberOfMove) {
         try {
             board = board.move(pathToWin.charAt(numberOfMove));
-            
+
         } catch (BoardWithoutZeroException ex) {
             System.out.println(ex.getMessage());
         }
@@ -43,9 +41,4 @@ public class AnimatorBoardController extends DefaultBoardController {
         tile.setVisible(true);
         return tile;
     }
-
-    protected static int calculateTileSize(int tileAmount, int panelSize) {
-        return panelSize / tileAmount;
-    }
-
 }

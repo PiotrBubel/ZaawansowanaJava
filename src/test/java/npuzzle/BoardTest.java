@@ -17,7 +17,6 @@ public class BoardTest {
     private Board instance;
     private int[][] state;
 
-
     /**
      * Test of isCorrect method, of class Board.
      */
@@ -716,4 +715,122 @@ public class BoardTest {
 
         assertArrayEquals(expResult.getState(), result.getState());
     }
+
+    @Test
+    public void testMoveByTileNearZero() throws BoardWithoutZeroException {
+        int[][] state = new int[][]{
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9},
+                {10, 11, 0}
+        };
+        instance = new Board(state);
+        int[][] state2 = new int[][]{
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 0},
+                {10, 11, 9}
+        };
+
+        Board expResult = new Board(state2);
+        Board result = instance.move(9);
+
+        assertArrayEquals(expResult.getState(), result.getState());
+    }
+
+    @Test
+    public void testMoveByTileNotCloseToZero() throws BoardWithoutZeroException {
+        int[][] state = new int[][]{
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9},
+                {10, 11, 0}
+        };
+        instance = new Board(state);
+        Board expResult = new Board(state);
+        Board result = instance.move(7);
+
+        assertArrayEquals(expResult.getState(), result.getState());
+    }
+
+    @Test
+    public void testChoseMoveDown() throws BoardWithoutZeroException {
+        int[][] state = new int[][]{
+                {1, 2, 3},
+                {4, 0, 6},
+                {7, 8, 5}
+        };
+        instance = new Board(state);
+        int[][] state2 = new int[][]{
+                {1, 2, 3},
+                {4, 8, 6},
+                {7, 0, 5}
+        };
+
+        Board expResult = new Board(state2);
+        Board result = instance.chooseMove(1, 0);
+
+        assertArrayEquals(expResult.getState(), result.getState());
+    }
+
+    @Test
+    public void testChoseMoveUp() throws BoardWithoutZeroException {
+        int[][] state = new int[][]{
+                {1, 2, 3},
+                {4, 0, 6},
+                {7, 8, 5}
+        };
+        instance = new Board(state);
+        int[][] state2 = new int[][]{
+                {1, 0, 3},
+                {4, 2, 6},
+                {7, 8, 5}
+        };
+
+        Board expResult = new Board(state2);
+        Board result = instance.chooseMove(-1, 0);
+
+        assertArrayEquals(expResult.getState(), result.getState());
+    }
+
+    @Test
+    public void testChoseMoveRight() throws BoardWithoutZeroException {
+        int[][] state = new int[][]{
+                {1, 2, 3},
+                {4, 0, 6},
+                {7, 8, 5}
+        };
+        instance = new Board(state);
+        int[][] state2 = new int[][]{
+                {1, 2, 3},
+                {4, 6, 0},
+                {7, 8, 5}
+        };
+
+        Board expResult = new Board(state2);
+        Board result = instance.chooseMove(0, 1);
+
+        assertArrayEquals(expResult.getState(), result.getState());
+    }
+
+    @Test
+    public void testChoseMoveLeft() throws BoardWithoutZeroException {
+        int[][] state = new int[][]{
+                {1, 2, 3},
+                {4, 0, 6},
+                {7, 8, 5}
+        };
+        instance = new Board(state);
+        int[][] state2 = new int[][]{
+                {1, 2, 3},
+                {0, 4, 6},
+                {7, 8, 5}
+        };
+
+        Board expResult = new Board(state2);
+        Board result = instance.chooseMove(0, -1);
+
+        assertArrayEquals(expResult.getState(), result.getState());
+    }
+
 }

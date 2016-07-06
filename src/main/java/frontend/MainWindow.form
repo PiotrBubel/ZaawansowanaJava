@@ -61,6 +61,7 @@
     <Component class="javax.swing.JButton" name="newGameButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="New Game"/>
+        <Property name="name" type="java.lang.String" value="NewGame" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newGameButtonActionPerformed"/>
@@ -69,13 +70,18 @@
     <Component class="javax.swing.JButton" name="statisticsButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Statistics"/>
+        <Property name="name" type="java.lang.String" value="Statistics" noResource="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="statisticsButtonActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="MainWindow_statisticsButton"/>
       </AuxValues>
     </Component>
     <Container class="javax.swing.JPanel" name="puzzlePanel">
       <Properties>
+        <Property name="name" type="java.lang.String" value="puzzlePanel" noResource="true"/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[400, 400]"/>
         </Property>
@@ -97,6 +103,8 @@
     <Component class="javax.swing.JButton" name="animateButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Animate !"/>
+        <Property name="actionCommand" type="java.lang.String" value="Animate"/>
+        <Property name="name" type="java.lang.String" value="Animate" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="animateButtonActionPerformed"/>
@@ -105,6 +113,7 @@
     <Component class="javax.swing.JButton" name="solveButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Solve"/>
+        <Property name="name" type="java.lang.String" value="Solver" noResource="true"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="solveButtonActionPerformed"/>

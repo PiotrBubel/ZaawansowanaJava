@@ -7,7 +7,7 @@ public interface BoardController extends GameListener {
 
     JPanel createBoardOnWindow();
 
-    public void setImageLoader(ImageLoader imageLoader);
+    void setImageLoader(ImageLoader imageLoader);
 
     void createTiles(JPanel drawingPanel);
 

@@ -21,7 +21,6 @@ public class BoardUtilsTest {
     private Board instance;
     private int[][] state;
 
-
     /**
      * Test of countMisplaced method, of class BoardUtils.
      */
@@ -220,4 +219,43 @@ public class BoardUtilsTest {
         instance = new Board(state);
         BoardUtils.checkBoard(instance);
     }
+
+    @Test
+    public void testGetStartingBoard() throws BoardWithoutZeroException {
+        state = new int[][]{
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15, 0}
+        };
+        instance = new Board(state);
+        instance.moveLeft();
+        instance.moveLeft();
+        instance.moveLeft();
+        instance.moveUp();
+        Board result = BoardUtils.getStartingBoard(instance);
+        assertTrue(result.equals(new Board(state)));
+    }
+
+    @Test
+    public void testGetStartingBoardWithPath() throws BoardWithoutZeroException {
+        state = new int[][]{
+            {1, 2, 3, 4},
+            {5, 6, 7, 8},
+            {9, 10, 11, 12},
+            {13, 14, 15, 0}
+        };
+
+        int[][] state2 = new int[][]{
+            {1, 2, 3, 4},
+            {5, 6, 7, 8},
+            {10, 0, 11, 12},
+            {9, 13, 14, 15}
+        };
+        instance = new Board(state);
+        String path = "ldppp";
+        Board result = BoardUtils.getStartingBoard(instance, path);
+        assertTrue(result.equals(new Board(state2)));
+    }
+
 }

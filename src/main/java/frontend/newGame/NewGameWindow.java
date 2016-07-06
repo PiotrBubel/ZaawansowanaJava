@@ -6,10 +6,10 @@ import npuzzle.utils.BoardUtils;
 
 public class NewGameWindow extends javax.swing.JFrame {
 
-    private Game gameWindow;
+    private Game newGameWindowController;
 
     public NewGameWindow(Game newGame) {
-        gameWindow = newGame;
+        newGameWindowController = newGame;
         initComponents();
     }
 
@@ -28,20 +28,24 @@ public class NewGameWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         startButton.setText("Start !");
+        startButton.setName("start"); // NOI18N
         startButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 startButtonActionPerformed(evt);
             }
         });
 
-        rowsSpinner.setModel(new javax.swing.SpinnerNumberModel(4, 1, 9, 1));
+        rowsSpinner.setModel(new javax.swing.SpinnerNumberModel(4, 3, 9, 1));
         rowsSpinner.setToolTipText("");
+        rowsSpinner.setName("rows"); // NOI18N
 
-        columnsSpinner.setModel(new javax.swing.SpinnerNumberModel(4, 1, 9, 1));
+        columnsSpinner.setModel(new javax.swing.SpinnerNumberModel(4, 3, 9, 1));
         columnsSpinner.setToolTipText("");
+        columnsSpinner.setName("columns"); // NOI18N
 
         movesSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(20), Integer.valueOf(5), null, Integer.valueOf(1)));
         movesSpinner.setToolTipText("");
+        movesSpinner.setName("moves"); // NOI18N
 
         rowsLabel.setText("Rows");
 
@@ -95,14 +99,13 @@ public class NewGameWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        // TODO add your handling code here:
         int rows = (int) rowsSpinner.getValue();
         int columns = (int) columnsSpinner.getValue();
         int moves = (int) movesSpinner.getValue();
         Board newBoard = BoardUtils.randomizeBoard(rows, columns, moves);
-        gameWindow.setNewGame(newBoard);
+        newGameWindowController.setNewGame(newBoard);
         this.dispose();
-        
+
     }//GEN-LAST:event_startButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

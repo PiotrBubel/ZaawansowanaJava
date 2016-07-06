@@ -8,6 +8,7 @@ import frontend.interfaces.ImageLoader;
 import frontend.interfaces.Game;
 import frontend.newGame.NewGameWindow;
 import frontend.solver.SolverWindow;
+import frontend.statistics.StatisticsWindow;
 import frontend.utils.DefaultBoardController;
 import frontend.utils.DefaultImageLoader;
 import frontend.winGame.WinGameWindow;
@@ -21,12 +22,13 @@ public class MainWindow extends JFrame implements Game {
     private ImageLoader imageLoader;
     private BoardController puzzleBoard;
     private long start;
+    private boolean isGameActive = false;
 
-    List<GameListener> listeners = new ArrayList<>();
+    private List<GameListener> listeners = new ArrayList<>();
 
-    public MainWindow() {
+    MainWindow() {
         initComponents();
-        imageLoader = new DefaultImageLoader();
+        imageLoader = new DefaultImageLoader(puzzlePanel.getWidth(), puzzlePanel.getHeight());
         puzzleBoard = new DefaultBoardController(puzzlePanel);
         puzzleBoard.createBoardOnWindow();
         addMouseListener(new ContextMenuListener(imageLoader, puzzleBoard));
@@ -35,19 +37,23 @@ public class MainWindow extends JFrame implements Game {
 
     @Override
     public void setNewGame(Board board) {
+        puzzleBoard.setBoard(board);
         listeners.clear();
         listeners.add(puzzleBoard);
-        puzzleBoard.setBoard(board);
         puzzleBoard.setGame(this);
         puzzleBoard.createBoardOnWindow();
+        isGameActive = true;
         start = System.nanoTime();
     }
 
     @Override
     public void endGame() {
-        double time = (double) (System.nanoTime() - start) / 1000000000;
-        WinGameWindow winGameWindow = new WinGameWindow(time, puzzleBoard.getBoard().getPath().length());
-        winGameWindow.show();
+        if (isGameActive) {
+            double time = (double) (System.nanoTime() - start) / 10E9;
+            isGameActive = false;
+            WinGameWindow winGameWindow = new WinGameWindow(time, puzzleBoard.getBoard());
+            winGameWindow.show();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -61,9 +67,9 @@ public class MainWindow extends JFrame implements Game {
         solveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(450, 480));
 
         newGameButton.setText("New Game");
+        newGameButton.setName("NewGame"); // NOI18N
         newGameButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 newGameButtonActionPerformed(evt);
@@ -71,7 +77,14 @@ public class MainWindow extends JFrame implements Game {
         });
 
         statisticsButton.setText("Statistics");
+        statisticsButton.setName("Statistics"); // NOI18N
+        statisticsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statisticsButtonActionPerformed(evt);
+            }
+        });
 
+        puzzlePanel.setName("puzzlePanel"); // NOI18N
         puzzlePanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
         javax.swing.GroupLayout puzzlePanelLayout = new javax.swing.GroupLayout(puzzlePanel);
@@ -86,6 +99,8 @@ public class MainWindow extends JFrame implements Game {
         );
 
         animateButton.setText("Animate !");
+        animateButton.setActionCommand("Animate");
+        animateButton.setName("Animate"); // NOI18N
         animateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 animateButtonActionPerformed(evt);
@@ -93,6 +108,7 @@ public class MainWindow extends JFrame implements Game {
         });
 
         solveButton.setText("Solve");
+        solveButton.setName("Solver"); // NOI18N
         solveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 solveButtonActionPerformed(evt);
@@ -136,18 +152,24 @@ public class MainWindow extends JFrame implements Game {
 
     private void animateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animateButtonActionPerformed
         AnimatorWindow animatorWindow = new AnimatorWindow(puzzleBoard.getBoard());
-        animatorWindow.show();
+        animatorWindow.setVisible(true);
     }//GEN-LAST:event_animateButtonActionPerformed
 
     private void solveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveButtonActionPerformed
+        isGameActive = false;
         SolverWindow solverWindow = new SolverWindow(puzzleBoard.getBoard());
-        solverWindow.show();
+        solverWindow.setVisible(true);
     }//GEN-LAST:event_solveButtonActionPerformed
 
     private void newGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameButtonActionPerformed
         NewGameWindow newGameWindow = new NewGameWindow(this);
-        newGameWindow.show();
+        newGameWindow.setVisible(true);
     }//GEN-LAST:event_newGameButtonActionPerformed
+
+    private void statisticsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statisticsButtonActionPerformed
+        StatisticsWindow statisticsWindow = new StatisticsWindow();
+        statisticsWindow.setVisible(true);
+    }//GEN-LAST:event_statisticsButtonActionPerformed
 
     public static void main(String args[]) {
         try {
