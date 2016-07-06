@@ -1,14 +1,14 @@
 package frontend.winGame;
 
-import npuzzle.Board;
-import npuzzle.utils.BoardUtils;
 import org.assertj.swing.core.BasicComponentFinder;
 import org.assertj.swing.core.ComponentFinder;
 import org.assertj.swing.fixture.FrameFixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import npuzzle.Board;
+import npuzzle.utils.BoardUtils;
 
 public class WinGameWindowTest {
 
@@ -40,7 +40,7 @@ public class WinGameWindowTest {
 
     @Test
     public void testSendToDatabase() {
-    //TODO
+        //TODO
     }
 
 }

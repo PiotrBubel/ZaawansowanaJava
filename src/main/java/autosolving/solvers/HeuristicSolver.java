@@ -7,7 +7,7 @@ import autosolving.heuristics.MisplacedComparator;
  * Created by Piotrek on 14.05.2016.
  */
 public abstract class HeuristicSolver extends PuzzleSolver {
-    protected Heuristic heuristicFunction; //nieuzywane w metodach nie-heurystycznych
+    protected Heuristic heuristicFunction;
 
     public HeuristicSolver() {
         super();
@@ -33,4 +33,7 @@ public abstract class HeuristicSolver extends PuzzleSolver {
         return this.heuristicFunction;
     }
 
+    public void setHeuristicFunction(Heuristic heuristic) {
+        this.heuristicFunction = heuristic;
+    }
 }

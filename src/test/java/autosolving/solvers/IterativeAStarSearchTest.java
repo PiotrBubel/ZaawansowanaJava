@@ -117,10 +117,10 @@ public class IterativeAStarSearchTest {
     }
 
     /**
-     * Test of getTimeInMilis method, of class IterativeAStarSearch.
+     * Test of getTimeInMillis method, of class IterativeAStarSearch.
      */
     @Test
-    public void miliTimeShouldBePositiveNonZeroValue() throws BoardWithoutZeroException, UnsolvableBoardException {
+    public void milliTimeShouldBePositiveNonZeroValue() throws BoardWithoutZeroException, UnsolvableBoardException {
 
         state = new int[][]{
                 {1, 2, 3, 4},

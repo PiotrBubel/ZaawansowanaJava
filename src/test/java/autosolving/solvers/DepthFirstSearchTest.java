@@ -116,10 +116,10 @@ public class DepthFirstSearchTest {
     }
 
     /**
-     * Test of getTimeInMilis method, of class DepthFirstSearch.
+     * Test of getTimeInMillis method, of class DepthFirstSearch.
      */
     @Test
-    public void miliTimeShouldBePositiveNonZeroValue() throws BoardWithoutZeroException, UnsolvableBoardException {
+    public void milliTimeShouldBePositiveNonZeroValue() throws BoardWithoutZeroException, UnsolvableBoardException {
 
         state = new int[][]{
                 {1, 2, 3, 4},
