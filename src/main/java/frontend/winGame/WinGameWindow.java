@@ -1,10 +1,11 @@
 package frontend.winGame;
 
+import frontend.GameSummary;
 import javax.swing.JOptionPane;
 import npuzzle.Board;
 
 public class WinGameWindow extends javax.swing.JFrame {
-    
+
     private WinGameController winController;
 
     public WinGameWindow(double time, Board board) {
@@ -14,14 +15,14 @@ public class WinGameWindow extends javax.swing.JFrame {
         winController = new WinGameController(board.getPath(), time, rows, columns);
         showResult();
     }
-    
+
     public final void showResult() {
         this.time.setText(String.valueOf(winController.getTime()) + "s");
         this.amount.setText(String.valueOf(winController.getPath().length()));
         this.size.setText(winController.getRows() + "x" + winController.getColumns());
     }
-    
-    public void sendToDatabase(String name) {
+
+    public void sendToDatabase(GameSummary summary) {
         //send to database, probably needs to send an object not only the name
     }
 
@@ -133,10 +134,12 @@ public class WinGameWindow extends javax.swing.JFrame {
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         if (!nameTextField.getText().isEmpty()) {
-            sendToDatabase(nameTextField.getText());
+            GameSummary summary = new GameSummary(nameTextField.getText(), winController.getPath(), 
+                    winController.getTime(), winController.getRows(), winController.getColumns(), winController.getPath().length());
+            sendToDatabase(summary);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null,"Put the name first");
+            JOptionPane.showMessageDialog(null, "Put the name first");
         }
     }//GEN-LAST:event_submitButtonActionPerformed
 
