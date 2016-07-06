@@ -11,19 +11,17 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 
-public class ContextMenu extends JPopupMenu {
+class ContextMenu extends JPopupMenu {
 
-    private JMenuItem loadImageOption;
-    private JMenuItem deleteImageOption;
     private ImageLoader imageLoader;
     private BoardController puzzleBoard;
 
-    public ContextMenu(ImageLoader imageLoader, BoardController puzzleBoard) {
+    ContextMenu(ImageLoader imageLoader, BoardController puzzleBoard) {
         this.imageLoader = imageLoader;
         this.puzzleBoard = puzzleBoard;
 
-        loadImageOption = new JMenuItem("Load Image");
-        deleteImageOption = new JMenuItem("Delete Image");
+        JMenuItem loadImageOption = new JMenuItem("Load Image");
+        JMenuItem deleteImageOption = new JMenuItem("Delete Image");
         add(loadImageOption);
         add(deleteImageOption);
         loadImageOption.addActionListener(new ActionListener() {

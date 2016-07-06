@@ -45,7 +45,7 @@ public class DefaultImageLoader implements ImageLoader {
         return tile;
     }
 
-    public BufferedImage scaleImage(int width, int height) {
+    private BufferedImage scaleImage(int width, int height) {
         Image temp = loadedImage.getScaledInstance(height, width, Image.SCALE_SMOOTH);
         BufferedImage scaledImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 

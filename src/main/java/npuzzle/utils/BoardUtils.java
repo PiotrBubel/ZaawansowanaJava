@@ -250,7 +250,12 @@ public class BoardUtils {
     }
 
     public static Board getStartingBoard(Board board) {
-        String path = reverseMoves(board.getPath());
+        
+        return getStartingBoard(board, board.getPath());
+    }
+
+    public static Board getStartingBoard(Board board, String path) {
+        path = reverseMoves(path);
         Board temp = new Board(board);
         for (int i = 0; i < path.length(); i++) {
             try {

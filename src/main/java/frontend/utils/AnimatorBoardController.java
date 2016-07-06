@@ -41,9 +41,4 @@ public class AnimatorBoardController extends DefaultBoardController {
         tile.setVisible(true);
         return tile;
     }
-
-    protected static int calculateTileSize(int tileAmount, int panelSize) {
-        return panelSize / tileAmount;
-    }
-
 }
