@@ -118,7 +118,7 @@
     <Component class="javax.swing.JButton" name="loadStatisticsButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="load statistics"/>
-        <Property name="name" type="java.lang.String" value="loadStatsButton" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="playerNameLabel">
@@ -139,7 +139,7 @@
     <Component class="javax.swing.JButton" name="animateButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="animate"/>
-        <Property name="name" type="java.lang.String" value="animatePlayerGame" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="rowsNumberComboBox">
@@ -153,7 +153,7 @@
             <StringItem index="4" value="6"/>
           </StringArray>
         </Property>
-        <Property name="name" type="java.lang.String" value="rowsNumberComboBox" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -170,7 +170,7 @@
             <StringItem index="4" value="6"/>
           </StringArray>
         </Property>
-        <Property name="name" type="java.lang.String" value="columnsNumberComboBox" noResource="true"/>
+        <Property name="name" type="java.lang.String" value="" noResource="true"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

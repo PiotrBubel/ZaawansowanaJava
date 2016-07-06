@@ -50,7 +50,7 @@ public class StatisticsWindow extends javax.swing.JFrame {
         columnsLabel.setToolTipText("");
 
         loadStatisticsButton.setText("load statistics");
-        loadStatisticsButton.setName("loadStatsButton"); // NOI18N
+        loadStatisticsButton.setName(""); // NOI18N
 
         playerNameLabel.setText("player name");
 
@@ -59,13 +59,13 @@ public class StatisticsWindow extends javax.swing.JFrame {
         movesNumberLabel.setText("moves number");
 
         animateButton.setText("animate");
-        animateButton.setName("animatePlayerGame"); // NOI18N
+        animateButton.setName(""); // NOI18N
 
         rowsNumberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6" }));
-        rowsNumberComboBox.setName("rowsNumberComboBox"); // NOI18N
+        rowsNumberComboBox.setName(""); // NOI18N
 
         columnsNumberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6" }));
-        columnsNumberComboBox.setName("columnsNumberComboBox"); // NOI18N
+        columnsNumberComboBox.setName(""); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,41 +127,6 @@ public class StatisticsWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StatisticsWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StatisticsWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StatisticsWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StatisticsWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StatisticsWindow().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton animateButton;
