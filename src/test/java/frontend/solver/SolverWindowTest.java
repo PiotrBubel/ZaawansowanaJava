@@ -1,9 +1,5 @@
 package frontend.solver;
 
-import autosolving.solvers.PuzzleSolver;
-import frontend.animator.AnimatorWindow;
-import npuzzle.Board;
-import npuzzle.utils.BoardUtils;
 import org.assertj.swing.core.BasicComponentFinder;
 import org.assertj.swing.core.BasicRobot;
 import org.assertj.swing.core.ComponentFinder;
@@ -13,7 +9,13 @@ import org.assertj.swing.fixture.JOptionPaneFixture;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import autosolving.solvers.PuzzleSolver;
+import frontend.animator.AnimatorWindow;
+import npuzzle.Board;
+import npuzzle.utils.BoardUtils;
+
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

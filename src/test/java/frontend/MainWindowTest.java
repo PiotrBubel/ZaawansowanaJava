@@ -1,5 +1,13 @@
 package frontend;
 
+import org.assertj.swing.core.BasicComponentFinder;
+import org.assertj.swing.core.ComponentFinder;
+import org.assertj.swing.fixture.FrameFixture;
+import org.assertj.swing.fixture.JPanelFixture;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import frontend.animator.AnimatorWindow;
 import frontend.newGame.NewGameWindow;
 import frontend.solver.SolverWindow;
@@ -7,18 +15,6 @@ import frontend.statistics.StatisticsWindow;
 import frontend.winGame.WinGameWindow;
 import npuzzle.Board;
 import npuzzle.utils.BoardUtils;
-import org.assertj.swing.core.BasicComponentFinder;
-import org.assertj.swing.core.BasicRobot;
-import org.assertj.swing.core.ComponentFinder;
-import org.assertj.swing.core.Robot;
-import org.assertj.swing.finder.JOptionPaneFinder;
-import org.assertj.swing.fixture.FrameFixture;
-import org.assertj.swing.fixture.JOptionPaneFixture;
-import org.assertj.swing.fixture.JPanelFixture;
-import org.junit.After;
-import static org.junit.Assert.fail;
-import org.junit.Before;
-import org.junit.Test;
 
 public class MainWindowTest {
 
@@ -32,10 +28,10 @@ public class MainWindowTest {
     @Before
     public void setUp() {
         state = new int[][]{
-            {1, 2, 3, 4},
-            {5, 6, 7, 8},
-            {9, 10, 11, 12},
-            {13, 14, 0, 15}
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 0, 15}
         };
         testingBoard = new Board(state);
         frame = new MainWindow();
