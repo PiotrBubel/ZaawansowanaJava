@@ -51,7 +51,7 @@ public class AnimatorTest {
             {13, 14, 0, 15}
         };
         board = new Board(state);
-        String path = "D";
+        String path = "d";
         animator = new Animator(controller, board, path);
         animator.nextMove();
 
@@ -88,7 +88,7 @@ public class AnimatorTest {
             {13, 14, 0, 15}
         };
         board = new Board(state);
-        String path = "D";
+        String path = "d";
         animator = new Animator(controller, board, path);
 
         boolean expResult = true;
@@ -124,7 +124,7 @@ public class AnimatorTest {
             {13, 14, 0, 15}
         };
         board = new Board(state);
-        String path = "D";
+        String path = "d";
         animator = new Animator(controller, board, path);
         animator.nextMove();
         boolean expResult = true;
