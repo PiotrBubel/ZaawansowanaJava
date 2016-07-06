@@ -1,11 +1,13 @@
 package frontend.animator;
 
-import frontend.interfaces.BoardController;
-import npuzzle.Board;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import frontend.interfaces.BoardController;
+import npuzzle.Board;
+
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
 public class AnimatorTest {
@@ -27,10 +29,10 @@ public class AnimatorTest {
     public void testPreviousMoveBoardWithoutMoves() {
 
         int[][] state = new int[][]{
-            {1, 2, 3, 4},
-            {5, 6, 7, 8},
-            {9, 10, 11, 12},
-            {13, 14, 15, 0}
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15, 0}
         };
         board = new Board(state);
         String path = "";
@@ -45,10 +47,10 @@ public class AnimatorTest {
     public void testPreviousMoveBoardWithMoves() {
 
         int[][] state = new int[][]{
-            {1, 2, 3, 4},
-            {5, 6, 7, 8},
-            {9, 10, 11, 12},
-            {13, 14, 0, 15}
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 0, 15}
         };
         board = new Board(state);
         String path = "D";
@@ -64,10 +66,10 @@ public class AnimatorTest {
     public void testNextMoveBoardWithoutMoves() {
 
         int[][] state = new int[][]{
-            {1, 2, 3, 4},
-            {5, 6, 7, 8},
-            {9, 10, 11, 12},
-            {13, 14, 15, 0}
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15, 0}
         };
         board = new Board(state);
         String path = "";
@@ -82,10 +84,10 @@ public class AnimatorTest {
     public void testNextMoveBoardWithMoves() {
 
         int[][] state = new int[][]{
-            {1, 2, 3, 4},
-            {5, 6, 7, 8},
-            {9, 10, 11, 12},
-            {13, 14, 0, 15}
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 0, 15}
         };
         board = new Board(state);
         String path = "D";
@@ -100,10 +102,10 @@ public class AnimatorTest {
     public void testResetBoardWithoutMoves() {
 
         int[][] state = new int[][]{
-            {1, 2, 3, 4},
-            {5, 6, 7, 8},
-            {9, 10, 11, 12},
-            {13, 14, 15, 0}
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15, 0}
         };
         board = new Board(state);
         String path = "";
@@ -118,10 +120,10 @@ public class AnimatorTest {
     public void testResetBoardWithMoves() {
 
         int[][] state = new int[][]{
-            {1, 2, 3, 4},
-            {5, 6, 7, 8},
-            {9, 10, 11, 12},
-            {13, 14, 0, 15}
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 0, 15}
         };
         board = new Board(state);
         String path = "D";

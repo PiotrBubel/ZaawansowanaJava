@@ -18,8 +18,8 @@ import npuzzle.utils.BoardUtils;
 public class Board {
 
     /**
-     * Designed to work with custom best-first, not safe to use outside this
-     * algorithm, may cause deadlocks (in only 4 cases, but still)
+     * Designed to work with custom best-first, not safe to use outside this algorithm, may cause
+     * deadlocks (in only 4 cases, but still)
      */
     public static boolean STRONG_LOOP_CONTROL = false;
 
@@ -45,8 +45,8 @@ public class Board {
     }
 
     /**
-     * Creates copy of given board, use this when you want to copy state and
-     * path. Does not copy parentNode
+     * Creates copy of given board, use this when you want to copy state and path. Does not copy
+     * parentNode
      *
      * @param original Board
      */
@@ -84,9 +84,8 @@ public class Board {
     }
 
     /**
-     * @return x, y coordinates of value, x and y are counted from 0, (0,0) is
-     * in upper left corner, x goes down, y goes right. Returns -1,-1 when can't
-     * find given number.
+     * @return x, y coordinates of value, x and y are counted from 0, (0,0) is in upper left corner,
+     * x goes down, y goes right. Returns -1,-1 when can't find given number.
      */
     public int[] findNumber(int value) {
         int[] coordinates = new int[2];
@@ -105,9 +104,8 @@ public class Board {
     }
 
     /**
-     * @return x, y coordinates of Zero, x and y are counted from 0, (0,0) is in
-     * upper left corner, x goes down, y goes right. Returns -1,-1 when can't
-     * find zero.
+     * @return x, y coordinates of Zero, x and y are counted from 0, (0,0) is in upper left corner,
+     * x goes down, y goes right. Returns -1,-1 when can't find zero.
      */
     public int[] findZero() {
         return findNumber(0);
@@ -380,8 +378,7 @@ public class Board {
 
     /**
      * @param moves - String wih moves to make
-     * @return changed Board, or null if wrong direction given or can't move in
-     * given direction
+     * @return changed Board, or null if wrong direction given or can't move in given direction
      */
     public Board allMoves(String moves) throws BoardWithoutZeroException {
         Board afterMoves = this;
@@ -393,8 +390,7 @@ public class Board {
 
     /**
      * @param direction [p|l|g|d]
-     * @return changed Board, or null if wrong direction given or can't move in
-     * given direction
+     * @return changed Board, or null if wrong direction given or can't move in given direction
      */
     public Board move(char direction) throws BoardWithoutZeroException {
         String directionString = new String(new char[]{direction});

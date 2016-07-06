@@ -118,10 +118,10 @@ public class BestFirstSolverTest {
     }
 
     /**
-     * Test of getTimeInMilis method, of class BestFirstSearch.
+     * Test of getTimeInMillis method, of class BestFirstSearch.
      */
     @Test
-    public void miliTimeShouldBePositiveNonZeroValue() throws BoardWithoutZeroException, UnsolvableBoardException {
+    public void milliTimeShouldBePositiveNonZeroValue() throws BoardWithoutZeroException, UnsolvableBoardException {
 
         state = new int[][]{
                 {1, 2, 3, 4},
