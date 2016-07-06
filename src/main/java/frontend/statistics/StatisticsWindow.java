@@ -5,17 +5,22 @@
  */
 package frontend.statistics;
 
+import javax.swing.JTable;
+
 /**
  *
  * @author Lalu
  */
 public class StatisticsWindow extends javax.swing.JFrame {
 
+    private StatisticsWindowController statisticsController;
+
     /**
      * Creates new form StatisticsWindow
      */
     public StatisticsWindow() {
         initComponents();
+        statisticsController = new StatisticsWindowController();
     }
 
     /**
@@ -31,12 +36,12 @@ public class StatisticsWindow extends javax.swing.JFrame {
         rowsLabel = new javax.swing.JLabel();
         columnsLabel = new javax.swing.JLabel();
         loadStatisticsButton = new javax.swing.JButton();
-        playerNameLabel = new javax.swing.JLabel();
-        timeOfGameLabel = new javax.swing.JLabel();
-        movesNumberLabel = new javax.swing.JLabel();
         animateButton = new javax.swing.JButton();
         rowsNumberComboBox = new javax.swing.JComboBox<>();
         columnsNumberComboBox = new javax.swing.JComboBox<>();
+        informationLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        statisticsTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Statistics");
@@ -51,12 +56,11 @@ public class StatisticsWindow extends javax.swing.JFrame {
 
         loadStatisticsButton.setText("load statistics");
         loadStatisticsButton.setName(""); // NOI18N
-
-        playerNameLabel.setText("player name");
-
-        timeOfGameLabel.setText("time of game");
-
-        movesNumberLabel.setText("moves number");
+        loadStatisticsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadStatisticsButtonActionPerformed(evt);
+            }
+        });
 
         animateButton.setText("animate");
         animateButton.setName(""); // NOI18N
@@ -67,37 +71,51 @@ public class StatisticsWindow extends javax.swing.JFrame {
         columnsNumberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6" }));
         columnsNumberComboBox.setName(""); // NOI18N
 
+        informationLabel.setText("jLabel1");
+
+        statisticsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(statisticsTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(playerNameLabel)
-                        .addGap(29, 29, 29)
-                        .addComponent(timeOfGameLabel))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(columnsLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(columnsNumberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(rowsLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(rowsNumberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(setTheBoardSizeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(movesNumberLabel)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 107, Short.MAX_VALUE)
+                        .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(animateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loadStatisticsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(columnsLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(columnsNumberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rowsLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rowsNumberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(setTheBoardSizeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 108, Short.MAX_VALUE)
+                        .addComponent(loadStatisticsButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(animateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(informationLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -115,29 +133,52 @@ public class StatisticsWindow extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(columnsLabel)
                         .addComponent(columnsNumberComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(playerNameLabel)
-                    .addComponent(timeOfGameLabel)
-                    .addComponent(movesNumberLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(informationLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(animateButton)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void loadStatisticsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadStatisticsButtonActionPerformed
+        statisticsController.getSortedStatistics(Integer.parseInt(rowsNumberComboBox.getSelectedItem().toString()),
+                Integer.parseInt(columnsNumberComboBox.getSelectedItem().toString()));
+        if (statisticsController.getStatisticsList().isEmpty()) {
+            informationLabel.setText("Unfortunatelly, there is no data for selected values!");
+            informationLabel.setVisible(true);
+        } else {
+            createAndFillTable();
+            statisticsTable.setVisible(true);
+            informationLabel.setText("You can select a player and after clicking animate button animation window will appear.");
+            informationLabel.setVisible(true);
+            animateButton.setVisible(true);
+        }
+    }//GEN-LAST:event_loadStatisticsButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton animateButton;
     private javax.swing.JLabel columnsLabel;
     private javax.swing.JComboBox<String> columnsNumberComboBox;
+    private javax.swing.JLabel informationLabel;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton loadStatisticsButton;
-    private javax.swing.JLabel movesNumberLabel;
-    private javax.swing.JLabel playerNameLabel;
     private javax.swing.JLabel rowsLabel;
     private javax.swing.JComboBox<String> rowsNumberComboBox;
     private javax.swing.JLabel setTheBoardSizeLabel;
-    private javax.swing.JLabel timeOfGameLabel;
+    private javax.swing.JTable statisticsTable;
     // End of variables declaration//GEN-END:variables
+
+    private void createAndFillTable() {
+        statisticsTable = new JTable(statisticsController.getStatisticsList().size(), 3);
+        for (int i = 0; i < statisticsController.getStatisticsList().size(); i++) {
+            statisticsTable.getModel().setValueAt(statisticsController.getStatisticsList().get(i).getPlayerName(), i, 0);
+            statisticsTable.getModel().setValueAt(statisticsController.getStatisticsList().get(i).getTime(), i, 1);
+            statisticsTable.getModel().setValueAt(statisticsController.getStatisticsList().get(i).getStepsNumber(), i, 2);
+        }
+    }
 }
