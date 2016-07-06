@@ -3,7 +3,10 @@
 *.iml
 *.class
 *.orig
-
+.settings
+.settings/
+.project
+.classpath
 
 # Package Files #
 *.jar
