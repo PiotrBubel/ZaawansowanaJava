@@ -794,7 +794,7 @@ public class BoardTest {
     }
 
     @Test
-    public void testChoseMoveRigth() throws BoardWithoutZeroException {
+    public void testChoseMoveRight() throws BoardWithoutZeroException {
         int[][] state = new int[][]{
                 {1, 2, 3},
                 {4, 0, 6},
