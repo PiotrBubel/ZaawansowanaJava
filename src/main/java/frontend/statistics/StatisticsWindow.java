@@ -5,7 +5,10 @@
  */
 package frontend.statistics;
 
+import frontend.GameSummary;
+import frontend.animator.AnimatorWindow;
 import javax.swing.JTable;
+import npuzzle.Board;
 
 /**
  *
@@ -63,6 +66,11 @@ public class StatisticsWindow extends javax.swing.JFrame {
 
         animateButton.setText("animate");
 		animateButton.setEnabled(false);
+		animateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                animateButtonActionPerformed(evt);
+            }
+        });
 		
         rowsNumberComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6" }));
 
@@ -149,6 +157,23 @@ public class StatisticsWindow extends javax.swing.JFrame {
             animateButton.setVisible(true);
         }
     }//GEN-LAST:event_loadStatisticsButtonActionPerformed
+
+    private void animateButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        int row = statisticsTable.getSelectedRow();
+        GameSummary playerSummary = statisticsController.getStatisticsList().get(row);
+        String winningPath = playerSummary.getSolution();
+        String[] winningArray = winningPath.split(""); //change string to string array
+        
+        int[][] winningState = null;
+        int counter = 0;
+        for (int i = 0; i < playerSummary.getRows(); i++) {
+            for (int j = 0; j < playerSummary.getColumns(); j++) {
+                //winningState[i][j] = winningArray[counter];
+                counter++;
+            }
+        }
+        AnimatorWindow window = new AnimatorWindow(new Board(winningState), winningPath);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton animateButton;
