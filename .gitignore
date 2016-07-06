@@ -1,8 +1,8 @@
 /target
 /.idea
-/ZaawansowanaJava.iml
-/npuzzle.iml
+*.iml
 *.class
+*.orig
 
 # Package Files #
 *.jar
