@@ -25,14 +25,14 @@ public class DatabaseUtils {
 		}
 	}
 
-	static public void closeConnection() {
-		try {
-			conn.close();
-			System.out.println("Connection closed");
-		} catch (SQLException e) {
-			System.err.println(e);
-		}
-	}
+        static public void closeConnection() {
+        	    try {
+        	        conn.close();
+        	        System.out.println("Connection closed");
+        	    } catch (SQLException e) {
+	         	System.err.println(e);
+        	    }
+    	}
 
 	static public List<String> getRows() {
 		String query = "select distinct rows from results";
