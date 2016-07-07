@@ -39,6 +39,6 @@ Funkcjonalności:
 #### Uruchomienie aplikacji:
 
 1. Uruchom konolę w folderze z projektem.
-2. W konsoli wpisz: *mvn clean package* lub *mvn clean package -DskipTests* 
-3. Po zakończeniu kompilacji (oraz ewentualnych testów) w konsoli wpisz: *java -jar target\npuzzle-1.0-SNAPSHOT.jar*
+2. W konsoli wpisz: `mvn clean package` lub `mvn clean package -DskipTests`
+3. Po zakończeniu kompilacji (oraz ewentualnych testów) w konsoli wpisz: `java -jar target\npuzzle-1.0-SNAPSHOT.jar`
 4. Gotowe
