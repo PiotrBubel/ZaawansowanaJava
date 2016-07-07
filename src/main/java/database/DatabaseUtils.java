@@ -17,6 +17,10 @@ public class DatabaseUtils {
 	private static List<String> rows;
 	private static List<String> columns;
 
+        public static Connection getConn() {
+            return conn;
+        }
+
 	static public void connectToDatabase() {
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/15puzzle", "root", "");
