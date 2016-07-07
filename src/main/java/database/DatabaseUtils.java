@@ -1,12 +1,14 @@
 package database;
 
-import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+
+import frontend.GameSummary;
 
 public class DatabaseUtils {
 
@@ -36,7 +38,7 @@ public class DatabaseUtils {
 		}
 	}
 
-	static public List<String> getRows() {
+	static public String[] getRows() {
 		String query = "select distinct rows from results";
 		try {
 			ResultSet rs = stmt.executeQuery(query);
@@ -47,10 +49,10 @@ public class DatabaseUtils {
 		} catch (SQLException e) {
 			System.err.println(e);
 		}
-		return rows;
+		return (String[]) rows.toArray(new String[rows.size()]);
 	}
 
-	static public List<String> getColumns() {
+	static public String[] getColumns() {
 		String query = "select distinct columns from results";
 		try {
 			ResultSet rs = stmt.executeQuery(query);
@@ -61,6 +63,44 @@ public class DatabaseUtils {
 		} catch (SQLException e) {
 			System.err.println(e);
 		}
-		return columns;
+		return (String[]) columns.toArray(new String[columns.size()]);
 	}
+
+	static public List<GameSummary> getStatistics(int row, int columns) {
+		String query = "select * from results where columns = " + columns + " and rows = " + row;
+		try {
+			System.out.println(query);
+			ResultSet rs = stmt.executeQuery(query);
+			List<GameSummary> statistic = new ArrayList<>();
+			while (rs.next()) {
+				statistic.add(new GameSummary(rs.getString("user"), rs.getString("solution"), rs.getDouble("time"),
+						rs.getInt("rows"), rs.getInt("columns"), rs.getInt("amountOfMoves")));
+			}
+			return statistic;
+		} catch (SQLException e) {
+			System.err.println(e);
+			return null;
+		}
+
+	}
+
+	static public void saveInDatabase(GameSummary summary) {
+
+		String user = summary.getPlayerName();
+		String solution = summary.getSolution();
+		int moves = summary.getStepsNumber();
+		double time = summary.getTime();
+		int rows = summary.getRows();
+		int columns = summary.getColumns();
+
+		String query = "insert into results (user, solution, amountOfMoves, time, rows, columns ) values " + " (\""
+				+ user + "\", \"" + solution + "\"," + moves + ", " + time + ", " + rows + ", " + columns + " )";
+		System.out.println(query);
+		try {
+			stmt.executeUpdate(query);
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
+	}
+
 }

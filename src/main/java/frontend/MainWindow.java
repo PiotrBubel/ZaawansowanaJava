@@ -13,9 +13,6 @@ import frontend.utils.DefaultBoardController;
 import frontend.utils.DefaultImageLoader;
 import frontend.winGame.WinGameWindow;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
