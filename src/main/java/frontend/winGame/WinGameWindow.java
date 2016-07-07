@@ -14,6 +14,7 @@ public class WinGameWindow extends javax.swing.JFrame {
         int columns = board.getState()[0].length;
         winController = new WinGameController(board.getPath(), time, rows, columns);
         showResult();
+        this.pack();
     }
 
     public final void showResult() {
@@ -22,8 +23,9 @@ public class WinGameWindow extends javax.swing.JFrame {
         this.size.setText(winController.getRows() + "x" + winController.getColumns());
     }
 
-    public void sendToDatabase(GameSummary summary) {
-        //send to database, probably needs to send an object not only the name
+    public void saveInDatabase(GameSummary summary) {
+        //DatabaseUtils.saveInDatabase(summary)
+        System.out.println("sending to database");
     }
 
     @SuppressWarnings("unchecked")
@@ -44,6 +46,7 @@ public class WinGameWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Game summary");
         setLocation(new java.awt.Point(30, 30));
+        setPreferredSize(new java.awt.Dimension(220, 230));
         setResizable(false);
 
         timeLabel.setText("Time:");
@@ -78,7 +81,7 @@ public class WinGameWindow extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(enterNameLabel)
@@ -101,9 +104,9 @@ public class WinGameWindow extends javax.swing.JFrame {
                                         .addComponent(boardSizeLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(size)))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 13, Short.MAX_VALUE))
                             .addComponent(saveScoreLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,7 +141,7 @@ public class WinGameWindow extends javax.swing.JFrame {
         if (!nameTextField.getText().isEmpty()) {
             GameSummary summary = new GameSummary(nameTextField.getText(), winController.getPath(), 
                     winController.getTime(), winController.getRows(), winController.getColumns(), winController.getPath().length());
-            sendToDatabase(summary);
+            saveInDatabase(summary);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Put the name first");

@@ -18,6 +18,16 @@ public class GameSummary {
     private int columns;
     private int stepsNumber;
 
+    /**
+     * This object is a representation of database table and store 
+     * the most important info about the game
+     * @param playerName
+     * @param solution - path which was user solution of the game
+     * @param time - duration of the game
+     * @param rows
+     * @param columns
+     * @param stepsNumber - number of steps made by user
+     */
     public GameSummary(String playerName, String solution, double time, int rows, int columns, int stepsNumber) {
         this.playerName = playerName;
         this.solution = solution;

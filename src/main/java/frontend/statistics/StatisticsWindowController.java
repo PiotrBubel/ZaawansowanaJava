@@ -23,8 +23,17 @@ public class StatisticsWindowController {
         return statisticsList;
     }
     
-    public void getSortedStatistics(int row, int colums) {
+    /**
+     * get list of GameSummary objects and sort it by time
+     * @param rows - number of rows for which statistic should be found
+     * @param colums - number of colums for which statistic should be found
+     */
+    public void getSortedStatistics(int rows, int colums) {
         //statisticsList = DatabaseUtils.getcostam(row,colums);
+        //for testing purpose
+        statisticsList.add(new GameSummary("lalala", "plgdglpdlg", 4.564, rows, colums, 16));
+        statisticsList.add(new GameSummary("balbla", "lgpdgpld", 6.754, rows, colums, 20));
+        //statisticsList.add(new GameSummary("kon", "pgldpgl", 2.243, 4, 4, 8));
         if(!statisticsList.isEmpty()) {
             Collections.sort(statisticsList, new GameSummaryComparator());
         } else {
