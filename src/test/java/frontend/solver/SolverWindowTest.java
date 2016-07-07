@@ -52,7 +52,7 @@ public class SolverWindowTest {
     @Test
     public void testShowButtonWithoutSolve() {
         window.button("show").click();
-        optionPane = JOptionPaneFinder.findOptionPane().withTimeout(1000).using(BasicRobot.robotWithCurrentAwtHierarchyWithoutScreenLock());
+        optionPane = JOptionPaneFinder.findOptionPane().withTimeout(2500).using(BasicRobot.robotWithCurrentAwtHierarchyWithoutScreenLock());
         optionPane.buttonWithText("OK").click();
     }
 
@@ -61,7 +61,7 @@ public class SolverWindowTest {
         when(controller.getBoard()).thenReturn(BoardUtils.buildArrangedBoard(4, 4));
         when(controller.isSolved()).thenReturn(true);
         window.button("solve").click();
-        optionPane = JOptionPaneFinder.findOptionPane().withTimeout(1000).using(BasicRobot.robotWithCurrentAwtHierarchyWithoutScreenLock());
+        optionPane = JOptionPaneFinder.findOptionPane().withTimeout(2500).using(BasicRobot.robotWithCurrentAwtHierarchyWithoutScreenLock());
         optionPane.buttonWithText("OK").click();
         window.button("show").click();
         finder.findByType(AnimatorWindow.class);
@@ -71,7 +71,7 @@ public class SolverWindowTest {
     public void testSolveButton() {
         when(controller.getBoard()).thenReturn(BoardUtils.buildArrangedBoard(4, 4));
         window.button("solve").click();
-        optionPane = JOptionPaneFinder.findOptionPane().withTimeout(1000).using(BasicRobot.robotWithCurrentAwtHierarchyWithoutScreenLock());
+        optionPane = JOptionPaneFinder.findOptionPane().withTimeout(2500).using(BasicRobot.robotWithCurrentAwtHierarchyWithoutScreenLock());
         optionPane.buttonWithText("OK").click();
     }
 
