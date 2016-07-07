@@ -35,3 +35,10 @@ Funkcjonalności:
 6. Z dostępnych zakładek w przeglądarce wybierz "Import", a następnie Wybierz Plik ze skryptem do tworzenia bazy, który ściągnąłeś w poprzednim punkcie.
 7. Kliknij "Wykonaj".
 8. Gotowe
+
+#### Uruchomienie aplikacji:
+
+1. Uruchom konolę w folderze z projektem.
+2. W konsoli wpisz: *mvn clean package* lub *mvn clean package -DskipTests* 
+3. Po zakończeniu kompilacji (oraz ewentualnych testów) w konsoli wpisz: *java -jar target\npuzzle-1.0-SNAPSHOT.jar*
+4. Gotowe
