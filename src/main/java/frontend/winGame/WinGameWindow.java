@@ -23,6 +23,7 @@ public class WinGameWindow extends javax.swing.JFrame {
     }
 
     public void sendToDatabase(GameSummary summary) {
+        //DatabaseUtils.sendToDatabase(summary)
         //send to database, probably needs to send an object not only the name
     }
 
