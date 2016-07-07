@@ -38,6 +38,7 @@ public class SolverWindow extends javax.swing.JFrame {
         algorithmLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Solver");
 
         solveButton.setText("Solve");
         solveButton.setName("solve"); // NOI18N
@@ -65,7 +66,7 @@ public class SolverWindow extends javax.swing.JFrame {
         algorithmList.setSelectedIndex(0);
         algorithmScrollPane.setViewportView(algorithmList);
 
-        depthSpinner.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(20), Integer.valueOf(1), null, Integer.valueOf(1)));
+        depthSpinner.setModel(new javax.swing.SpinnerNumberModel(20, 1, null, 1));
         depthSpinner.setName("depth"); // NOI18N
 
         heuristicButtonGroup.add(manhattanRadioButton);

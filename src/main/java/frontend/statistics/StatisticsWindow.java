@@ -166,8 +166,7 @@ public class StatisticsWindow extends javax.swing.JFrame {
             return;
         }
         if (statisticsController.getStatisticsList().isEmpty()) {
-            informationLabel.setText("Unfortunatelly, there is no data for selected values!");
-            informationLabel.setVisible(true);
+            JOptionPane.showMessageDialog(this, "Unfortunatelly, there is no data for selected values!\nPlease select another values and try again");
         } else {
             statisticsTable.setModel(new DefaultTableModel(new Object[]{"player name", "game time", "moves number"}, statisticsController.getStatisticsList().size()));
             statisticsTable.setVisible(true);

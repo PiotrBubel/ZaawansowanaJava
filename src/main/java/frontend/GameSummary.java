@@ -41,51 +41,22 @@ public class GameSummary {
         return playerName;
     }
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
     public String getSolution() {
         return solution;
-    }
-
-    public void setSolution(String solution) {
-        this.solution = solution;
     }
 
     public double getTime() {
         return time;
     }
 
-    public void setTime(double time) {
-        this.time = time;
-    }
-
     public int getRows() {
         return rows;
-    }
-
-    public void setRows(int rows) {
-        this.rows = rows;
     }
 
     public int getColumns() {
         return columns;
     }
-
-    public void setColumns(int columns) {
-        this.columns = columns;
-    }
-
     public int getStepsNumber() {
         return stepsNumber;
-    }
-
-    public void setStepsNumber(int stepsNumber) {
-        this.stepsNumber = stepsNumber;
-    }
-    
-    
-    
-    
+    }    
 }
