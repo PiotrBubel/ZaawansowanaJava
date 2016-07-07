@@ -31,10 +31,9 @@ Funkcjonalności:
 2. Podczas instalacji postępuj według instrukcji.
 3. Po uruchomieniu programu kliknij Start przy module Apache oraz MySQL.
 4. Otwórz przeglądarkę i w pasku adresu wpisz "localhost/phpmyadmin".
-5. Ściągnij plik z bazą ze strony https://drive.google.com/open?id=0BxLyCPB6lRLrb0ctWVlVQm9Celk
-6. Z dostępnych zakładek w przeglądarce wybierz "Import", a następnie Wybierz Plik ze skryptem do tworzenia bazy, który ściągnąłeś w poprzednim punkcie.
-7. Kliknij "Wykonaj".
-8. Gotowe
+5. Z dostępnych zakładek w przeglądarce wybierz "Import", a następnie Wybierz Plik ze skryptem do tworzenia bazy, który znajduje się na repozytorium w głównym folderze.
+6. Kliknij "Wykonaj".
+7. Gotowe
 
 #### Uruchomienie aplikacji:
 

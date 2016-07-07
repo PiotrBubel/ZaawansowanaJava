@@ -25,6 +25,9 @@ SET time_zone = "+00:00";
 --
 -- Struktura tabeli dla tabeli `results`
 --
+CREATE DATABASE 15puzzle;
+
+USE 15puzzle;
 
 CREATE TABLE `results` (
   `id` int(11) NOT NULL,
