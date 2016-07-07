@@ -46,26 +46,30 @@ public class MainWindowTest {
     }
 
     @Test
-    public void testStatisticButtonPressed() {
+    public void testStatisticButtonPressed() throws InterruptedException {
         window.button("Statistics").click();
+        Thread.sleep(250);
         finder.findByType(StatisticsWindow.class);
     }
 
     @Test
-    public void testNewGameButtonPressed() {
+    public void testNewGameButtonPressed() throws InterruptedException {
         window.button("NewGame").click();
+        Thread.sleep(250);
         finder.findByType(NewGameWindow.class);
     }
 
     @Test
-    public void testAnimateButtonPressed() {
+    public void testAnimateButtonPressed() throws InterruptedException {
         window.button("Animate").click();
+        Thread.sleep(250);
         finder.findByType(AnimatorWindow.class);
     }
 
     @Test
-    public void testSolverButtonPressed() {
+    public void testSolverButtonPressed() throws InterruptedException {
         window.button("Solver").click();
+        Thread.sleep(250);
         finder.findByType(SolverWindow.class);
     }
 
@@ -90,10 +94,11 @@ public class MainWindowTest {
     }
 
     @Test
-    public void testEndGameShowWindow() {
+    public void testEndGameShowWindow() throws InterruptedException {
         frame.setNewGame(testingBoard);
         JPanelFixture buttons = window.panel("puzzlePanel");
         buttons.button("15").click();
+        Thread.sleep(250);
         finder.findByType(WinGameWindow.class);
     }
 }
