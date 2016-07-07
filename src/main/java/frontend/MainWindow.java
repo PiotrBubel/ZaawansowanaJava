@@ -68,91 +68,116 @@ public class MainWindow extends JFrame implements Game {
 
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
-	// Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		newGameButton = new javax.swing.JButton();
-		statisticsButton = new javax.swing.JButton();
-		puzzlePanel = new javax.swing.JPanel();
-		animateButton = new javax.swing.JButton();
-		solveButton = new javax.swing.JButton();
+        newGameButton = new javax.swing.JButton();
+        statisticsButton = new javax.swing.JButton();
+        puzzlePanel = new javax.swing.JPanel();
+        animateButton = new javax.swing.JButton();
+        solveButton = new javax.swing.JButton();
+        howToPlayButton = new javax.swing.JButton();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-		newGameButton.setText("New Game");
-		newGameButton.setName("NewGame"); // NOI18N
-		newGameButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				newGameButtonActionPerformed(evt);
-			}
-		});
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("N-puzzle");
 
-		statisticsButton.setText("Statistics");
-		statisticsButton.setName("Statistics"); // NOI18N
-		statisticsButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				statisticsButtonActionPerformed(evt);
-			}
-		});
+        newGameButton.setText("New Game");
+        newGameButton.setName("NewGame"); // NOI18N
+        newGameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newGameButtonActionPerformed(evt);
+            }
+        });
 
-		puzzlePanel.setName("puzzlePanel"); // NOI18N
-		puzzlePanel.setPreferredSize(new java.awt.Dimension(400, 400));
+        statisticsButton.setText("Statistics");
+        statisticsButton.setName("Statistics"); // NOI18N
+        statisticsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statisticsButtonActionPerformed(evt);
+            }
+        });
 
-		javax.swing.GroupLayout puzzlePanelLayout = new javax.swing.GroupLayout(puzzlePanel);
-		puzzlePanel.setLayout(puzzlePanelLayout);
-		puzzlePanelLayout.setHorizontalGroup(puzzlePanelLayout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 400, Short.MAX_VALUE));
-		puzzlePanelLayout.setVerticalGroup(puzzlePanelLayout
-				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 400, Short.MAX_VALUE));
+        puzzlePanel.setName("puzzlePanel"); // NOI18N
+        puzzlePanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
-		animateButton.setText("Animate !");
-		animateButton.setActionCommand("Animate");
-		animateButton.setName("Animate"); // NOI18N
-		animateButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				animateButtonActionPerformed(evt);
-			}
-		});
+        javax.swing.GroupLayout puzzlePanelLayout = new javax.swing.GroupLayout(puzzlePanel);
+        puzzlePanel.setLayout(puzzlePanelLayout);
+        puzzlePanelLayout.setHorizontalGroup(
+            puzzlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        puzzlePanelLayout.setVerticalGroup(
+            puzzlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
 
-		solveButton.setText("Solve");
-		solveButton.setName("Solver"); // NOI18N
-		solveButton.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				solveButtonActionPerformed(evt);
-			}
-		});
+        animateButton.setText("Animate !");
+        animateButton.setActionCommand("Animate");
+        animateButton.setName("Animate"); // NOI18N
+        animateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                animateButtonActionPerformed(evt);
+            }
+        });
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-		getContentPane().setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup().addGap(20, 20, 20)
-						.addGroup(layout
-								.createParallelGroup(
-										javax.swing.GroupLayout.Alignment.LEADING)
-								.addGroup(layout.createSequentialGroup().addComponent(newGameButton)
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(statisticsButton)
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(animateButton)
-										.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-										.addComponent(solveButton))
-						.addComponent(puzzlePanel, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-				.addContainerGap(30, Short.MAX_VALUE)));
-		layout.setVerticalGroup(
-				layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-						.addGroup(layout.createSequentialGroup()
-								.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-										.addComponent(newGameButton).addComponent(statisticsButton)
-										.addComponent(animateButton).addComponent(solveButton))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(puzzlePanel, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-				.addContainerGap(22, Short.MAX_VALUE)));
+        solveButton.setText("Solve");
+        solveButton.setName("Solver"); // NOI18N
+        solveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solveButtonActionPerformed(evt);
+            }
+        });
 
-		pack();
-		setLocationRelativeTo(null);
-	}// </editor-fold>//GEN-END:initComponents
+        howToPlayButton.setText("How to play");
+        howToPlayButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                howToPlayButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(newGameButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(statisticsButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(animateButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(solveButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(howToPlayButton))
+                    .addComponent(puzzlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newGameButton)
+                    .addComponent(statisticsButton)
+                    .addComponent(animateButton)
+                    .addComponent(solveButton)
+                    .addComponent(howToPlayButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(puzzlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        pack();
+        setLocationRelativeTo(null);
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void howToPlayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_howToPlayButtonActionPerformed
+        HowToPlayWindow howToWindow = new HowToPlayWindow();
+        howToWindow.setVisible(true);
+    }//GEN-LAST:event_howToPlayButtonActionPerformed
 
 	private void animateButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_animateButtonActionPerformed
 		AnimatorWindow animatorWindow = new AnimatorWindow(puzzleBoard.getBoard());
@@ -197,12 +222,13 @@ public class MainWindow extends JFrame implements Game {
 		});
 	}
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton animateButton;
-	private javax.swing.JButton newGameButton;
-	private javax.swing.JPanel puzzlePanel;
-	private javax.swing.JButton solveButton;
-	private javax.swing.JButton statisticsButton;
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton animateButton;
+    private javax.swing.JButton howToPlayButton;
+    private javax.swing.JButton newGameButton;
+    private javax.swing.JPanel puzzlePanel;
+    private javax.swing.JButton solveButton;
+    private javax.swing.JButton statisticsButton;
+    // End of variables declaration//GEN-END:variables
 
 }
