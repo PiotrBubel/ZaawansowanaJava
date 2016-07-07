@@ -26,14 +26,12 @@ public class DatabaseUtils {
 	}
 
         static public void closeConnection() {
-        	if (conn != null) {
         	    try {
         	        conn.close();
         	        System.out.println("Connection closed");
         	    } catch (SQLException e) {
 	         	System.err.println(e);
         	    }
-        	}
     	}
 
 	static public List<String> getRows() {
