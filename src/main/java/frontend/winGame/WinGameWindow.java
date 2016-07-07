@@ -22,9 +22,8 @@ public class WinGameWindow extends javax.swing.JFrame {
         this.size.setText(winController.getRows() + "x" + winController.getColumns());
     }
 
-    public void sendToDatabase(GameSummary summary) {
-        //DatabaseUtils.sendToDatabase(summary)
-        //send to database, probably needs to send an object not only the name
+    public void saveInDatabase(GameSummary summary) {
+        //DatabaseUtils.saveInDatabase(summary)
     }
 
     @SuppressWarnings("unchecked")
@@ -139,7 +138,7 @@ public class WinGameWindow extends javax.swing.JFrame {
         if (!nameTextField.getText().isEmpty()) {
             GameSummary summary = new GameSummary(nameTextField.getText(), winController.getPath(), 
                     winController.getTime(), winController.getRows(), winController.getColumns(), winController.getPath().length());
-            sendToDatabase(summary);
+            saveInDatabase(summary);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Put the name first");
