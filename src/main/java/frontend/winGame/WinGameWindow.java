@@ -1,5 +1,6 @@
 package frontend.winGame;
 
+import database.DatabaseUtils;
 import frontend.GameSummary;
 import javax.swing.JOptionPane;
 import npuzzle.Board;
@@ -24,8 +25,12 @@ public class WinGameWindow extends javax.swing.JFrame {
     }
 
     public void saveInDatabase(GameSummary summary) {
-        //DatabaseUtils.saveInDatabase(summary)
-        System.out.println("sending to database");
+        if(DatabaseUtils.getConn() != null) {            
+            DatabaseUtils.saveInDatabase(summary);
+        } else {
+            JOptionPane.showMessageDialog(this, "Not connected to database, cannot save score!");
+            this.dispose();
+        }
     }
 
     @SuppressWarnings("unchecked")

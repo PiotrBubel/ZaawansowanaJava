@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import npuzzle.Board;
@@ -40,8 +41,8 @@ public class StatisticsWindow extends javax.swing.JFrame {
     private JTable statisticsTable;
 
     public StatisticsWindow() {
-        initComponents();
         statisticsController = new StatisticsWindowController();
+        initComponents();
     }
 
     /**
@@ -87,10 +88,8 @@ public class StatisticsWindow extends javax.swing.JFrame {
             }
         });
 
-        rowsNumberComboBox.setModel(new DefaultComboBoxModel<>(new String[]{"2", "3", "4", "5", "6"}));
-        //rowsNumberComboBox.setModel(new DefaultComboBoxModel<String>(DatabaseUtils.getRows()));
-        columnsNumberComboBox.setModel(new DefaultComboBoxModel<>(new String[]{"2", "3", "4", "5", "6"}));
-        //columnsNumberComboBox.setModel(new DefaultComboBoxModel<String>(DatabaseUtils.getColumns()));
+        rowsNumberComboBox.setModel(new DefaultComboBoxModel<>(statisticsController.getRowsTable()));
+        columnsNumberComboBox.setModel(new DefaultComboBoxModel<>(statisticsController.getColumnsTable()));
 
         informationLabel.setText(" ");
         informationLabel.setVisible(true);
@@ -159,8 +158,13 @@ public class StatisticsWindow extends javax.swing.JFrame {
     }
 
     private void loadStatisticsButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        statisticsController.getSortedStatistics(Integer.parseInt(rowsNumberComboBox.getSelectedItem().toString()),
-                Integer.parseInt(columnsNumberComboBox.getSelectedItem().toString()));
+        statisticsTable.setModel(new DefaultTableModel());
+        if(!statisticsController.getSortedStatistics(Integer.parseInt(rowsNumberComboBox.getSelectedItem().toString()),
+                Integer.parseInt(columnsNumberComboBox.getSelectedItem().toString()))) {
+            JOptionPane.showMessageDialog(this, "Not connected to database, cannot load statistics!");
+            this.dispose();
+            return;
+        }
         if (statisticsController.getStatisticsList().isEmpty()) {
             informationLabel.setText("Unfortunatelly, there is no data for selected values!");
             informationLabel.setVisible(true);
