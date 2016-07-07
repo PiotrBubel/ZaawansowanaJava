@@ -26,13 +26,6 @@ public class DatabaseUtils {
 	}
 
 	static public void closeConnection() {
-<<<<<<< HEAD
-		try {
-			conn.close();
-			System.out.println("Connection closed");
-		} catch (SQLException e) {
-			System.err.println(e);
-=======
 		if (conn != null) {
 			try {
 				conn.close();
@@ -40,7 +33,6 @@ public class DatabaseUtils {
 			} catch (SQLException e) {
 				System.err.println(e);
 			}
->>>>>>> f55e58d... Handled null connection
 		}
 	}
 
