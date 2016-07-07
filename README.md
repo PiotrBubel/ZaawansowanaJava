@@ -24,4 +24,13 @@ Funkcjonalności:
 - ranking wyników (statystyki pobierane z bazy danych)
 - odtwarzanie ‘powtórki’ z zapisanego rozwiązania
 - możliwość wczytania własnego obrazka do podzielenia na elementy do ułożenia (obrazek ładowany przez użytkownika)
-- DODATKOWY BEZSENSOWNY WPIS
+
+Obsługa bazy:
+1. Wejdź na stronę https://www.apachefriends.org/pl/index.html i ściągnij wersję odpowiednią dla swojego systemu operacyjnego.
+2. Podczas instalacji postępuj według instrukcji.
+3. Po uruchomieniu programu kliknij Start przy module Apache oraz MySQL.
+4. Otwórz przeglądarkę i w pasku adresu wpisz "localhost/phpmyadmin".
+5. Ściągnij plik z bazą ze strony https://drive.google.com/open?id=0BxLyCPB6lRLrb0ctWVlVQm9Celk
+6. Z dostępnych zakładek w przeglądarce wybierz "Import", a następnie Wybierz Plik ze skryptem do tworzenia bazy, który ściągnąłeś w poprzednim punkcie.
+7. Kliknij "Wykonaj".
+8. Gotowe.
