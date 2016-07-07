@@ -1,13 +1,13 @@
 # Zaawansowana Java - N Puzzle
 
-Zespół projektowy:
+#### Zespół projektowy:
 
 - Alicja Cent
 - Paulina Zakrzewska
 - Piotr Bubel
 - Sebastian Kazmierczak
 
-Opis projektu:
+#### Opis projektu:
 
 Aplikacja okienkowa (Java Swing) implementująca popularną grę logiczną N-Puzzle (Piętnastka).
 
@@ -25,7 +25,8 @@ Funkcjonalności:
 - odtwarzanie ‘powtórki’ z zapisanego rozwiązania
 - możliwość wczytania własnego obrazka do podzielenia na elementy do ułożenia (obrazek ładowany przez użytkownika)
 
-Obsługa bazy:
+#### Obsługa bazy:
+
 1. Wejdź na stronę https://www.apachefriends.org/pl/index.html i ściągnij wersję odpowiednią dla swojego systemu operacyjnego.
 2. Podczas instalacji postępuj według instrukcji.
 3. Po uruchomieniu programu kliknij Start przy module Apache oraz MySQL.
@@ -33,4 +34,11 @@ Obsługa bazy:
 5. Ściągnij plik z bazą ze strony https://drive.google.com/open?id=0BxLyCPB6lRLrb0ctWVlVQm9Celk
 6. Z dostępnych zakładek w przeglądarce wybierz "Import", a następnie Wybierz Plik ze skryptem do tworzenia bazy, który ściągnąłeś w poprzednim punkcie.
 7. Kliknij "Wykonaj".
-8. Gotowe.
+8. Gotowe
+
+#### Uruchomienie aplikacji:
+
+1. Uruchom konolę w folderze z projektem.
+2. W konsoli wpisz: `mvn clean package` lub `mvn clean package -DskipTests`
+3. Po zakończeniu kompilacji (oraz ewentualnych testów) w konsoli wpisz: `java -jar target\npuzzle-1.0-SNAPSHOT.jar`
+4. Gotowe
