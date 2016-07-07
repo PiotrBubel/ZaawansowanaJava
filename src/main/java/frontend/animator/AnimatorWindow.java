@@ -45,8 +45,8 @@ public final class AnimatorWindow extends javax.swing.JFrame {
         nextMove = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Animation Window");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(450, 480));
         setResizable(false);
 
         playButton.setText("Play");
