@@ -12,38 +12,37 @@ import javax.swing.JFrame;
  * @author Lalu
  */
 public class HowToPlayWindow extends JFrame {
-    
-    private String text = "The window named N-puzzle is the place where the game will take place. Please be informed that time of your game and number of moves is being counted during the game.\n" +
-"For playing you please use your mouse and click on block you want to move.\n" +
-"\n" +
-"To start new game please click on 'New Game' button. The window will appear. You can select there board size and number of moves to mix the board.\n" +
-"Every board created after clicking on 'Start' button in New Game window is solvable.\n" +
-"\n" +
-"When you will succesfully solve the board Winning Window will ocure. It will contain summary of your game and a place to put your name. " +
-"If you want you can put your name and click 'Submit' button. This will cause saving your score in statistics, so others can see what you achieved.\n" +
-"\n" +
-"After clicking 'Statistics' button Statistics Window will appear. You can select there board size for which you want to see statistics. " +
-"To load statistics please use 'load statistics' button.\n" +
-"When statistics will be loaded you can select a row in statistics table and click 'animate' button. It will cause Animate Window appearing and " +
-"allows you to see how another player solved the puzzle. (For how to use Animation window please read on)\n" +
-"\n" +
-"After clicking 'Animate!' button in Main Window you will have ability to see your moves made in current game. You can play them from the beggining, stop " +
-"in every moment and by buttons \"<<\", \">>\" go step by step. 'Reset' button will cause appearing of mixed board from the beggining of the game.\n" +
-"\n" +
-"'Solve' button will cause displaying a window in which you can select an algorithm to solve your puzzle. When you will select all of the " +
-"settings please click on 'Solve' button. After solving the puzzle a pop-up information will be displayed. Then you can select 'Show' button " +
-"which will cause Animation Window appearing.\n" +
-"REMEMBER: Use solver only if you started new game and puzzle is not solved - in other cases nothing will be done. " +
-"Solving your game by solver will disable you to save score - because there will be no score, right? :)\n" +
-"\n" +
-"What is more you can upload an image if playing on numbers is too easy or boring for you. To perform this please right-click mouse on gray place in " +
-"Window and select 'Load image' option. Then graphicaly select an image. You can remove it any time. To perform this please right-click mouse on " +
-"gray place in Window and select 'Delete image' option.\n" +
-"\n" +
-"We wish you only succesful games,\n" +
-"Enjoy!\n" +
-"The Team";
 
+    private String text = "The window named N-puzzle is the place where the game will take place. Please be informed that time of your game and number of moves is being counted during the game.\n"
+            + "For playing you please use your mouse and click on block you want to move.\n"
+            + "\n"
+            + "To start new game please click on 'New Game' button. The window will appear. You can select there board size and number of moves to mix the board.\n"
+            + "Every board created after clicking on 'Start' button in New Game window is solvable.\n"
+            + "\n"
+            + "When you will succesfully solve the board Winning Window will ocure. It will contain summary of your game and a place to put your name. "
+            + "If you want you can put your name and click 'Submit' button. This will cause saving your score in statistics, so others can see what you achieved.\n"
+            + "\n"
+            + "After clicking 'Statistics' button Statistics Window will appear. You can select there board size for which you want to see statistics. "
+            + "To load statistics please use 'load statistics' button.\n"
+            + "When statistics will be loaded you can select a row in statistics table and click 'animate' button. It will cause Animate Window appearing and "
+            + "allows you to see how another player solved the puzzle. (For how to use Animation window please read on)\n"
+            + "\n"
+            + "After clicking 'Animate!' button in Main Window you will have ability to see your moves made in current game. You can play them from the beggining, stop "
+            + "in every moment and by buttons \"<<\", \">>\" go step by step. 'Reset' button will cause appearing of mixed board from the beggining of the game.\n"
+            + "\n"
+            + "'Solve' button will cause displaying a window in which you can select an algorithm to solve your puzzle. When you will select all of the "
+            + "settings please click on 'Solve' button. After solving the puzzle a pop-up information will be displayed. Then you can select 'Show' button "
+            + "which will cause Animation Window appearing.\n"
+            + "REMEMBER: Use solver only if you started new game and puzzle is not solved - in other cases nothing will be done. "
+            + "Solving your game by solver will disable you to save score - because there will be no score, right? :)\n"
+            + "\n"
+            + "What is more you can upload an image if playing on numbers is too easy or boring for you. To perform this please right-click mouse on gray place in "
+            + "Window and select 'Load image' option. Then graphicaly select an image. You can remove it any time. To perform this please right-click mouse on "
+            + "gray place in Window and select 'Delete image' option.\n"
+            + "\n"
+            + "We wish you only succesful games,\n"
+            + "Enjoy!\n"
+            + "The Team";
 
     public HowToPlayWindow() {
         initComponents();
