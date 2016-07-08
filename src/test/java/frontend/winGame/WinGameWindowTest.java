@@ -37,10 +37,4 @@ public class WinGameWindowTest {
         window.label("amount").requireText("0");
         window.label("size").requireText("4x4");
     }
-
-    @Test
-    public void testSendToDatabase() {
-        //TODO
-    }
-
 }
